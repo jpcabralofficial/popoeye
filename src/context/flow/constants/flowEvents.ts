@@ -1,0 +1,1 @@
+export const FLOW_EVENT_INIT = 'FLOW_EVENT_INIT';
