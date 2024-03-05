@@ -1,13 +1,14 @@
-import './src/helper/multiLanguageSetting';
+import 'react-native-gesture-handler';
+import './src/common/helpers/multiLanguageSetting';
 
 import React from 'react';
 import {
-  View,
   StyleSheet,
-  Text,
   SafeAreaView,
   KeyboardAvoidingView,
+  StatusBar,
 } from 'react-native';
+import SystemNavigationBar from 'react-native-system-navigation-bar';
 
 import { Provider as PaperProvider } from 'react-native-paper';
 
@@ -26,7 +27,9 @@ import { theme } from './src/theme/theme';
 
 import { FlowProvider } from './src/context/flow';
 
-import { store, persistor } from './src/redux/store';
+import { store, persistor } from './src/common/redux/store';
+
+import MainNavigation from './src/navigation/MainNavigation';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -41,28 +44,32 @@ const asyncStoragePersister = createAsyncStoragePersister({
 });
 
 const App = () => {
+  SystemNavigationBar.navigationHide();
+
   return (
-    <Provider store={store}>
-      <PersistGate persistor={persistor}>
-        <PersistQueryClientProvider
-          client={queryClient}
-          persistOptions={{ persister: asyncStoragePersister }}>
-          <NavigationContainer>
-            <PaperProvider theme={theme}>
-              <SafeAreaView style={styles.container}>
-                <KeyboardAvoidingView style={styles.keyboardAvoidingContainer}>
-                  <FlowProvider>
-                    <View>
-                      <Text>App</Text>
-                    </View>
-                  </FlowProvider>
-                </KeyboardAvoidingView>
-              </SafeAreaView>
-            </PaperProvider>
-          </NavigationContainer>
-        </PersistQueryClientProvider>
-      </PersistGate>
-    </Provider>
+    <>
+      <StatusBar backgroundColor={theme.colors.background} hidden />
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
+          <PersistQueryClientProvider
+            client={queryClient}
+            persistOptions={{ persister: asyncStoragePersister }}>
+            <NavigationContainer>
+              <PaperProvider theme={theme}>
+                <SafeAreaView style={styles.container}>
+                  <KeyboardAvoidingView
+                    style={styles.keyboardAvoidingContainer}>
+                    <FlowProvider>
+                      <MainNavigation />
+                    </FlowProvider>
+                  </KeyboardAvoidingView>
+                </SafeAreaView>
+              </PaperProvider>
+            </NavigationContainer>
+          </PersistQueryClientProvider>
+        </PersistGate>
+      </Provider>
+    </>
   );
 };
 

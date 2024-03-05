@@ -1,4 +1,4 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import {combineReducers, configureStore} from '@reduxjs/toolkit';
 import {
   persistStore,
   persistReducer,
@@ -12,9 +12,13 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 /* REDUCERS */
-import counterSliceReducer from './slices/sample';
+import checkoutSliceReducer from './slices/checkout/checkout';
+import cartSliceReducer from './slices/cart/cart';
 
-const reducers = combineReducers({ counter: counterSliceReducer });
+const reducers = combineReducers({
+  checkout: checkoutSliceReducer,
+  cart: cartSliceReducer,
+});
 
 const persistConfig = {
   key: 'root',

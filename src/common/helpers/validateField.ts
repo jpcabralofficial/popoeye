@@ -1,5 +1,5 @@
 import validation from 'validate.js';
-import { validationDictionary } from '../constants/validationDictionary';
+import { validationDictionary } from '../../constants/validationDictionary';
 
 export const validateField = (fieldName: string, value: any) => {
   const formValues: { [key: string]: any } = {};
