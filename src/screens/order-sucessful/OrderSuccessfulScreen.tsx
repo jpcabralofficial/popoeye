@@ -9,11 +9,10 @@ import useViewModel from './useViewModel';
 const OrderSuccessfulScreen = () => {
   const theme = useTheme();
 
-  const { footerText, handleNavigatePress } = useViewModel();
+  const { footerText, orderNumber } = useViewModel();
 
   return (
     <TouchableOpacity
-      onPress={handleNavigatePress}
       activeOpacity={1}
       style={[styles.container, { backgroundColor: theme.colors.background }]}>
       <View style={styles.headerContainer}>
@@ -32,7 +31,7 @@ const OrderSuccessfulScreen = () => {
           </Text>
           <Text
             style={[styles.contentOrderNumber, { color: theme.colors.white }]}>
-            17
+            {orderNumber}
           </Text>
         </View>
       </View>

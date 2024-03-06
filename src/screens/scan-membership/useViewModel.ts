@@ -1,10 +1,10 @@
-import { useNavigation } from '@react-navigation/native';
-import { useState } from 'react';
-import { FULFILLMENT_NAV } from '../../utils/navigation';
+import { useCallback, useState } from 'react';
+import { useFlow, FLOW_EVENT_CHECK_MEMBERSHIP } from '../../context/flow';
 
 const useViewModel = () => {
-  const { navigate } = useNavigation<any>();
   const [textMembershipID, setTextMembershipID] = useState<string>('');
+
+  const { emitFlowEvent } = useFlow();
 
   const formatMembershipID = (text: string) => {
     // Remove any non-numeric characters from the input
@@ -22,13 +22,21 @@ const useViewModel = () => {
     return formattedID;
   };
 
+  const onCheckMembershipId = useCallback(() => {
+    const membershipIdWithoutSpaces = textMembershipID.replace(/\s/g, '');
+
+    emitFlowEvent(FLOW_EVENT_CHECK_MEMBERSHIP, {
+      id: membershipIdWithoutSpaces,
+    });
+  }, [emitFlowEvent, textMembershipID]);
+
   const handleMembershipIDChange = (text: string) => {
     const formattedID = formatMembershipID(text);
     setTextMembershipID(formattedID);
   };
 
   const handleConfirmPress = () => {
-    navigate(FULFILLMENT_NAV);
+    onCheckMembershipId();
   };
 
   return { textMembershipID, handleMembershipIDChange, handleConfirmPress };

@@ -70,16 +70,21 @@ const ProductScreen = () => {
 
           {/* my bag */}
           <TouchableOpacity onPress={handleNavigatePress}>
-            <View
-              style={[
-                styles.myBagCountContainer,
-                { backgroundColor: theme.colors.accent },
-              ]}>
-              <Text
-                style={[styles.myBagCountText, { color: theme.colors.white }]}>
-                {cartCount}
-              </Text>
-            </View>
+            {cartCount > 0 && (
+              <View
+                style={[
+                  styles.myBagCountContainer,
+                  { backgroundColor: theme.colors.accent },
+                ]}>
+                <Text
+                  style={[
+                    styles.myBagCountText,
+                    { color: theme.colors.white },
+                  ]}>
+                  {cartCount}
+                </Text>
+              </View>
+            )}
 
             <Image
               source={IMAGES.SHOPPING_BAG_ICON}
@@ -110,6 +115,7 @@ const ProductScreen = () => {
             data={activeCategories}
             keyExtractor={category => category.name}
             contentContainerStyle={styles.scrollableCategoriesContainer}
+            showsVerticalScrollIndicator={false}
             renderItem={({ item, index }) => {
               const selected = index === selectedCategoryIndex;
 
@@ -205,6 +211,10 @@ const ProductScreen = () => {
           <CommonButton
             label="Review Order and Pay"
             size="half"
+            disabled={cartCount === 0}
+            backgroundColor={
+              cartCount === 0 ? theme.colors.disabled : theme.colors.accent
+            }
             onPress={() => handleButtonPress('pay')}
           />
         </View>
@@ -222,6 +232,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     gap: 20,
+    paddingHorizontal: 20,
     paddingVertical: 20,
   },
   footerButtonContainer: {
@@ -291,7 +302,7 @@ const styles = StyleSheet.create({
   },
   productContent: {
     gap: 30,
-    paddingHorizontal: 40,
+    paddingHorizontal: 25,
     paddingVertical: 20,
   },
   productContentContainer: {
@@ -304,7 +315,7 @@ const styles = StyleSheet.create({
   scrollableCategoriesContainer: {
     alignItems: 'center',
     gap: 10,
-    paddingRight: 40,
+    paddingRight: 30,
   },
   separator: {
     height: 7,

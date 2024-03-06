@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -29,10 +29,32 @@ import {
   ORDER_SUCCESSFUL,
   MY_BAG,
 } from '../utils/navigation';
+import { FLOW_EVENT_INIT } from '../context/flow';
+import { useFlow } from '../context/flow/useFlow';
 
-const Stack = createStackNavigator();
+export type MainNavigationParamList = {
+  [ONBOARDING_NAV]: undefined;
+  [SCAN_MEMBERSHIP_NAV]: undefined;
+  [FULFILLMENT_NAV]: undefined;
+  [PRODUCT_NAV]: undefined;
+  [MY_BAG]: undefined;
+  [CANCEL_ORDER]: undefined;
+  [TYPE_OF_PAYMENT]: undefined;
+  [MODE_OF_PAYMENT]: undefined;
+  [CASHLESS_PAYMENT]: undefined;
+  [INSTRUCTION_PAYMENT]: undefined;
+  [ORDER_SUCCESSFUL]: undefined;
+};
+
+const Stack = createStackNavigator<MainNavigationParamList>();
 
 const MainNavigation = () => {
+  const { emitFlowEvent } = useFlow();
+
+  useEffect(() => {
+    emitFlowEvent(FLOW_EVENT_INIT, null);
+  }, [emitFlowEvent]);
+
   return (
     <Stack.Navigator initialRouteName={ONBOARDING_NAV}>
       <Stack.Screen

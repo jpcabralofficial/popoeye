@@ -111,14 +111,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     gap: 20,
-    marginRight: 40,
+    marginRight: 70,
     width: 120,
   },
   itemContainer: {
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingLeft: 65,
+    paddingLeft: 50,
   },
   itemImage: {
     height: 80,

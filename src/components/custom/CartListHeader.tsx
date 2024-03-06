@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 60,
+    paddingHorizontal: 50,
   },
   listHeaderText: {
     fontSize: 32,
