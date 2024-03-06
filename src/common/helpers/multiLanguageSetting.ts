@@ -3,7 +3,7 @@ import { initReactI18next } from 'react-i18next';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as RNLocalize from 'react-native-localize';
 
-import * as en from '../assets/translations/en';
+import * as en from '../../assets/translations/en';
 
 // Add additional language
 const LANGUAGES = {
