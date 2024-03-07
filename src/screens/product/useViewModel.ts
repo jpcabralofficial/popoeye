@@ -2,11 +2,15 @@ import { useState } from 'react';
 
 import _ from 'lodash';
 
-import { products as productJSON } from '../../static/products.json';
-import { useNavigation } from '@react-navigation/native';
-import { CANCEL_ORDER, MY_BAG } from '../../utils/navigation';
 import { useDispatch, useSelector } from 'react-redux';
-import { cartSelector, checkoutSelector } from '../../common/redux/selector';
+import { useNavigation } from '@react-navigation/native';
+
+import {
+  cartSelector,
+  checkoutSelector,
+  productSelector,
+} from '../../common/redux/selector';
+import { CANCEL_ORDER, MY_BAG } from '../../utils/navigation';
 import {
   ActiveCategoriesType,
   CategoryPressType,
@@ -24,12 +28,12 @@ const useViewModel = () => {
 
   const checkoutRedux = useSelector(checkoutSelector);
   const cartRedux = useSelector(cartSelector);
+  const productRedux = useSelector(productSelector);
 
-  const [selectedProducts, setSelectedProducts] = useState<ProductType[]>();
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [selectedCategoryIndex, setSelectedCategoryIndex] = useState<number>(0);
 
-  const groupByCategories = _.groupBy(productJSON, 'categories');
+  const groupByCategories = _.groupBy(productRedux.products, 'categories');
   const categories = _.map(groupByCategories, products => {
     return {
       name: products[0].categories,
@@ -48,6 +52,10 @@ const useViewModel = () => {
       // Include the category in activeCategories only if it has a visible product
       return hasVisibleProduct;
     },
+  );
+
+  const [selectedProducts, setSelectedProducts] = useState<ProductType[]>(
+    activeCategories[0]?.products,
   );
 
   const activeProducts = _.filter(

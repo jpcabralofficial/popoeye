@@ -2,6 +2,7 @@ export const IMAGES = {
   // images
   ONBOARDING_IMAGE: require('../assets/images/onboarding.png'),
   LANDERS_CENTRAL_BANNER: require('../assets/images/landers_central_banner.png'),
+  LANDERS_CARD: require('../assets/images/landers_card.png'),
 
   // logos
   LANDERS_CENTRAL_LOGO: require('../assets/logo/landers_central_logo.png'),

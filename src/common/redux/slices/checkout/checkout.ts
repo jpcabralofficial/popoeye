@@ -1,10 +1,11 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 import CheckoutState from './checkout.types';
 
 const initialState: CheckoutState = {
   fulfillmentType: '',
   typeOfPayment: '',
+  counterQueueTicket: 0,
 };
 
 const checkoutSlice = createSlice({
@@ -12,16 +13,19 @@ const checkoutSlice = createSlice({
   initialState,
   reducers: {
     setFulfillmentType(state, action) {
-      return {...state, fulfillmentType: action.payload};
+      return { ...state, fulfillmentType: action.payload };
     },
     clearFulfillmentType(state) {
-      return {...state, fulfillmentType: initialState.fulfillmentType};
+      return { ...state, fulfillmentType: initialState.fulfillmentType };
     },
     setTypeOfPayment(state, action) {
-      return {...state, typeOfPayment: action.payload};
+      return { ...state, typeOfPayment: action.payload };
     },
     clearTypeOfPayment(state) {
-      return {...state, typeOfPayment: initialState.typeOfPayment};
+      return { ...state, typeOfPayment: initialState.typeOfPayment };
+    },
+    incrementQueueTicket(state) {
+      return { ...state, counterQueueTicket: state.counterQueueTicket + 1 };
     },
   },
 });
@@ -32,5 +36,7 @@ export const {
 
   setTypeOfPayment,
   clearTypeOfPayment,
+
+  incrementQueueTicket,
 } = checkoutSlice.actions;
 export default checkoutSlice.reducer;

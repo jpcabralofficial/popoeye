@@ -9,6 +9,7 @@ type CommonButtonType = {
   labelColor?: string;
   backgroundColor?: string;
   size?: 'half' | 'full';
+  disabled?: boolean;
   onPress: () => void;
 };
 
@@ -17,6 +18,7 @@ const CommonButton = ({
   labelColor = theme.colors.white,
   backgroundColor = theme.colors.accent,
   size = 'full',
+  disabled,
   onPress,
 }: CommonButtonType) => {
   const { width } = useWindowDimensions();
@@ -24,6 +26,7 @@ const CommonButton = ({
   return (
     <TouchableRipple
       onPress={onPress}
+      disabled={disabled}
       style={[
         styles.container,
         {

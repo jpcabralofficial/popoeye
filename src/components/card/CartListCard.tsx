@@ -1,5 +1,12 @@
 import React from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  useWindowDimensions,
+} from 'react-native';
 import { useTheme } from 'react-native-paper';
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -22,17 +29,20 @@ const CartListCard = ({
   handleRemoveItemPress,
 }: CartListCardType) => {
   const theme = useTheme();
+  const { width } = useWindowDimensions();
 
   return (
     <>
       <View style={styles.itemContainer}>
         {/* quantity */}
-        <Text style={[styles.itemText, { color: theme.colors.black }]}>
-          x{item.quantity}
-        </Text>
+        <View style={{ width: width / 4 - 100 }}>
+          <Text style={[styles.itemText, { color: theme.colors.black }]}>
+            x{item.quantity}
+          </Text>
+        </View>
 
         {/* item */}
-        <View style={styles.item}>
+        <View style={[styles.item, { width: width / 4 + 50 }]}>
           <View
             style={[
               styles.itemImageContainer,
@@ -51,7 +61,7 @@ const CartListCard = ({
         </View>
 
         {/* amount */}
-        <Text style={[styles.itemText, { color: theme.colors.black }]}>
+        <Text style={[styles.itemText, { color: theme.colors.black, flex: 1 }]}>
           {thousandSeparatorWithCurrencySign(item.amount)}
         </Text>
 
@@ -111,14 +121,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     gap: 20,
-    marginRight: 40,
-    width: 120,
   },
   itemContainer: {
     alignItems: 'center',
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingLeft: 65,
   },
   itemImage: {
     height: 80,
@@ -131,6 +137,7 @@ const styles = StyleSheet.create({
   itemName: {
     fontWeight: 'bold',
     textAlign: 'center',
+    width: 120,
   },
   itemText: {
     fontSize: 24,
@@ -148,7 +155,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 5,
     justifyContent: 'space-between',
-    marginLeft: 10,
   },
   quantityText: {
     borderRadius: 8,

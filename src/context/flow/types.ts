@@ -4,6 +4,8 @@ import {
   FLOW_STATE_SAMPLE_STATE,
   FLOW_STATUS_ERROR,
   FLOW_STATUS_SUCCESS,
+  FLOW_EVENT_CHECK_MEMBERSHIP,
+  FLOW_EVENT_PRINT,
 } from './constants';
 
 export type FlowStates =
@@ -25,4 +27,10 @@ export type FlowContextType = {
 
 export type FlowEventPayloadsList = {
   [FLOW_EVENT_INIT]: null;
+  [FLOW_EVENT_CHECK_MEMBERSHIP]: { id: string };
+  [FLOW_EVENT_PRINT]: {
+    items: any;
+    fulfillmentType: string;
+    queueNumber: number;
+  };
 };
