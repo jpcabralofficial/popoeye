@@ -1,16 +1,17 @@
-import {useDispatch, useSelector} from 'react-redux';
-import {useNavigation} from '@react-navigation/native';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
 
 import {
   removeItem,
   setAddQuantity,
   setRemoveQuantity,
 } from '../../common/redux/slices/cart/cart';
-import {cartSelector, checkoutSelector} from '../../common/redux/selector';
-import {TYPE_OF_PAYMENT} from '../../utils/navigation';
+import { setFulfillmentType } from '../../common/redux/slices/checkout/checkout';
+import { cartSelector, checkoutSelector } from '../../common/redux/selector';
+import { TYPE_OF_PAYMENT } from '../../utils/navigation';
 
 const useViewModel = () => {
-  const {navigate, goBack} = useNavigation<any>();
+  const { navigate, goBack } = useNavigation<any>();
   const dispatch = useDispatch();
 
   const checkoutRedux = useSelector(checkoutSelector);
@@ -41,6 +42,12 @@ const useViewModel = () => {
     dispatch(removeItem(id));
   };
 
+  const handleChangeFulfillmentPress = (
+    fulfillmentType: 'dine-in' | 'take-out',
+  ) => {
+    dispatch(setFulfillmentType(fulfillmentType));
+  };
+
   const handleNavigatePress = (screen: 'payment' | 'go-back') => {
     if (screen === 'payment') {
       navigate(TYPE_OF_PAYMENT);
@@ -55,11 +62,14 @@ const useViewModel = () => {
     cartTotal,
 
     fulfillmentType,
+    isDineIn: fulfillmentType === 'Dine In',
+    isTakeOut: fulfillmentType === 'Take Out',
 
     handleAddQuantity,
     handleRemoveQuantity,
     handleRemoveItemPress,
 
+    handleChangeFulfillmentPress,
     handleNavigatePress,
   };
 };

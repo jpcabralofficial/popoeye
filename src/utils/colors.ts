@@ -28,4 +28,5 @@ export const COLORS = {
   lightYellow: '#F5F3E4',
   dashedBorder: '#F5D580',
   gray70: '#969696',
+  lightBorder: '#AA9E9E',
 };

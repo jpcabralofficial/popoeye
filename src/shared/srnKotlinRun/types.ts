@@ -9,6 +9,7 @@ export enum RunClassName {
   GetProductCategories = 'GetProductCategories',
   GetAllProducts = 'GetAllProducts',
   Print = 'Print',
+  InitializeScannerService = 'InitializeScannerService',
 }
 
 export enum ResultCodes {
@@ -90,6 +91,11 @@ type ClassTypes = {
         }[];
       };
     };
+    result: ResultBase<ResponseBase>;
+  };
+
+  [RunClassName.InitializeScannerService]: {
+    params: undefined;
     result: ResultBase<ResponseBase>;
   };
 };

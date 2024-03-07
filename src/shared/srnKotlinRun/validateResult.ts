@@ -127,6 +127,8 @@ export const validateResult = <ClassName extends RunClassName>(
       return true;
     case RunClassName.Print:
       return true;
+    case RunClassName.InitializeScannerService:
+      return true;
     default:
       throw new Error(`Unhandled result validation: ${className}`);
   }

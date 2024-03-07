@@ -55,7 +55,7 @@ const useViewModel = () => {
   );
 
   const [selectedProducts, setSelectedProducts] = useState<ProductType[]>(
-    activeCategories[0].products,
+    activeCategories[0]?.products,
   );
 
   const activeProducts = _.filter(

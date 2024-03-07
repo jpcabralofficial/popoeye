@@ -10,6 +10,7 @@ const silentClassNames = [
   RunClassName.EmployeeLogin,
   RunClassName.GetMemberById,
   RunClassName.GetProductsFromParrot,
+  RunClassName.InitializeScannerService,
 ];
 
 const replacer = (key: string, value: any) => {

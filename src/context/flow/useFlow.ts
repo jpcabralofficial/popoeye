@@ -33,8 +33,18 @@ import {
 
 import useFlowNavigation from './useFlowNavigation';
 import { setProducts } from '../../common/redux/slices/product/product';
+import {
+  clearMembershipBarcode,
+  setMembershipType,
+} from '../../common/redux/slices/membership/membership';
 import { clearCart } from '../../common/redux/slices/cart/cart';
 import { FULFILLMENT_NAV, ONBOARDING_NAV } from '../../utils/navigation';
+
+import {
+  EventName,
+  srnKotlinSetEventHandlers,
+} from '../../shared/srnKotlinSetEventHandlers';
+import { srnKotlinRequestPermissions } from '../../shared/srnKotlinRequestPermissions';
 
 type EventHandlersType = {
   [Property in FlowEvents]?: {
@@ -80,6 +90,8 @@ export const useFlow = () => {
               return FLOW_STATUS_SUCCESS;
             }
 
+            await srnKotlinRequestPermissions();
+
             if (status === FLOW_STATUS_SUCCESS) {
               navigateMain(ONBOARDING_NAV);
             }
@@ -89,10 +101,6 @@ export const useFlow = () => {
               undefined,
             );
 
-            await srnKotlinRun(RunClassName.UpdateSettings, {
-              settings: [{ key: 'DeviceName', newValue: 'CentralKiosk' }],
-            });
-
             if (resInitSettings.response.resultCode !== ResultCodes.Success) {
               throw new Error(
                 `Invalid initialize settings result: ${JSON.stringify(
@@ -101,9 +109,38 @@ export const useFlow = () => {
               );
             }
 
+            await srnKotlinRun(RunClassName.UpdateSettings, {
+              settings: [{ key: 'DeviceName', newValue: 'CentralKiosk' }],
+            });
+
+            const resInitScannerService = await srnKotlinRun(
+              RunClassName.InitializeScannerService,
+              undefined,
+            );
+
+            if (
+              resInitScannerService.response.resultCode !== ResultCodes.Success
+            ) {
+              throw new Error(
+                `Invalid initialize scanner result: ${JSON.stringify(
+                  resInitScannerService,
+                )}`,
+              );
+            }
+
             await srnKotlinRun(RunClassName.MerchantLogin, {
               username: 'dev-kuyaj_store-owner@yopmail.com',
               password: 'iFqhiDy?',
+            });
+
+            srnKotlinSetEventHandlers({
+              [EventName.OnScannerRead]: ({ data }) => {
+                console.debug(
+                  `EVENT OnScannerReadError: ${JSON.stringify(data)}`,
+                );
+                console.log('OnScannerReadResponse', data);
+                dispatch(clearMembershipBarcode(data?.scanData));
+              },
             });
 
             const resGetAllProducts = await srnKotlinRun(
@@ -153,7 +190,22 @@ export const useFlow = () => {
               { id: payload.id },
             );
 
-            if (dataResponse.response.resultCode === ResultCodes.Success) {
+            if (
+              dataResponse.response.resultCode !== ResultCodes.Success &&
+              dataResponse.response.resultMessage ===
+                'Membership ID does not exist.'
+            ) {
+              dispatch(setMembershipType('not exist'));
+            } else if (
+              dataResponse.response.resultCode === ResultCodes.Success &&
+              dataResponse.response.data.status === 'Expired'
+            ) {
+              dispatch(setMembershipType('expired'));
+            } else if (
+              dataResponse.response.resultCode === ResultCodes.Success &&
+              dataResponse.response.data.status === 'Active'
+            ) {
+              dispatch(setMembershipType('active'));
               navigateMain(FULFILLMENT_NAV);
             }
 

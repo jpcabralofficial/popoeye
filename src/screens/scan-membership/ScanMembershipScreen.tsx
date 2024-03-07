@@ -15,6 +15,8 @@ import { useTheme } from 'react-native-paper';
 
 import SystemNavigationBar from 'react-native-system-navigation-bar';
 
+import MembershipDoesNotExistModal from '../../components/modal/MembershipDoesNotExistModal';
+import MembershipExpiredModal from '../../components/modal/MembershipExpiredModal';
 import CommonHeader from '../../components/header/CommonHeader';
 
 import { IMAGES } from '../../utils/images';
@@ -28,8 +30,16 @@ const ScanMembershipScreen = () => {
   const placeholderText = '0000 - 0000 - 0000 - 0000';
   const maxLength = 19;
 
-  const { textMembershipID, handleMembershipIDChange, handleConfirmPress } =
-    useViewModel();
+  const {
+    textMembershipID,
+
+    isMemberExistModal,
+    isMemberExpiredModal,
+    handleOnHideModal,
+
+    handleMembershipIDChange,
+    handleConfirmPress,
+  } = useViewModel();
 
   useEffect(() => {
     const keyboardDidShowListener = Keyboard.addListener(
@@ -116,6 +126,23 @@ const ScanMembershipScreen = () => {
           </View>
         </View>
       </ScrollView>
+
+      <MembershipDoesNotExistModal
+        isVisible={isMemberExistModal}
+        title="Member Not Found"
+        details="Your membership ID was not found."
+        buttonLabel="Try Again"
+        onModalHide={handleOnHideModal}
+        onPress={handleOnHideModal}
+      />
+
+      <MembershipExpiredModal
+        isVisible={isMemberExpiredModal}
+        details="Your membership is out-of-date."
+        buttonLabel="Try Again"
+        onModalHide={handleOnHideModal}
+        onPress={handleOnHideModal}
+      />
     </KeyboardAvoidingView>
   );
 };

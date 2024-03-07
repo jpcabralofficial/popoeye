@@ -14,6 +14,7 @@ export enum EventName {
   UpdateProductDetails = 'updateProductDetails',
   UpdateOrderAcceptanceStatus = 'updateOrderAcceptanceStatus',
   UpdateCustomerInfo = ' updateCustomerInfo',
+  OnScannerRead = ' onScannerRead',
 }
 
 type CallbackFunction = (event: { data: any }) => void;

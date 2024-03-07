@@ -31,11 +31,14 @@ const MyBagScreen = () => {
     cartTotal,
 
     fulfillmentType,
+    isDineIn,
+    isTakeOut,
 
     handleAddQuantity,
     handleRemoveQuantity,
     handleRemoveItemPress,
 
+    handleChangeFulfillmentPress,
     handleNavigatePress,
   } = useViewModel();
 
@@ -70,20 +73,84 @@ const MyBagScreen = () => {
         <View style={[styles.content, { backgroundColor: theme.colors.white }]}>
           {/* content header */}
           <View style={styles.contentHeaderContainer}>
-            <TouchableOpacity
-              onPress={() => handleNavigatePress('go-back')}
-              style={[styles.backButton, { borderColor: theme.colors.black }]}>
-              <AntDesign
-                name="arrowleft"
-                size={40}
-                color={theme.colors.black}
-              />
-            </TouchableOpacity>
+            <View style={styles.contentHeaderLeft}>
+              <TouchableOpacity
+                onPress={() => handleNavigatePress('go-back')}
+                style={[
+                  styles.backButton,
+                  { borderColor: theme.colors.black },
+                ]}>
+                <AntDesign
+                  name="arrowleft"
+                  size={40}
+                  color={theme.colors.black}
+                />
+              </TouchableOpacity>
 
-            <Text style={[styles.cartCount, { color: theme.colors.black }]}>
-              {cartCount} Items
-            </Text>
+              {cartCount > 0 && (
+                <Text style={[styles.cartCount, { color: theme.colors.black }]}>
+                  {cartCount} Items
+                </Text>
+              )}
+            </View>
+
+            <View style={styles.contentHeaderRight}>
+              <TouchableOpacity
+                onPress={() => handleChangeFulfillmentPress('dine-in')}
+                activeOpacity={1}
+                style={[
+                  isDineIn
+                    ? styles.activeFulfillmentButton
+                    : styles.inactiveFulfillmentButton,
+                  {
+                    backgroundColor: isDineIn
+                      ? theme.colors.accent
+                      : theme.colors.white,
+                    borderColor: theme.colors.lightBorder,
+                  },
+                ]}>
+                <Text
+                  style={[
+                    styles.fulfillmentButtonLabel,
+                    {
+                      color: isDineIn ? theme.colors.white : theme.colors.black,
+                    },
+                  ]}>
+                  Dine In
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                onPress={() => handleChangeFulfillmentPress('take-out')}
+                activeOpacity={1}
+                style={[
+                  isTakeOut
+                    ? styles.activeFulfillmentButton
+                    : styles.inactiveFulfillmentButton,
+                  {
+                    backgroundColor: isTakeOut
+                      ? theme.colors.accent
+                      : theme.colors.white,
+                    borderColor: theme.colors.lightBorder,
+                  },
+                ]}>
+                <Text
+                  style={[
+                    styles.fulfillmentButtonLabel,
+                    {
+                      color: isTakeOut
+                        ? theme.colors.white
+                        : theme.colors.black,
+                    },
+                  ]}>
+                  Take Out
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
+
+          {/* cart list header */}
+          <CartListHeader />
 
           {/* list of cart items */}
           <FlatList
@@ -91,7 +158,6 @@ const MyBagScreen = () => {
             keyExtractor={item => item.id}
             contentContainerStyle={styles.listContainer}
             showsVerticalScrollIndicator={false}
-            ListHeaderComponent={CartListHeader}
             renderItem={({ item }) => {
               return (
                 <CartListCard
@@ -133,6 +199,10 @@ const MyBagScreen = () => {
           <CommonButton
             label="Proceed to Payment"
             onPress={() => handleNavigatePress('payment')}
+            disabled={cartCount === 0}
+            backgroundColor={
+              cartCount === 0 ? theme.colors.disabled : theme.colors.accent
+            }
           />
         </View>
       </View>
@@ -141,6 +211,13 @@ const MyBagScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  activeFulfillmentButton: {
+    alignItems: 'center',
+    borderRadius: 10,
+    justifyContent: 'center',
+    paddingVertical: 7,
+    width: 150,
+  },
   backButton: {
     borderRadius: 10,
     borderWidth: 2,
@@ -172,9 +249,18 @@ const styles = StyleSheet.create({
   contentHeaderContainer: {
     alignItems: 'center',
     flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  contentHeaderLeft: {
+    alignItems: 'center',
+    flexDirection: 'row',
     gap: 30,
     marginLeft: 20,
     marginVertical: 50,
+  },
+  contentHeaderRight: {
+    flexDirection: 'row',
+    gap: 20,
   },
   footerButtonContainer: {
     flexDirection: 'row',
@@ -195,6 +281,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 40,
   },
+  fulfillmentButtonLabel: {
+    fontSize: 26,
+    fontWeight: 'bold',
+  },
   headerContainer: {
     gap: 20,
     paddingVertical: 20,
@@ -209,6 +299,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: 40,
   },
+  inactiveFulfillmentButton: {
+    alignItems: 'center',
+    borderRadius: 10,
+    borderWidth: 2,
+    justifyContent: 'center',
+    paddingVertical: 7,
+    width: 150,
+  },
   landersCentralLogo: {
     alignSelf: 'center',
     height: 100,
@@ -217,6 +315,7 @@ const styles = StyleSheet.create({
   listContainer: {
     gap: 20,
     paddingBottom: 40,
+    paddingHorizontal: 20,
   },
   separator: {
     height: 7,

@@ -69,7 +69,7 @@ const ProductScreen = () => {
           </Text>
 
           {/* my bag */}
-          <TouchableOpacity onPress={handleNavigatePress}>
+          <TouchableOpacity onPress={handleNavigatePress} activeOpacity={0.8}>
             {cartCount > 0 && (
               <View
                 style={[

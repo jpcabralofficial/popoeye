@@ -24,7 +24,6 @@ const CategoryCard = ({
   const inactiveSize = 150;
 
   const activeOpacity = 1;
-  const inactiveOpacity = 0.5;
 
   return (
     <>
@@ -49,10 +48,7 @@ const CategoryCard = ({
         ]}>
         <Image
           source={{ uri: item.image_thumbnail }}
-          style={[
-            styles.categoryCardImage,
-            { opacity: selected ? activeOpacity : inactiveOpacity },
-          ]}
+          style={styles.categoryCardImage}
           resizeMode="contain"
         />
 
@@ -62,7 +58,6 @@ const CategoryCard = ({
             styles.categoryCardText,
             {
               color: theme.colors.black,
-              opacity: selected ? activeOpacity : inactiveOpacity,
             },
           ]}>
           {item?.name}

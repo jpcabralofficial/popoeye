@@ -15,11 +15,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import checkoutSliceReducer from './slices/checkout/checkout';
 import cartSliceReducer from './slices/cart/cart';
 import productSliceReducer from './slices/product/product';
+import membershipSliceReducer from './slices/membership/membership';
 
 const reducers = combineReducers({
   checkout: checkoutSliceReducer,
   cart: cartSliceReducer,
   product: productSliceReducer,
+  membership: membershipSliceReducer,
 });
 
 const persistConfig = {

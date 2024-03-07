@@ -25,6 +25,7 @@ const SelectionCard = ({
 
   return (
     <TouchableOpacity
+      activeOpacity={0.9}
       onPress={handleButtonPress}
       style={[
         styles.container,

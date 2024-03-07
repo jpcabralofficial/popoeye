@@ -12,6 +12,7 @@ const BackButton = () => {
   return (
     <View style={styles.container}>
       <TouchableOpacity
+        activeOpacity={0.7}
         onPress={() => goBack()}
         style={[styles.button, { borderColor: theme.colors.white }]}>
         <AntDesign name="arrowleft" size={40} color={theme.colors.white} />
