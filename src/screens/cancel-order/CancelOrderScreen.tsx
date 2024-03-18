@@ -27,6 +27,11 @@ const CancelOrderScreen = () => {
       <CommonHeader />
 
       <View style={styles.contentContainer}>
+      <Image
+          source={IMAGES.BACKGROUND_IMAGE}
+          style={{ height: "100%", width: width, zIndex: -1, position: "absolute"}}
+          resizeMode="stretch"
+        />
         <View style={styles.content}>
           <Image
             source={IMAGES.QUESTION_ICON}
@@ -47,7 +52,8 @@ const CancelOrderScreen = () => {
           <View style={[styles.buttonContainer, { width: width }]}>
             <CommonButton
               label="NO"
-              backgroundColor={theme.colors.gray70}
+              labelColor={theme.colors.primary}
+              backgroundColor={theme.colors.buttoncolor}
               size="half"
               onPress={() => handleButtonPress('no')}
             />

@@ -71,9 +71,9 @@ const CartListCard = ({
             onPress={() => handleRemoveQuantity(item.id)}
             style={[
               styles.quantityButton,
-              { backgroundColor: theme.colors.black },
+              { backgroundColor: theme.colors.white, borderWidth: 1, borderColor: theme.colors.primary },
             ]}>
-            <AntDesign name="minus" size={20} color={theme.colors.white} />
+            <AntDesign name="minus" size={20} color={theme.colors.primary} />
           </TouchableOpacity>
 
           <Text
@@ -91,7 +91,7 @@ const CartListCard = ({
             onPress={() => handleAddQuantity(item.id)}
             style={[
               styles.quantityButton,
-              { backgroundColor: theme.colors.accent },
+              { backgroundColor: theme.colors.primary },
             ]}>
             <AntDesign name="plus" size={20} color={theme.colors.white} />
           </TouchableOpacity>
@@ -105,10 +105,10 @@ const CartListCard = ({
         <MaterialCommunityIcons
           name="trash-can-outline"
           size={24}
-          color={theme.colors.accent}
+          color={theme.colors.gray80}
         />
         <Text
-          style={[styles.removeButtonLabel, { color: theme.colors.accent }]}>
+          style={[styles.removeButtonLabel, { color: theme.colors.gray80 }]}>
           Remove
         </Text>
       </TouchableOpacity>
@@ -160,8 +160,8 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 1,
     fontSize: 22,
-    paddingHorizontal: 20,
-    paddingVertical: 5,
+    paddingHorizontal: 18,
+    paddingVertical: 10,
   },
   removeButton: {
     alignItems: 'center',

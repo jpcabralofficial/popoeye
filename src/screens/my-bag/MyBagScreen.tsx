@@ -44,16 +44,21 @@ const MyBagScreen = () => {
 
   return (
     <View
-      style={[styles.container, { backgroundColor: theme.colors.background }]}>
+      style={[styles.container, { backgroundColor: theme.colors.white }]}>
       {/* header */}
-      <View style={styles.headerContainer}>
+      <View style={[styles.headerContainer, { backgroundColor: theme.colors.primary }]}>
         <Image
-          source={IMAGES.LANDERS_CENTRAL_LOGO}
+          source={IMAGES.POPEYES_LOGO_TEXT}
           style={styles.landersCentralLogo}
           resizeMode="stretch"
         />
 
         <View style={styles.headerTitleContainer}>
+          <Image
+              source={IMAGES.SHOPPING_BAG_ICON}
+              style={styles.myBagIcon}
+              resizeMode="stretch"
+            />
           <Text style={[styles.headerTitle, { color: theme.colors.white }]}>
             My Bag
           </Text>
@@ -64,12 +69,17 @@ const MyBagScreen = () => {
       <View
         style={[
           styles.separator,
-          { backgroundColor: theme.colors.accent, width: width },
+          { backgroundColor: theme.colors.white, width: width },
         ]}
       />
 
       {/* content */}
-      <View style={styles.contentContainer}>
+      <View style={[styles.contentContainer, { backgroundColor: theme.colors.buttoncolor }]}>
+      <Image
+          source={IMAGES.BACKGROUND_IMAGE}
+          style={{ height: "100%", width: width, zIndex: -1, position: "absolute"}}
+          resizeMode="stretch"
+        />
         <View style={[styles.content, { backgroundColor: theme.colors.white }]}>
           {/* content header */}
           <View style={styles.contentHeaderContainer}>
@@ -104,7 +114,7 @@ const MyBagScreen = () => {
                     : styles.inactiveFulfillmentButton,
                   {
                     backgroundColor: isDineIn
-                      ? theme.colors.accent
+                      ? theme.colors.primary
                       : theme.colors.white,
                     borderColor: theme.colors.lightBorder,
                   },
@@ -129,7 +139,7 @@ const MyBagScreen = () => {
                     : styles.inactiveFulfillmentButton,
                   {
                     backgroundColor: isTakeOut
-                      ? theme.colors.accent
+                      ? theme.colors.primary
                       : theme.colors.white,
                     borderColor: theme.colors.lightBorder,
                   },
@@ -176,7 +186,7 @@ const MyBagScreen = () => {
       <View
         style={[
           styles.separator,
-          { backgroundColor: theme.colors.accent, width: width },
+          { backgroundColor: theme.colors.primary, width: width },
         ]}
       />
 
@@ -310,12 +320,17 @@ const styles = StyleSheet.create({
   landersCentralLogo: {
     alignSelf: 'center',
     height: 100,
-    width: 130,
+    width: 300,
   },
   listContainer: {
     gap: 20,
     paddingBottom: 40,
     paddingHorizontal: 20,
+  },
+  myBagIcon: {
+    alignSelf: 'center',
+    height: 74,
+    width: 86,
   },
   separator: {
     height: 7,

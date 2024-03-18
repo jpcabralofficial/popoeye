@@ -2,7 +2,7 @@ import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useTheme } from 'react-native-paper';
 
-import AntDesign from 'react-native-vector-icons/AntDesign';
+// import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import { thousandSeparatorWithCurrencySign } from '../../common/helpers/common';
 import { ProductType } from '../../utils/types';
@@ -27,11 +27,29 @@ const ProductCard = ({
   const theme = useTheme();
 
   return (
-    <View
-      style={[
-        styles.productCardContainer,
-        { backgroundColor: theme.colors.white },
-      ]}>
+    <TouchableOpacity
+    onPress={() => quantity <= 0 ? handleAddToCart(item) : handleAddQuantity(item.id)}
+    style={[
+      styles.productCardContainer,
+      { backgroundColor: theme.colors.white },
+    ]}
+    activeOpacity={0.8}>
+      <View>
+        {quantity > 0 && (
+        <View
+          style={[
+            styles.myBagCountContainer,
+            { backgroundColor: theme.colors.accent, borderColor: theme.colors.white},
+          ]}>
+          <Text
+            style={[
+              styles.myBagCountText,
+              { color: theme.colors.white },
+            ]}>
+            {quantity}
+          </Text>
+        </View>
+      )}
       <Image
         source={{ uri: item?.images }}
         style={styles.productCardImage}
@@ -45,7 +63,7 @@ const ProductCard = ({
         {thousandSeparatorWithCurrencySign(parseInt(item.price, 10))}
       </Text>
 
-      {!isAlreadyInCart ? (
+      {/* {!isAlreadyInCart ? (
         <TouchableOpacity
           onPress={() => handleAddToCart(item)}
           style={[
@@ -91,21 +109,39 @@ const ProductCard = ({
             <AntDesign name="plus" size={20} color={theme.colors.white} />
           </TouchableOpacity>
         </View>
-      )}
+      )} */}
     </View>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  productCardButton: {
-    borderRadius: 10,
-    paddingVertical: 8.5,
-    width: '170%',
+  // productCardButton: {
+  //   borderRadius: 10,
+  //   paddingVertical: 8.5,
+  //   width: '170%',
+  // },
+  // productCardButtonLabel: {
+  //   fontSize: 18,
+  //   fontWeight: 'bold',
+  //   textAlign: 'center',
+  // },
+
+  myBagCountContainer: {
+    alignItems: 'center',
+    borderRadius: 100,
+    borderWidth: 3,
+    height: 50,
+    justifyContent: 'center',
+    position: 'absolute',
+    right: -5,
+    top: -5,
+    width: 50,
+    zIndex: 100,
   },
-  productCardButtonLabel: {
-    fontSize: 18,
+  myBagCountText: {
+    fontSize: 20,
     fontWeight: 'bold',
-    textAlign: 'center',
   },
   productCardContainer: {
     alignItems: 'center',
@@ -133,25 +169,27 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
-  quantityButton: {
-    alignItems: 'center',
-    borderRadius: 10,
-    justifyContent: 'center',
-    paddingVertical: 10,
-    width: '50%',
-  },
-  quantityButtonContainer: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    gap: 5,
-    justifyContent: 'space-between',
-  },
-  quantityText: {
-    borderRadius: 8,
-    borderWidth: 1,
-    fontSize: 22,
-    paddingHorizontal: 20,
-    paddingVertical: 5,
-  },
+  
+  // quantityButton: {
+  //   alignItems: 'center',
+  //   borderRadius: 10,
+  //   justifyContent: 'center',
+  //   paddingVertical: 10,
+  //   width: '50%',
+  // },
+  // quantityButtonContainer: {
+  //   alignItems: 'center',
+  //   flexDirection: 'row',
+  //   gap: 5,
+  //   justifyContent: 'space-between',
+  // },
+  // quantityText: {
+  //   borderRadius: 8,
+  //   borderWidth: 1,
+  //   fontSize: 22,
+  //   paddingHorizontal: 20,
+  //   paddingVertical: 5,
+  // },
+  
 });
 export default ProductCard;

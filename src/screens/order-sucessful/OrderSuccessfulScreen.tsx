@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View, useWindowDimensions } from 'react-native';
 import { useTheme } from 'react-native-paper';
 
 import { IMAGES } from '../../utils/images';
@@ -8,6 +8,7 @@ import useViewModel from './useViewModel';
 
 const OrderSuccessfulScreen = () => {
   const theme = useTheme();
+  const { width } = useWindowDimensions();
 
   const { footerText, orderNumber } = useViewModel();
 
@@ -15,11 +16,17 @@ const OrderSuccessfulScreen = () => {
     <TouchableOpacity
       activeOpacity={1}
       style={[styles.container, { backgroundColor: theme.colors.background }]}>
+        <Image
+          source={IMAGES.BACKGROUND_IMAGE}
+          style={{ height: "100%", width: width, zIndex: -1, position: "absolute"}}
+          resizeMode="stretch"
+        />
       <View style={styles.headerContainer}>
-        <Image source={IMAGES.LANDERS_CENTRAL_LOGO} />
+        <Image source={IMAGES.POPEYES_LOGO_TEXT} />
       </View>
 
       <View style={styles.contentContainer}>
+      <Image source={IMAGES.POPEYES_ICON} />
         <Text style={[styles.contentHeaderText, { color: theme.colors.white }]}>
           Thank you for Ordering!
         </Text>

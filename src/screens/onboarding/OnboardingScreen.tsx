@@ -30,7 +30,11 @@ const OnboardingScreen = () => {
       style={[styles.container, { backgroundColor: theme.colors.background }]}>
       {/* header */}
       <CommonHeader />
-
+       <Image
+          source={IMAGES.BACKGROUND_IMAGE}
+          style={[styles.onboardingImage, { width: width, zIndex: -1, position: "absolute"}]}
+          resizeMode="stretch"
+        />
       {/* title header */}
       <View style={styles.headerTitleContainer}>
         <Text style={[styles.headerTitle, { color: theme.colors.white }]}>
@@ -109,7 +113,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 20,
     justifyContent: 'center',
-    marginVertical: 20,
+    marginVertical: 50,
   },
   descriptionText: {
     fontSize: 42,
@@ -140,7 +144,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   headerTitleContainer: {
-    marginVertical: 20,
+    marginVertical: 60,
   },
   logoGcash: {
     height: 50,

@@ -1,11 +1,11 @@
 import { useNavigation } from '@react-navigation/native';
-import { SCAN_MEMBERSHIP_NAV } from '../../utils/navigation';
+import { FULFILLMENT_NAV } from '../../utils/navigation';
 
 const useViewModel = () => {
   const { navigate } = useNavigation<any>();
 
   const handleNavigation = () => {
-    navigate(SCAN_MEMBERSHIP_NAV);
+    navigate(FULFILLMENT_NAV);
   };
 
   return { handleNavigation };

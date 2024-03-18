@@ -1,11 +1,14 @@
 export const IMAGES = {
   // images
   ONBOARDING_IMAGE: require('../assets/images/onboarding.png'),
-  LANDERS_CENTRAL_BANNER: require('../assets/images/landers_central_banner.png'),
+  POPEYES_BANNER: require('../assets/images/popeyes_banner.png'),
   LANDERS_CARD: require('../assets/images/landers_card.png'),
+  BACKGROUND_IMAGE: require('../assets/images/background_image.png'),
+  POPEYES_LOGO_TEXT: require('../assets/logo/popeyes_logo_with_text.png'),
+  CART_CONTAINER: require('../assets/images/cart_container.png'),
 
   // logos
-  LANDERS_CENTRAL_LOGO: require('../assets/logo/landers_central_logo.png'),
+  POPEYES_LOGO: require('../assets/logo/popeyes_logo.png'),
   MAYA_LOGO: require('../assets/logo/maya_logo.png'),
   GCASH_LOGO: require('../assets/logo/gcash_logo.png'),
   MASTERCARD_LOGO: require('../assets/logo/mastercard_logo.png'),
@@ -24,4 +27,5 @@ export const IMAGES = {
   PAYMENT_CARD_ICON: require('../assets/icons/payment_card_icon.png'),
   PAYMENT_EWALLET_ICON: require('../assets/icons/payment_ewallet_icon.png'),
   INSTRUCTION_ICON: require('../assets/icons/instruction_icon.png'),
+  POPEYES_ICON: require('../assets/icons/popeyes_icon.png'),
 };

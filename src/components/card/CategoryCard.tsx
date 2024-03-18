@@ -43,7 +43,7 @@ const CategoryCard = ({
             backgroundColor: theme.colors.white,
             width: selected ? activeSize : inactiveSize,
             height: selected ? activeSize : inactiveSize,
-            borderColor: selected ? theme.colors.accent : theme.colors.black,
+            borderColor: selected ? theme.colors.primary : theme.colors.white,
           },
         ]}>
         <Image
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   categoryCardContainer: {
     alignItems: 'center',
     borderRadius: 20,
-    borderWidth: 2,
+    borderWidth: 5,
     gap: 10,
     justifyContent: 'center',
     overflow: 'hidden',

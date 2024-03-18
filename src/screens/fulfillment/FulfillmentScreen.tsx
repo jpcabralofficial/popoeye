@@ -25,7 +25,11 @@ const FulfillmentScreen = () => {
       style={[styles.container, { backgroundColor: theme.colors.background }]}>
       {/* header */}
       <CommonHeader />
-
+      <Image
+          source={IMAGES.BACKGROUND_IMAGE}
+          style={{ height: "100%", width: width, zIndex: -1, position: "absolute"}}
+          resizeMode="stretch"
+        />
       {/* content */}
       <View style={styles.contentContainer}>
         <Text
@@ -41,7 +45,7 @@ const FulfillmentScreen = () => {
           onPress={() => handleFulfillmentPress('dine-in')}
           style={[
             styles.dineInButton,
-            { width: width - 100, backgroundColor: theme.colors.accent },
+            { width: width - 100, backgroundColor: theme.colors.white },
           ]}>
           <>
             <Image
@@ -49,7 +53,7 @@ const FulfillmentScreen = () => {
               style={styles.dineInIcon}
               resizeMode="stretch"
             />
-            <Text style={[styles.dineInText, { color: theme.colors.white }]}>
+            <Text style={[styles.dineInText, { color: theme.colors.primary }]}>
               Dine In
             </Text>
           </>
@@ -60,10 +64,10 @@ const FulfillmentScreen = () => {
           onPress={() => handleFulfillmentPress('take-out')}
           style={[
             styles.takeOutButton,
-            { width: width - 100, backgroundColor: theme.colors.accent },
+            { width: width - 100, backgroundColor: theme.colors.white },
           ]}>
           <>
-            <Text style={[styles.takeOutText, { color: theme.colors.white }]}>
+            <Text style={[styles.takeOutText, { color: theme.colors.primary }]}>
               Take Out
             </Text>
             <Image
@@ -99,7 +103,7 @@ const styles = StyleSheet.create({
     paddingVertical: 60,
   },
   dineInIcon: {
-    height: 150,
+    height: 200,
     width: 200,
   },
   dineInText: {
@@ -117,8 +121,8 @@ const styles = StyleSheet.create({
     paddingVertical: 60,
   },
   takeOutIcon: {
-    height: 150,
-    width: 120,
+    height: 200,
+    width: 200,
   },
   takeOutText: {
     fontSize: 60,
