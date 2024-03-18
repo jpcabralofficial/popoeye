@@ -6,6 +6,9 @@ import {
   FLOW_STATUS_SUCCESS,
   FLOW_EVENT_CHECK_MEMBERSHIP,
   FLOW_EVENT_PRINT,
+  FLOW_EVENT_PRINT_CASHLESS,
+  FLOW_EVENT_PAY_VIA_TPAI,
+  FLOW_EVENT_CARD_PAYMENT,
 } from './constants';
 
 export type FlowStates =
@@ -31,6 +34,21 @@ export type FlowEventPayloadsList = {
   [FLOW_EVENT_PRINT]: {
     items: any;
     fulfillmentType: string;
+    queueNumber: number;
+  };
+  [FLOW_EVENT_PAY_VIA_TPAI]: {
+    uuid: string;
+    amount: number;
+    tax: number;
+    tip: number;
+  };
+  [FLOW_EVENT_CARD_PAYMENT]: {
+    uuid: string;
+    approvalCode: string;
+  };
+  [FLOW_EVENT_PRINT_CASHLESS]: {
+    skuList: { quantity: number; sku: string; instructions: string }[];
+    fulfillmentType: 'DINE IN' | 'TAKE OUT';
     queueNumber: number;
   };
 };

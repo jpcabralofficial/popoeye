@@ -1,5 +1,5 @@
 import { useCallback, useContext, useRef } from 'react';
-import { Alert, InteractionManager, Image } from 'react-native';
+import { Alert, InteractionManager, Image, Linking } from 'react-native';
 
 import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
@@ -21,6 +21,9 @@ import {
   FLOW_STATUS_SUCCESS,
   FLOW_EVENT_CHECK_MEMBERSHIP,
   FLOW_EVENT_PRINT,
+  FLOW_EVENT_PAY_VIA_TPAI,
+  FLOW_EVENT_CARD_PAYMENT,
+  FLOW_EVENT_PRINT_CASHLESS,
 } from './constants';
 
 import { FlowContext } from './flowContext';
@@ -32,11 +35,17 @@ import {
 } from '../../shared/srnKotlinRun';
 
 import useFlowNavigation from './useFlowNavigation';
+
 import { setProducts } from '../../common/redux/slices/product/product';
 import {
   clearMembershipBarcode,
+  setMembershipBarcode,
   setMembershipType,
 } from '../../common/redux/slices/membership/membership';
+import {
+  clearPaymentStatus,
+  setPaymentStatus,
+} from '../../common/redux/slices/checkout/checkout';
 import { clearCart } from '../../common/redux/slices/cart/cart';
 import { FULFILLMENT_NAV, ONBOARDING_NAV } from '../../utils/navigation';
 
@@ -70,6 +79,80 @@ export const useFlow = () => {
   const { status, setStatus } = flowContext;
 
   const uuid = uuidv4();
+
+  const connectSocket = async () => {
+    await srnKotlinRun(RunClassName.TerminateSocket, undefined);
+    const resInitSocket = await srnKotlinRun(
+      RunClassName.InitializeSocket,
+      undefined,
+    );
+    if (resInitSocket.response.resultCode !== ResultCodes.Success) {
+      throw new Error(
+        `Invalid initialize socket result: ${JSON.stringify(resInitSocket)}`,
+      );
+    }
+  };
+
+  const checkPaymentStatus = useCallback(
+    async (paymentInfo: {
+      id: string;
+      startParams: any;
+      pendingCounter: number;
+      startedCounter: number;
+    }) => {
+      const resStatus = await srnKotlinRun(RunClassName.CheckPaymentStatus, {
+        transactionId: paymentInfo.id,
+      });
+
+      const paymentStatus = resStatus.response.status;
+      console.log(paymentStatus, 'gg');
+      console.log(resStatus.response.approvalCode);
+      dispatch(setPaymentStatus(paymentStatus));
+
+      if (
+        paymentStatus === 'SUCCESSFUL' ||
+        paymentStatus === 'FAILED' ||
+        paymentStatus === 'CANCELLED'
+      ) {
+        let params = '';
+        params += `action=${encodeURIComponent('PAYMENT')}`;
+        params += `&id=${encodeURIComponent(paymentInfo.id)}`;
+        params += `&status=${encodeURIComponent(paymentStatus)}`;
+        params += `&approvalCode=${encodeURIComponent(
+          resStatus.response.approvalCode,
+        )}`;
+
+        const url = `srspos://main/reviewOrder?${params}`;
+        Linking.openURL(url);
+      } else {
+        if (paymentStatus === 'PENDING') {
+          paymentInfo.pendingCounter++;
+          if (paymentInfo.pendingCounter >= 6) {
+            const { response } = await srnKotlinRun(
+              RunClassName.StartPayment,
+              paymentInfo.startParams,
+            );
+            paymentInfo.id = response.transactionId;
+            paymentInfo.pendingCounter = 0;
+          }
+          setTimeout(() => checkPaymentStatus(paymentInfo), 10000);
+        } else if (paymentStatus === 'STARTED') {
+          paymentInfo.startedCounter++;
+          if (paymentInfo.startedCounter >= 30) {
+            let params = '';
+            params += `id=${encodeURIComponent(paymentInfo.id)}`;
+            params += `&status=${encodeURIComponent('FAILED')};`;
+
+            const url = `srspos://main/reviewOrder?${params}`;
+            Linking.openURL(url);
+          } else {
+            setTimeout(() => checkPaymentStatus(paymentInfo), 10000);
+          }
+        }
+      }
+    },
+    [dispatch],
+  );
 
   const _emitFlowEvent = useRef<EmitFlowEventType>(() => null);
 
@@ -113,6 +196,17 @@ export const useFlow = () => {
               settings: [{ key: 'DeviceName', newValue: 'CentralKiosk' }],
             });
 
+            await srnKotlinRun(RunClassName.MerchantLogin, {
+              username: 'dev-kuyaj_store-owner@yopmail.com',
+              password: 'iFqhiDy?',
+            });
+
+            await srnKotlinRun(RunClassName.EmployeeLogin, {
+              accessCode: '689460',
+            });
+
+            await connectSocket();
+
             const resInitScannerService = await srnKotlinRun(
               RunClassName.InitializeScannerService,
               undefined,
@@ -127,21 +221,6 @@ export const useFlow = () => {
                 )}`,
               );
             }
-
-            await srnKotlinRun(RunClassName.MerchantLogin, {
-              username: 'dev-kuyaj_store-owner@yopmail.com',
-              password: 'iFqhiDy?',
-            });
-
-            srnKotlinSetEventHandlers({
-              [EventName.OnScannerRead]: ({ data }) => {
-                console.debug(
-                  `EVENT OnScannerReadError: ${JSON.stringify(data)}`,
-                );
-                console.log('OnScannerReadResponse', data);
-                dispatch(clearMembershipBarcode(data?.scanData));
-              },
-            });
 
             const resGetAllProducts = await srnKotlinRun(
               RunClassName.GetProductsFromParrot,
@@ -177,6 +256,110 @@ export const useFlow = () => {
 
             Promise.all(prefetchTasks).then(value => {
               console.log('prefetched images:', value.length);
+            });
+
+            srnKotlinSetEventHandlers({
+              [EventName.OnConnect]: ({ data }) => {
+                srnKotlinRun(RunClassName.JoinSocketRoom, undefined);
+                console.debug(`EVENT OnConnect: ${JSON.stringify(data)}`);
+              },
+              [EventName.OnConnectError]: ({ data }) => {
+                console.debug(`EVENT OnConnectError: ${JSON.stringify(data)}`);
+                setTimeout(() => connectSocket(), 5000);
+              },
+              [EventName.OnScannerRead]: ({ data }) => {
+                console.log(data);
+                console.debug(
+                  `EVENT OnScannerReadError: ${JSON.stringify(data)}`,
+                );
+                console.log('OnScannerReadResponse', data);
+                dispatch(setMembershipBarcode(data?.scanData));
+              },
+
+              [EventName.StartPayment]: ({ data }) => {
+                console.debug(`EVENT StartPayment: ${JSON.stringify(data)}`);
+              },
+
+              [EventName.UpdatePaymentStatus]: ({ data }) => {
+                console.debug(
+                  `EVENT UpdatePaymentStatus: ${JSON.stringify(data)}`,
+                );
+                const status = data.eventMessage.status;
+
+                console.log(status, 'updatePayment');
+                if (
+                  status === 'SUCCESSFUL' ||
+                  status === 'FAILED' ||
+                  status === 'CANCELED'
+                ) {
+                  let params = '';
+                  params += `action=${encodeURIComponent('PAYMENT')}`;
+                  params += `&id=${encodeURIComponent(data.eventMessage.id)}`;
+                  params += `&status=${encodeURIComponent(
+                    data.eventMessage.status,
+                  )}`;
+                  params += `&approvalCode=${encodeURIComponent(
+                    data.eventMessage.approval_code,
+                  )}`;
+
+                  const url = `srspos://main/reviewOrder?${params}`;
+                  Linking.openURL(url);
+                }
+              },
+            });
+
+            return FLOW_STATUS_SUCCESS;
+          },
+        },
+        [FLOW_EVENT_CARD_PAYMENT]: {
+          validStates: null,
+          handlerFunc: async payment => {
+            await srnKotlinRun(RunClassName.UpdateOrderPayment, {
+              uuid: payment.uuid,
+              approvalCode: payment.approvalCode,
+              modeOfPayment: 'Debit/Credit Card',
+              paymentNetwork: 'MC',
+            });
+
+            return 'FLOW_STATUS_SUCCESS';
+          },
+        },
+        [FLOW_EVENT_PAY_VIA_TPAI]: {
+          validStates: null,
+          handlerFunc: async payment => {
+            const startParams = {
+              transactionType: 'SALE',
+              industryType: 'RESTAURANT',
+              csNumber: 0,
+              amount: payment.amount.toFixed(2),
+              tax: payment.tax,
+              tip: payment.tip,
+            };
+            const { response } = await srnKotlinRun(
+              RunClassName.StartPayment,
+              startParams,
+            );
+
+            let params = '';
+            params += `id=${encodeURIComponent(response.transactionId)}`;
+            params += `&transaction_type=${encodeURIComponent('SALE')}`;
+            params += `&industry_type=${encodeURIComponent('RESTAURANT')}`;
+            params += `&cs_number=${encodeURIComponent(0)}`;
+            params += `&amount=${encodeURIComponent(payment.amount)}`;
+            params += `&tax=${encodeURIComponent(payment.tax)}`;
+            params += `&tip=${encodeURIComponent(payment.tip)}`;
+
+            const url = `tpapay://main/landing?${params}`;
+            const canOpenPay = await Linking.canOpenURL(url);
+            if (canOpenPay) {
+              Linking.openURL(`tpapay://main/landing?${params}`);
+            }
+
+            await checkPaymentStatus({
+              id: response.transactionId,
+              startParams: startParams,
+              pendingCounter: 0,
+              startedCounter: 0,
             });
 
             return FLOW_STATUS_SUCCESS;
@@ -245,6 +428,61 @@ export const useFlow = () => {
             if (dataResponse.response.resultCode === ResultCodes.Success) {
               navigateMain(ONBOARDING_NAV);
               dispatch(clearCart());
+              dispatch(clearMembershipBarcode());
+              dispatch(clearCart());
+              dispatch(clearPaymentStatus());
+            }
+
+            return FLOW_STATUS_SUCCESS;
+          },
+        },
+        [FLOW_EVENT_PRINT_CASHLESS]: {
+          validStates: null,
+          handlerFunc: async payload => {
+            function generateSchedule() {
+              const currentDate = new Date();
+              const futureDate = new Date(
+                currentDate.getTime() +
+                  Math.floor(Math.random() * 30 * 60 * 1000),
+              ); // Adding random milliseconds within 30 minutes
+              const formattedFutureDate = futureDate
+                .toISOString()
+                .slice(0, 19)
+                .replace('T', ' '); // Format to yyyy-MM-dd HH:mm:ss
+              return formattedFutureDate;
+            }
+
+            const schedule = generateSchedule();
+            const resGetAllOrders = await srnKotlinRun(
+              RunClassName.CreateOrder,
+              {
+                diningOption: 'Take-out',
+                numberOfPax: 3,
+                tableIds: [],
+                schedule: schedule,
+                skuList: payload.skuList,
+              },
+            );
+
+            const resPrintCashless = await srnKotlinRun(RunClassName.Print, {
+              action: 'PRINT_CENTRAL_KIOSK_CASHLESS_RECEIPT',
+              transaction_type: 'SALE',
+              copy_of: 'CUSTOMER',
+              where: payload.fulfillmentType,
+              tableNumber: '456',
+              numberOfCustomers: '3',
+              uuid: resGetAllOrders.response.uuid,
+              queueNumber: payload.queueNumber.toString(),
+            });
+
+            console.log(resPrintCashless);
+
+            if (resPrintCashless.response.resultCode === ResultCodes.Success) {
+              navigateMain(ONBOARDING_NAV);
+              dispatch(clearCart());
+              dispatch(clearMembershipBarcode());
+              dispatch(clearCart());
+              dispatch(clearPaymentStatus());
             }
 
             return FLOW_STATUS_SUCCESS;
@@ -298,7 +536,15 @@ export const useFlow = () => {
 
       handleEvent(event, payload);
     },
-    [getState, setStatus, navigateMain, status, dispatch, uuid],
+    [
+      getState,
+      setStatus,
+      navigateMain,
+      status,
+      dispatch,
+      uuid,
+      checkPaymentStatus,
+    ],
   );
 
   return {

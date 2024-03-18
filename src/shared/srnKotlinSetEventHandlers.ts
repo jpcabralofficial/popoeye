@@ -13,8 +13,10 @@ export enum EventName {
   UpdateTableStatus = 'updateTableStatus',
   UpdateProductDetails = 'updateProductDetails',
   UpdateOrderAcceptanceStatus = 'updateOrderAcceptanceStatus',
-  UpdateCustomerInfo = ' updateCustomerInfo',
-  OnScannerRead = ' onScannerRead',
+  UpdateCustomerInfo = 'updateCustomerInfo',
+  OnScannerRead = 'onScannerRead',
+  StartPayment = 'startPayment',
+  UpdatePaymentStatus = 'updatePaymentStatus',
 }
 
 type CallbackFunction = (event: { data: any }) => void;

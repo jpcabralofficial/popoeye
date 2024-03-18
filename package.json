@@ -1,13 +1,16 @@
 {
   "name": "CentralKiosk",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "postversion:rebuild": "react-native-version --never-amend --generate-build",
+    "buildapk:debug": "node scripts/buildApkDebug.mjs",
+    "buildapk:release": "node scripts/buildApkRelease.mjs"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.18.1",
@@ -35,10 +38,11 @@
     "react-native-svg": "^13.9.0",
     "react-native-system-navigation-bar": "^2.6.4",
     "react-native-vector-icons": "^9.2.0",
+    "react-native-version": "^4.0.0",
     "react-redux": "^9.1.0",
     "redux-persist": "^6.0.0",
     "serino-mobile-pos-components-lib": "^1.0.0",
-    "serino-pos-kotlin-bridge": "0.1.0-pw-kuyaj2v0.0.4",
+    "serino-pos-kotlin-bridge": "0.1.0-pw-kuyaj2v0.0.11",
     "uuid": "^9.0.1",
     "validate.js": "^0.13.1"
   },

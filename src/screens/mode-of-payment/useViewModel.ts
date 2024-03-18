@@ -1,13 +1,13 @@
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
-import {CASHLESS_PAYMENT} from '../../utils/navigation';
+import { CASHLESS_PAYMENT, INSTRUCTION_PAYMENT } from '../../utils/navigation';
 
 const useViewModel = () => {
-  const {navigate} = useNavigation<any>();
+  const { navigate } = useNavigation<any>();
 
   const handleCardPress = (mode: 'card' | 'e-wallet') => {
     if (mode === 'card') {
-      console.log(mode);
+      navigate(INSTRUCTION_PAYMENT);
     } else {
       navigate(CASHLESS_PAYMENT);
     }

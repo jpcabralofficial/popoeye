@@ -1,15 +1,17 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 
 import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigation } from '@react-navigation/native';
 
 import { cartSelector, checkoutSelector } from '../../common/redux/selector';
 import { incrementQueueTicket } from '../../common/redux/slices/checkout/checkout';
-import { FLOW_EVENT_PRINT, useFlow } from '../../context/flow';
+import {
+  FLOW_EVENT_PRINT,
+  FLOW_EVENT_PRINT_CASHLESS,
+  useFlow,
+} from '../../context/flow';
 
 const useViewModel = () => {
-  const { navigate } = useNavigation<any>();
   const dispatch = useDispatch();
 
   const { emitFlowEvent } = useFlow();
@@ -24,39 +26,77 @@ const useViewModel = () => {
       ? 'Please take your order number below and pay at the cashier'
       : 'Please take your order number below';
 
+  const cashMappedItems = useMemo(() => {
+    const items = _.map(cartRedux.cartItems, item => {
+      return {
+        quantity: item.quantity,
+        name: item.name,
+      };
+    });
+
+    return items;
+  }, [cartRedux.cartItems]);
+
+  const cashlessMappedItems = useMemo(() => {
+    const items = _.map(cartRedux.cartItems, item => {
+      return {
+        sku: item.sku,
+        quantity: item.quantity,
+        instructions: '',
+      };
+    });
+
+    return items;
+  }, [cartRedux.cartItems]);
+
+  // increment redux ticket
   useEffect(() => {
     dispatch(incrementQueueTicket());
   }, [dispatch]);
 
+  // CASH
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      const mappedItems = _.map(cartRedux.cartItems, item => {
-        return {
-          quantity: item.quantity,
-          name: item.name,
-        };
-      });
+    if (checkoutRedux.typeOfPayment === 'cash') {
+      const timeout = setTimeout(() => {
+        emitFlowEvent(FLOW_EVENT_PRINT, {
+          queueNumber: checkoutRedux.counterQueueTicket,
+          items: cashMappedItems,
+          fulfillmentType:
+            checkoutRedux.fulfillmentType === 'dine-in'
+              ? 'Dine In'
+              : 'Take Out',
+        });
+      }, 3000);
 
-      emitFlowEvent(FLOW_EVENT_PRINT, {
-        queueNumber: checkoutRedux.counterQueueTicket,
-        items: mappedItems,
-        fulfillmentType:
-          checkoutRedux.fulfillmentType === 'dine-in' ? 'Dine In' : 'Take Out',
-      });
-    }, 3000);
-
-    // Clear timeout on component unmount to avoid memory leaks
-    return () => {
-      clearTimeout(timeout);
-    };
+      return () => {
+        clearTimeout(timeout);
+      };
+    }
   }, [
-    navigate,
-    dispatch,
     emitFlowEvent,
-    checkoutRedux.fulfillmentType,
+    cashMappedItems,
     checkoutRedux.counterQueueTicket,
-    cartRedux.cartItems,
-  ]); // Empty dependency array ensures the effect runs only once after mount
+    checkoutRedux.fulfillmentType,
+    checkoutRedux.typeOfPayment,
+  ]);
+
+  // CASHLESS
+  useEffect(() => {
+    if (checkoutRedux.typeOfPayment === 'cashless') {
+      emitFlowEvent(FLOW_EVENT_PRINT_CASHLESS, {
+        skuList: cashlessMappedItems,
+        fulfillmentType:
+          checkoutRedux.fulfillmentType === 'dine-in' ? 'DINE IN' : 'TAKE OUT',
+        queueNumber: checkoutRedux.counterQueueTicket,
+      });
+    }
+  }, [
+    emitFlowEvent,
+    cashlessMappedItems,
+    checkoutRedux.counterQueueTicket,
+    checkoutRedux.fulfillmentType,
+    checkoutRedux.typeOfPayment,
+  ]);
 
   return {
     footerText,

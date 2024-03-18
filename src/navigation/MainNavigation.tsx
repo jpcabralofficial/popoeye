@@ -1,6 +1,14 @@
 import React, { useEffect } from 'react';
 
 import { createStackNavigator } from '@react-navigation/stack';
+import { useDispatch } from 'react-redux';
+
+import { useFlow } from '../context/flow/useFlow';
+import { FLOW_EVENT_INIT } from '../context/flow';
+
+import { clearMembershipBarcode } from '../common/redux/slices/membership/membership';
+import { clearCart } from '../common/redux/slices/cart/cart';
+import { clearPaymentStatus } from '../common/redux/slices/checkout/checkout';
 
 /* SCREENS*/
 import OnboardingScreen from '../screens/onboarding/OnboardingScreen';
@@ -29,8 +37,6 @@ import {
   ORDER_SUCCESSFUL,
   MY_BAG,
 } from '../utils/navigation';
-import { FLOW_EVENT_INIT } from '../context/flow';
-import { useFlow } from '../context/flow/useFlow';
 
 export type MainNavigationParamList = {
   [ONBOARDING_NAV]: undefined;
@@ -49,11 +55,15 @@ export type MainNavigationParamList = {
 const Stack = createStackNavigator<MainNavigationParamList>();
 
 const MainNavigation = () => {
+  const dispatch = useDispatch();
   const { emitFlowEvent } = useFlow();
 
   useEffect(() => {
+    dispatch(clearMembershipBarcode());
+    dispatch(clearCart());
+    dispatch(clearPaymentStatus());
     emitFlowEvent(FLOW_EVENT_INIT, null);
-  }, [emitFlowEvent]);
+  }, [dispatch, emitFlowEvent]);
 
   return (
     <Stack.Navigator initialRouteName={ONBOARDING_NAV}>
