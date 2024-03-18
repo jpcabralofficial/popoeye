@@ -16,7 +16,7 @@ import type {
 
 import {
   FLOW_EVENT_INIT,
-  FLOW_STATE_INIT,
+  // FLOW_STATE_INIT,
   FLOW_STATUS_ERROR,
   FLOW_STATUS_SUCCESS,
   FLOW_EVENT_CHECK_MEMBERSHIP,
@@ -53,7 +53,8 @@ import {
   EventName,
   srnKotlinSetEventHandlers,
 } from '../../shared/srnKotlinSetEventHandlers';
-import { srnKotlinRequestPermissions } from '../../shared/srnKotlinRequestPermissions';
+// import { srnKotlinRequestPermissions } from '../../shared/srnKotlinRequestPermissions';
+import { products as ProductsJson } from '../../utils/products.json';
 
 type EventHandlersType = {
   [Property in FlowEvents]?: {
@@ -168,66 +169,66 @@ export const useFlow = () => {
         [FLOW_EVENT_INIT]: {
           validStates: null,
           handlerFunc: async () => {
-            const state = getState();
-            if (state !== FLOW_STATE_INIT) {
-              return FLOW_STATUS_SUCCESS;
-            }
+            // const state = getState();
+            // if (state !== FLOW_STATE_INIT) {
+            //   return FLOW_STATUS_SUCCESS;
+            // }
 
-            await srnKotlinRequestPermissions();
+            // await srnKotlinRequestPermissions();
 
-            if (status === FLOW_STATUS_SUCCESS) {
-              navigateMain(ONBOARDING_NAV);
-            }
+            // if (status === FLOW_STATUS_SUCCESS) {
+            //   navigateMain(ONBOARDING_NAV);
+            // }
 
-            const resInitSettings = await srnKotlinRun(
-              RunClassName.InitializeSettings,
-              undefined,
-            );
+            // const resInitSettings = await srnKotlinRun(
+            //   RunClassName.InitializeSettings,
+            //   undefined,
+            // );
 
-            if (resInitSettings.response.resultCode !== ResultCodes.Success) {
-              throw new Error(
-                `Invalid initialize settings result: ${JSON.stringify(
-                  resInitSettings,
-                )}`,
-              );
-            }
+            // if (resInitSettings.response.resultCode !== ResultCodes.Success) {
+            //   throw new Error(
+            //     `Invalid initialize settings result: ${JSON.stringify(
+            //       resInitSettings,
+            //     )}`,
+            //   );
+            // }
 
-            await srnKotlinRun(RunClassName.UpdateSettings, {
-              settings: [{ key: 'DeviceName', newValue: 'CentralKiosk' }],
-            });
+            // await srnKotlinRun(RunClassName.UpdateSettings, {
+            //   settings: [{ key: 'DeviceName', newValue: 'CentralKiosk' }],
+            // });
 
-            await srnKotlinRun(RunClassName.MerchantLogin, {
-              username: 'dev-kuyaj_store-owner@yopmail.com',
-              password: 'iFqhiDy?',
-            });
+            // await srnKotlinRun(RunClassName.MerchantLogin, {
+            //   username: 'dev-kuyaj_store-owner@yopmail.com',
+            //   password: 'iFqhiDy?',
+            // });
 
-            await srnKotlinRun(RunClassName.EmployeeLogin, {
-              accessCode: '689460',
-            });
+            // await srnKotlinRun(RunClassName.EmployeeLogin, {
+            //   accessCode: '689460',
+            // });
 
-            await connectSocket();
+            // await connectSocket();
 
-            const resInitScannerService = await srnKotlinRun(
-              RunClassName.InitializeScannerService,
-              undefined,
-            );
+            // const resInitScannerService = await srnKotlinRun(
+            //   RunClassName.InitializeScannerService,
+            //   undefined,
+            // );
 
-            if (
-              resInitScannerService.response.resultCode !== ResultCodes.Success
-            ) {
-              throw new Error(
-                `Invalid initialize scanner result: ${JSON.stringify(
-                  resInitScannerService,
-                )}`,
-              );
-            }
+            // if (
+            //   resInitScannerService.response.resultCode !== ResultCodes.Success
+            // ) {
+            //   throw new Error(
+            //     `Invalid initialize scanner result: ${JSON.stringify(
+            //       resInitScannerService,
+            //     )}`,
+            //   );
+            // }
 
-            const resGetAllProducts = await srnKotlinRun(
-              RunClassName.GetProductsFromParrot,
-              undefined,
-            );
-            const responseProducts = resGetAllProducts.response.products;
-            const productsMapped = _.map(responseProducts, product => {
+            // const resGetAllProducts = await srnKotlinRun(
+            //   RunClassName.GetProductsFromParrot,
+            //   undefined,
+            // );
+            // const responseProducts = resGetAllProducts.response.products;
+            const productsMapped = _.map(ProductsJson, product => {
               return {
                 id: product._id,
                 sku: product.sku,
@@ -540,7 +541,7 @@ export const useFlow = () => {
       getState,
       setStatus,
       navigateMain,
-      status,
+      // status,
       dispatch,
       uuid,
       checkPaymentStatus,
