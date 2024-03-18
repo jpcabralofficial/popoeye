@@ -3,6 +3,8 @@ export enum RunClassName {
   UpdateSettings = 'UpdateSettings',
   MerchantLogin = 'MerchantLogin',
   EmployeeLogin = 'EmployeeLogin',
+  InitializeSocket = 'InitializeSocket',
+  TerminateSocket = 'TerminateSocket',
   GetMemberById = 'GetMemberById',
   GetAllMembers = 'GetAllMembers',
   GetProductsFromParrot = 'GetProductsFromParrot',
@@ -10,6 +12,13 @@ export enum RunClassName {
   GetAllProducts = 'GetAllProducts',
   Print = 'Print',
   InitializeScannerService = 'InitializeScannerService',
+  JoinSocketRoom = 'JoinSocketRoom',
+  StartPayment = 'StartPayment',
+  UpdatePaymentStatus = 'UpdatePaymentStatus',
+  CheckPaymentStatus = 'CheckPaymentStatus',
+  UpdateOrderPayment = 'UpdateOrderPayment',
+  CreateOrder = 'CreateOrder',
+  GetOrderByOrderId = 'GetOrderByOrderId',
 }
 
 export enum ResultCodes {
@@ -47,6 +56,16 @@ type ClassTypes = {
     result: ResultBase<ResponseBase & { data: string }>;
   };
 
+  [RunClassName.InitializeSocket]: {
+    params: undefined;
+    result: ResultBase<ResponseBase>;
+  };
+
+  [RunClassName.TerminateSocket]: {
+    params: undefined;
+    result: ResultBase<ResponseBase>;
+  };
+
   [RunClassName.GetMemberById]: {
     params: { id: any };
     result: ResultBase<
@@ -77,26 +96,103 @@ type ClassTypes = {
   };
 
   [RunClassName.Print]: {
-    params: {
-      action: 'PRINT_CENTRAL_KIOSK_QUEUE_TICKET';
-      transaction_type?: 'SALE';
-      uuid: string;
-      queueParams: {
-        number: string;
-        where: string;
-        date: string;
-        items: {
-          quantity: number;
-          name: string;
-        }[];
-      };
-    };
+    params:
+      | {
+          action: 'PRINT_CENTRAL_KIOSK_QUEUE_TICKET';
+          transaction_type?: 'SALE';
+          uuid: string;
+          queueParams: {
+            number: string;
+            where: string;
+            date: string;
+            items: {
+              quantity: number;
+              name: string;
+            }[];
+          };
+        }
+      | {
+          action: 'PRINT_CENTRAL_KIOSK_CASHLESS_RECEIPT';
+          uuid: string;
+          transaction_type?: 'SALE';
+          copy_of: 'CUSTOMER';
+          where: 'TAKE OUT' | 'DINE IN';
+          tableNumber: string;
+          numberOfCustomers: string;
+          queueNumber: string;
+        };
     result: ResultBase<ResponseBase>;
   };
 
   [RunClassName.InitializeScannerService]: {
     params: undefined;
     result: ResultBase<ResponseBase>;
+  };
+
+  [RunClassName.JoinSocketRoom]: {
+    params: undefined;
+    result: ResultBase<ResponseBase>;
+  };
+
+  [RunClassName.StartPayment]: {
+    params: {
+      transactionType: string;
+      industryType: string;
+      csNumber: number;
+      amount: string;
+      tax: number;
+      tip: number;
+    };
+    result: ResultBase<ResponseBase & { transactionId: string }>;
+  };
+
+  [RunClassName.UpdatePaymentStatus]: {
+    params: {
+      transactionId: string;
+      status: string;
+    };
+    result: ResultBase<ResponseBase>;
+  };
+
+  [RunClassName.CheckPaymentStatus]: {
+    params: {
+      transactionId: string;
+    };
+    result: ResultBase<ResponseBase & { status: string; approvalCode: string }>;
+  };
+
+  [RunClassName.UpdateOrderPayment]: {
+    params:
+      | {
+          uuid: string;
+          changeFor: number;
+          modeOfPayment: string;
+        }
+      | {
+          uuid: string;
+          modeOfPayment: string;
+          paymentNetwork: string;
+          approvalCode: string;
+        };
+    result: ResultBase<ResponseBase>;
+  };
+
+  [RunClassName.CreateOrder]: {
+    params: {
+      diningOption: 'Take-out';
+      skuList: { sku: string; quantity: number; instructions: string }[];
+      schedule: string;
+      numberOfPax: number;
+      tableIds: [];
+    };
+    result: ResultBase<ResponseBase & { uuid: string }>;
+  };
+
+  [RunClassName.GetOrderByOrderId]: {
+    params: {
+      uuid: string;
+    };
+    result: ResultBase<ResponseBase & { data: any }>;
   };
 };
 

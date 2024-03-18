@@ -23,12 +23,21 @@ const useViewModel = () => {
   const membershipType = membershipRedux.memberType;
   const membershipBarcode = membershipRedux.membershipBarcode;
 
+  const onCheckMembershipId = useCallback(() => {
+    const membershipIdWithoutSpaces = textMembershipID.replace(/\s/g, '');
+
+    emitFlowEvent(FLOW_EVENT_CHECK_MEMBERSHIP, {
+      id: membershipIdWithoutSpaces,
+    });
+  }, [emitFlowEvent, textMembershipID]);
+
   useEffect(() => {
     if (membershipBarcode) {
       const formattedID = formatMembershipID(membershipBarcode);
       setTextMembershipID(formattedID);
+      onCheckMembershipId();
     }
-  }, [membershipBarcode]);
+  }, [membershipBarcode, onCheckMembershipId]);
 
   useEffect(() => {
     if (membershipType === 'not exist') {
@@ -57,14 +66,6 @@ const useViewModel = () => {
 
     return formattedID;
   };
-
-  const onCheckMembershipId = useCallback(() => {
-    const membershipIdWithoutSpaces = textMembershipID.replace(/\s/g, '');
-
-    emitFlowEvent(FLOW_EVENT_CHECK_MEMBERSHIP, {
-      id: membershipIdWithoutSpaces,
-    });
-  }, [emitFlowEvent, textMembershipID]);
 
   const handleMembershipIDChange = (text: string) => {
     const formattedID = formatMembershipID(text);

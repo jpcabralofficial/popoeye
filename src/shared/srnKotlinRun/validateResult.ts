@@ -79,6 +79,9 @@ export const validateResult = <ClassName extends RunClassName>(
   }
 
   switch (className) {
+    case RunClassName.InitializeSocket:
+    case RunClassName.TerminateSocket:
+      return true;
     case RunClassName.InitializeSettings:
       if (response.resultCode !== ResultCodes.Success) return true;
 
@@ -128,6 +131,12 @@ export const validateResult = <ClassName extends RunClassName>(
     case RunClassName.Print:
       return true;
     case RunClassName.InitializeScannerService:
+      return true;
+    case RunClassName.JoinSocketRoom:
+    case RunClassName.StartPayment:
+    case RunClassName.UpdatePaymentStatus:
+    case RunClassName.CheckPaymentStatus:
+    case RunClassName.CreateOrder:
       return true;
     default:
       throw new Error(`Unhandled result validation: ${className}`);

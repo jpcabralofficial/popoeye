@@ -6,6 +6,7 @@ const initialState: CheckoutState = {
   fulfillmentType: '',
   typeOfPayment: '',
   counterQueueTicket: 0,
+  paymentStatus: '',
 };
 
 const checkoutSlice = createSlice({
@@ -27,6 +28,12 @@ const checkoutSlice = createSlice({
     incrementQueueTicket(state) {
       return { ...state, counterQueueTicket: state.counterQueueTicket + 1 };
     },
+    setPaymentStatus(state, action) {
+      return { ...state, paymentStatus: action.payload };
+    },
+    clearPaymentStatus(state) {
+      return { ...state, paymentStatus: initialState.paymentStatus };
+    },
   },
 });
 
@@ -38,5 +45,8 @@ export const {
   clearTypeOfPayment,
 
   incrementQueueTicket,
+
+  setPaymentStatus,
+  clearPaymentStatus,
 } = checkoutSlice.actions;
 export default checkoutSlice.reducer;
