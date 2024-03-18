@@ -1,4 +1,4 @@
-package com.centralkiosk;
+package com.popeyeskiosk;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

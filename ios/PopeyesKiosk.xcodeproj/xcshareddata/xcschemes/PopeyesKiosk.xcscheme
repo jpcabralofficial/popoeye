@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "CentralKiosk.app"
-               BlueprintName = "CentralKiosk"
-               ReferencedContainer = "container:CentralKiosk.xcodeproj">
+               BuildableName = "PopeyesKiosk.app"
+               BlueprintName = "PopeyesKiosk"
+               ReferencedContainer = "container:PopeyesKiosk.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "CentralKioskTests.xctest"
-               BlueprintName = "CentralKioskTests"
-               ReferencedContainer = "container:CentralKiosk.xcodeproj">
+               BuildableName = "PopeyesKioskTests.xctest"
+               BlueprintName = "PopeyesKioskTests"
+               ReferencedContainer = "container:PopeyesKiosk.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "CentralKiosk.app"
-            BlueprintName = "CentralKiosk"
-            ReferencedContainer = "container:CentralKiosk.xcodeproj">
+            BuildableName = "PopeyesKiosk.app"
+            BlueprintName = "PopeyesKiosk"
+            ReferencedContainer = "container:PopeyesKiosk.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "CentralKiosk.app"
-            BlueprintName = "CentralKiosk"
-            ReferencedContainer = "container:CentralKiosk.xcodeproj">
+            BuildableName = "PopeyesKiosk.app"
+            BlueprintName = "PopeyesKiosk"
+            ReferencedContainer = "container:PopeyesKiosk.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
