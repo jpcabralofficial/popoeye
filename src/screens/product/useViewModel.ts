@@ -19,7 +19,6 @@ import {
 import {
   setAddQuantity,
   setAddToCart,
-  setRemoveQuantity,
 } from '../../common/redux/slices/cart/cart';
 
 const useViewModel = () => {
@@ -44,12 +43,12 @@ const useViewModel = () => {
 
   const activeCategories: ActiveCategoriesType[] = categories.filter(
     category => {
-      // Check if any product in the category has visibility '1'
+      // Check if any product in the category has status 'Active'
       const hasVisibleProduct = category.products.some(
-        product => product.visibility === '1',
+        product => product.status === 'Active',
       );
 
-      // Include the category in activeCategories only if it has a visible product
+      // Include the category in activeCategories only if it has a active product
       return hasVisibleProduct;
     },
   );
@@ -60,7 +59,7 @@ const useViewModel = () => {
 
   const activeProducts = _.filter(
     selectedProducts,
-    product => product.visibility === '1',
+    product => product.status === 'Active',
   );
 
   const getProductId = (id: string) =>
@@ -95,10 +94,6 @@ const useViewModel = () => {
     dispatch(setAddQuantity(id));
   };
 
-  const handleRemoveQuantity = (id: string) => {
-    dispatch(setRemoveQuantity(id));
-  };
-
   const handleButtonPress = (buttonPress: 'cancel' | 'pay') => {
     if (buttonPress === 'cancel') {
       navigate(CANCEL_ORDER);
@@ -128,7 +123,6 @@ const useViewModel = () => {
 
     handleAddToCart,
     handleAddQuantity,
-    handleRemoveQuantity,
 
     handleButtonPress,
     handleNavigatePress,

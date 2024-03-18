@@ -18,7 +18,25 @@ const InstructionPaymentScreen = () => {
   const theme = useTheme();
   const { width } = useWindowDimensions();
 
-  useViewModel();
+  const { modeOfPayment } = useViewModel();
+
+  const title =
+    modeOfPayment === 'card'
+      ? 'Please pay by tapping or inserting your credit/ debit card in the payment device'
+      : modeOfPayment === 'gcash'
+      ? 'Please open your GCash app and scan the QR Code in the device to pay'
+      : modeOfPayment === 'maya'
+      ? 'Please open your Maya app and scan the QR Code in the device to pay'
+      : '';
+
+  const icon =
+    modeOfPayment === 'card'
+      ? IMAGES.INSTRUCTION_ICON_CARD
+      : modeOfPayment === 'gcash'
+      ? IMAGES.INSTRUCTION_ICON_GCASH
+      : modeOfPayment === 'maya'
+      ? IMAGES.INSTRUCTION_ICON_MAYA
+      : '';
 
   return (
     <View
@@ -35,11 +53,11 @@ const InstructionPaymentScreen = () => {
                 width: width / 2,
               },
             ]}>
-            Please follow the instructions below
+            {title}
           </Text>
 
           <Image
-            source={IMAGES.INSTRUCTION_ICON}
+            source={icon}
             style={{ width: width / 2 - 200, height: width / 2 }}
             resizeMode="stretch"
           />
@@ -63,7 +81,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   title: {
-    fontSize: 60,
+    fontSize: 44,
     fontWeight: 'bold',
     textAlign: 'center',
   },

@@ -4,6 +4,7 @@ import CheckoutState from './checkout.types';
 
 const initialState: CheckoutState = {
   fulfillmentType: '',
+  modeOfPayment: '',
   typeOfPayment: '',
   counterQueueTicket: 0,
   paymentStatus: '',
@@ -18,6 +19,12 @@ const checkoutSlice = createSlice({
     },
     clearFulfillmentType(state) {
       return { ...state, fulfillmentType: initialState.fulfillmentType };
+    },
+    setModeOfPayment(state, action) {
+      return { ...state, modeOfPayment: action.payload };
+    },
+    clearModeOfPayment(state) {
+      return { ...state, modeOfPayment: initialState.modeOfPayment };
     },
     setTypeOfPayment(state, action) {
       return { ...state, typeOfPayment: action.payload };
@@ -40,6 +47,9 @@ const checkoutSlice = createSlice({
 export const {
   setFulfillmentType,
   clearFulfillmentType,
+
+  setModeOfPayment,
+  clearModeOfPayment,
 
   setTypeOfPayment,
   clearTypeOfPayment,

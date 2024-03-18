@@ -20,6 +20,8 @@ const useViewModel = () => {
     [cartRedux.cartItems],
   );
 
+  const modeOfPayment = checkoutRedux.modeOfPayment;
+
   useEffect(() => {
     emitFlowEvent(FLOW_EVENT_PAY_VIA_TPAI, {
       uuid: 'zxcxzczxcxz', // TODO: use uuidv4 for uuid prop
@@ -41,6 +43,8 @@ const useViewModel = () => {
       navigate(ORDER_SUCCESSFUL);
     }
   }, [navigate, checkoutRedux.paymentStatus]);
+
+  return { modeOfPayment: modeOfPayment };
 };
 
 export default useViewModel;

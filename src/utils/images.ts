@@ -23,5 +23,7 @@ export const IMAGES = {
   PAYMENT_CASHLESS_ICON: require('../assets/icons/payment_cashless_icon.png'),
   PAYMENT_CARD_ICON: require('../assets/icons/payment_card_icon.png'),
   PAYMENT_EWALLET_ICON: require('../assets/icons/payment_ewallet_icon.png'),
-  INSTRUCTION_ICON: require('../assets/icons/instruction_icon.png'),
+  INSTRUCTION_ICON_CARD: require('../assets/icons/instruction_icon_card.png'),
+  INSTRUCTION_ICON_GCASH: require('../assets/icons/instruction_icon_gcash.png'),
+  INSTRUCTION_ICON_MAYA: require('../assets/icons/instruction_icon_maya.png'),
 };

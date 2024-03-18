@@ -44,7 +44,6 @@ const ProductScreen = () => {
 
     handleAddToCart,
     handleAddQuantity,
-    handleRemoveQuantity,
 
     handleButtonPress,
     handleNavigatePress,
@@ -152,7 +151,6 @@ const ProductScreen = () => {
             }
             renderItem={({ item }) => {
               const product = getProductId(item.id);
-              const isAlreadyInCart = !!product;
 
               let quantity;
 
@@ -165,11 +163,9 @@ const ProductScreen = () => {
               return (
                 <ProductCard
                   item={item}
-                  isAlreadyInCart={isAlreadyInCart}
                   quantity={quantity}
                   handleAddToCart={handleAddToCart}
                   handleAddQuantity={handleAddQuantity}
-                  handleRemoveQuantity={handleRemoveQuantity}
                 />
               );
             }}

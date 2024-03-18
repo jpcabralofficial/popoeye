@@ -6,7 +6,6 @@ export type ProductType = {
   price: string;
   categories: string;
   tags: string;
-  inventory: string;
   status: string;
   visibility: string;
   images: string;
