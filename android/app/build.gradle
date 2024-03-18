@@ -95,9 +95,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.centralkiosk"
+    namespace "com.popeyeskiosk"
     defaultConfig {
-        applicationId "com.centralkiosk"
+        applicationId "com.popeyeskiosk"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 2

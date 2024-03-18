@@ -1,7 +1,7 @@
 export const COLORS = {
-  primary: '#000000', //primary color for your app, usually your brand color.
-  accent: '#B51B27', //secondary color for your app which complements the primary color.
-  background: '#000000', //background color for pages, such as lists.
+  primary: '#F7832A', //primary color for your app, usually your brand color.
+  accent: '#45B4AB', //secondary color for your app which complements the primary color.
+  background: '#F7832A', //background color for pages, such as lists.
   // surface: '', //background color for elements containing content, such as cards.
   text: '#111213', //text color for content.
   disabled: '#ECEDEF', //color for disabled elements.
@@ -29,4 +29,6 @@ export const COLORS = {
   dashedBorder: '#F5D580',
   gray70: '#969696',
   lightBorder: '#AA9E9E',
+  buttoncolor: '#FEF5E2',
+  gray80: '#676563',
 };

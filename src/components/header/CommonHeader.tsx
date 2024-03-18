@@ -1,37 +1,21 @@
 import React from 'react';
-import { Image, StyleSheet, View, useWindowDimensions } from 'react-native';
-import { useTheme } from 'react-native-paper';
+import { Image, StyleSheet, View } from 'react-native';
 
 import { IMAGES } from '../../utils/images';
+import { COLORS } from '../../utils/colors';
 
-type CommonHeaderType = {
-  separatorColor?: string;
-};
-
-const CommonHeader = ({ separatorColor }: CommonHeaderType) => {
-  const theme = useTheme();
-  const { width } = useWindowDimensions();
+const CommonHeader = () => {
 
   return (
     <>
       <View style={styles.container}>
         <Image
-          source={IMAGES.LANDERS_CENTRAL_LOGO}
+          source={IMAGES.POPEYES_LOGO}
           style={styles.logo}
           resizeMode="contain"
         />
       </View>
-      <View
-        style={[
-          styles.separator,
-          {
-            backgroundColor: separatorColor
-              ? separatorColor
-              : theme.colors.accent,
-            width: width,
-          },
-        ]}
-      />
+
     </>
   );
 };
@@ -39,14 +23,12 @@ const CommonHeader = ({ separatorColor }: CommonHeaderType) => {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
+    backgroundColor: COLORS.white,
     justifyContent: 'center',
   },
   logo: {
-    height: 200,
+    height: 80,
     width: 200,
-  },
-  separator: {
-    height: 7,
   },
 });
 

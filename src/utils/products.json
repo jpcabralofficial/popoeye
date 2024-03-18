@@ -1,0 +1,2274 @@
+{
+  "products": [
+    {
+      "_id": "93b0ffc4324260e5036feb1e",
+      "uuid": "19a61c4f-f37e-462a-8719-d34edd5c1bd7",
+      "is_sku": "106541",
+      "sku": "106541",
+      "name": "Wilkins Pure Purified Water 24 x 500mL",
+      "description": "From your most trusted and internationally certified water brand comes Wilkins Pure. Every bottle is pure to the last drop, helping young adults be at their best and live life to the fullest.",
+      "short_description": "",
+      "tax_type": null,
+      "tags": "",
+      "status": "Active",
+      "visibility": 1,
+      "date_created": "2024-03-01",
+      "created_by": "0",
+      "ordinal": null,
+      "images_promo": null,
+      "weight": 12,
+      "length": 35,
+      "width": 21.5,
+      "height": 23.5,
+      "unit": "PC",
+      "sell_by_type": "0",
+      "images": [
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/106541-01_1.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/106541-02.jpg"
+        }
+      ],
+      "branch": [
+        {
+          "_id": "4df55d442b4c900d9b51ad85",
+          "id": "12",
+          "name": "Otis",
+          "availability": "",
+          "in_stock_online": 1,
+          "in_stock": 1,
+          "stocks": 999
+        }
+      ],
+      "categories": [
+        {
+          "name": "Beverages",
+          "cat_id": "d5afd335-ea95-4994-8a15-593cdca4854a"
+        }
+      ],
+      "prices": [
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "Online",
+          "name": "online",
+          "original_price": 255,
+          "price": 255
+        },
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "In Store",
+          "name": "instore",
+          "original_price": 255,
+          "price": 255
+        }
+      ],
+      "barcode": ["4801980000000"],
+      "food_type": null,
+      "bundle": [],
+      "updatedAt": "2024-03-01T16:04:57.876Z"
+    },
+    {
+      "_id": "16d89b45650b027414dd9eef",
+      "uuid": "c5e49237-1a0b-4e1b-b1d8-50b4ed4feeda",
+      "is_sku": "140085",
+      "sku": "140085",
+      "name": "Chancellor & Co Sparkling Pink Moscato 750mL",
+      "description": "Chancellor & Co Sparkling Pink Moscato is full of fresh and fruity characters. An exciting aroma of musk rose, citrus and pear start things off, with a developing palate of apple and sweet citrus peel following. A well-balanced acidity leads to a crisp finish.",
+      "short_description": "",
+      "tax_type": null,
+      "tags": "",
+      "status": "Active",
+      "visibility": 1,
+      "date_created": "2024-03-01",
+      "created_by": "0",
+      "ordinal": null,
+      "images_promo": null,
+      "weight": 1.474,
+      "length": 32,
+      "width": 8,
+      "height": 8,
+      "unit": "PC",
+      "sell_by_type": "0",
+      "images": [
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/140085-11.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/140085-11.jpg"
+        }
+      ],
+      "branch": [
+        {
+          "_id": "d98d84977ff867858531b8be",
+          "id": "12",
+          "name": "Otis",
+          "availability": "",
+          "in_stock_online": 1,
+          "in_stock": 1,
+          "stocks": 999
+        }
+      ],
+      "categories": [
+        {
+          "name": "Beer, Wine & Spirits",
+          "cat_id": "54c2e971-a90f-48ac-8c15-6701650a918e"
+        }
+      ],
+      "prices": [
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "Online",
+          "name": "online",
+          "original_price": 699.47,
+          "price": 699.47
+        },
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "In Store",
+          "name": "instore",
+          "original_price": 699.47,
+          "price": 699.47
+        }
+      ],
+      "barcode": ["9358432013305"],
+      "food_type": null,
+      "bundle": [],
+      "updatedAt": "2024-03-01T16:04:57.877Z"
+    },
+    {
+      "_id": "3c6efcb7df1f661ba82e9c25",
+      "uuid": "33eb2990-7df4-4a97-8e33-07cb68296c6d",
+      "is_sku": "143184",
+      "sku": "143184",
+      "name": "Yellow Tail Cabernet Sauvingnon Red Wine 750mL",
+      "description": "Made with grapes sourced from the highest quality,Yellow TailCabernet Sauvignon is everything a great wine should be - vibrant, velvety, rich and easy to drink.\n \n \n \n Made with grapes sourced from the highest quality\n Classic and velvety flavor\n With notes of juicy blackcurrants, sweet mocha and spice",
+      "short_description": "",
+      "tax_type": null,
+      "tags": "",
+      "status": "Active",
+      "visibility": 1,
+      "date_created": "2024-03-01",
+      "created_by": "0",
+      "ordinal": null,
+      "images_promo": null,
+      "weight": 1.17,
+      "length": 7.2,
+      "width": 7.2,
+      "height": 31,
+      "unit": "PC",
+      "sell_by_type": "0",
+      "images": [
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/143184-11.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/143184-11.jpg"
+        }
+      ],
+      "branch": [
+        {
+          "_id": "1f5e1c20999b6472c0963970",
+          "id": "12",
+          "name": "Otis",
+          "availability": "",
+          "in_stock_online": 1,
+          "in_stock": 1,
+          "stocks": 999
+        }
+      ],
+      "categories": [
+        {
+          "name": "Beer, Wine & Spirits",
+          "cat_id": "54c2e971-a90f-48ac-8c15-6701650a918e"
+        }
+      ],
+      "prices": [
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "Online",
+          "name": "online",
+          "original_price": 679.75,
+          "price": 679.75
+        },
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "In Store",
+          "name": "instore",
+          "original_price": 679.75,
+          "price": 679.75
+        }
+      ],
+      "barcode": ["9322214013937"],
+      "food_type": null,
+      "bundle": [],
+      "updatedAt": "2024-03-01T16:04:57.877Z"
+    },
+    {
+      "_id": "6768a58d958b7d67485e46b9",
+      "uuid": "2a597530-c316-47e7-8e95-8d61af41ba55",
+      "is_sku": "134879",
+      "sku": "134879",
+      "name": "Safeguard Lemon Fresh Liquid Hand Soap 450mL",
+      "description": "Wash with Safeguard frequently to help protect your family's health.With Safeguard Lemon Fresh liquid hand soap, you get proven germ protection that has never smelled fresher!\n \n Removes 99.9% of Germs\n 24 - Hour germ protection for your entire family\n \n Directions:Pump a small amount onto wet hands. Lather and scrub hands thoroughly. Rinse & dry.",
+      "short_description": "",
+      "tax_type": null,
+      "tags": "",
+      "status": "Active",
+      "visibility": 1,
+      "date_created": "2024-03-01",
+      "created_by": "0",
+      "ordinal": null,
+      "images_promo": null,
+      "weight": 0.526,
+      "length": 10,
+      "width": 6,
+      "height": 18,
+      "unit": "PC",
+      "sell_by_type": "0",
+      "images": [
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4902430000000.png",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4902430000000.png"
+        }
+      ],
+      "branch": [
+        {
+          "_id": "3a796d4a83e2c22bea9da2ba",
+          "id": "12",
+          "name": "Otis",
+          "availability": "",
+          "in_stock_online": 1,
+          "in_stock": 1,
+          "stocks": 999
+        }
+      ],
+      "categories": [
+        {
+          "name": "Health & Beauty",
+          "cat_id": "fe13bbd1-610e-4f9a-9c17-a912608a567a"
+        }
+      ],
+      "prices": [
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "Online",
+          "name": "online",
+          "original_price": 140,
+          "price": 140
+        },
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "In Store",
+          "name": "instore",
+          "original_price": 140,
+          "price": 140
+        }
+      ],
+      "barcode": ["4902430805339"],
+      "food_type": null,
+      "bundle": [],
+      "updatedAt": "2024-03-01T16:04:57.877Z"
+    },
+    {
+      "_id": "f96609b2b2b8dbe9a585e22a",
+      "uuid": "457446d6-3b0d-4960-8090-65558336a309",
+      "is_sku": "132296",
+      "sku": "132296",
+      "name": "Joy Lemon Dishwashing Liquid 3 x 575mL Promo Pack",
+      "description": "Joy Concentrate Lemon Dishwashing liquid cutstough grease and removes bad smell effectively in one wash; leaving your dishes squeaky-clean and free from food odor.\n \n Cutstough grease and removes bad smell effectively\n Leavesyour dishes squeaky-clean\n Maintains the best standard with every wash",
+      "short_description": "",
+      "tax_type": null,
+      "tags": "",
+      "status": "Active",
+      "visibility": 1,
+      "date_created": "2024-03-01",
+      "created_by": "0",
+      "ordinal": null,
+      "images_promo": null,
+      "weight": 2.004,
+      "length": 33,
+      "width": 8,
+      "height": 30,
+      "unit": "PC",
+      "sell_by_type": "0",
+      "images": [
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/132296.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/132296.jpg"
+        },
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/132296(1).jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/132296(1).jpg"
+        }
+      ],
+      "branch": [
+        {
+          "_id": "99aa76b653691f4d1eeb7d53",
+          "id": "12",
+          "name": "Otis",
+          "availability": "",
+          "in_stock_online": 1,
+          "in_stock": 1,
+          "stocks": 999
+        }
+      ],
+      "categories": [
+        {
+          "name": "Household & Laundry",
+          "cat_id": "fe4ca28d-8c6a-47fb-ae91-1af6c04dc784"
+        }
+      ],
+      "prices": [
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "Online",
+          "name": "online",
+          "original_price": 389,
+          "price": 389
+        },
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "In Store",
+          "name": "instore",
+          "original_price": 389,
+          "price": 389
+        }
+      ],
+      "barcode": ["4987180000000"],
+      "food_type": null,
+      "bundle": [],
+      "updatedAt": "2024-03-01T16:04:57.877Z"
+    },
+    {
+      "_id": "e231a4c7dd87ef0a3854c6ff",
+      "uuid": "aade866a-d054-4873-a35b-c1f0b3048d79",
+      "is_sku": "109089",
+      "sku": "109089",
+      "name": "Joy Expert Safeguard Antibac Dishwashing Liquid Refill 550mL",
+      "description": "From the World's Number 1 Dish Care Company, Joy Antibacwith Safeguard is the innovative dishwashing liquid that uses superior technology to make dishwashing a delight for you.It has the Power of Safeguard that helps give 99.9% germ protection for the sponge.\n \n Prevents germs on sponge\n Has superior grease cutting power\n With effective odor removing properties",
+      "short_description": "",
+      "tax_type": null,
+      "tags": "",
+      "status": "Active",
+      "visibility": 1,
+      "date_created": "2024-03-01",
+      "created_by": "0",
+      "ordinal": null,
+      "images_promo": null,
+      "weight": 0.67,
+      "length": 16,
+      "width": 7.7,
+      "height": 27.5,
+      "unit": "PC",
+      "sell_by_type": "0",
+      "images": [
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4902430468756-1.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4902430468756-1.jpg"
+        }
+      ],
+      "branch": [
+        {
+          "_id": "5768aaf91802f0673ad79115",
+          "id": "12",
+          "name": "Otis",
+          "availability": "",
+          "in_stock_online": 1,
+          "in_stock": 1,
+          "stocks": 999
+        }
+      ],
+      "categories": [
+        {
+          "name": "Household & Laundry",
+          "cat_id": "fe4ca28d-8c6a-47fb-ae91-1af6c04dc784"
+        }
+      ],
+      "prices": [
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "Online",
+          "name": "online",
+          "original_price": 169,
+          "price": 169
+        },
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "In Store",
+          "name": "instore",
+          "original_price": 169,
+          "price": 169
+        }
+      ],
+      "barcode": ["4902430468756"],
+      "food_type": null,
+      "bundle": [],
+      "updatedAt": "2024-03-01T16:04:57.877Z"
+    },
+    {
+      "_id": "bf161b452cd268ff430d89dd",
+      "uuid": "5a9a3e8c-0ca1-4cb8-aa4a-531b9d6c5969",
+      "is_sku": "106446",
+      "sku": "106446",
+      "name": "Joy Lemon Dishwashing Liquid 790mL",
+      "description": "Joy Dishwashing Liquid Lemon 790mL\n Joy Complete Clean, concentrated Lemon Dishwashing liquid cut tough grease and removes bad smell effectively in one wash; leaving your dishes squeaky-clean and free from food odour; maintaining best standard with every wash.\n How to use:\n \n Open the bottle of Joy Dishwashing Liquid.\n Add drops of Joy to a wet sponge.\n Squeeze the sponge to bubble. Scrub the sponge to your dishes, utensils, etc.\n Thoroughly rinse soap.",
+      "short_description": "",
+      "tax_type": null,
+      "tags": "",
+      "status": "Active",
+      "visibility": 1,
+      "date_created": "2024-03-01",
+      "created_by": "0",
+      "ordinal": null,
+      "images_promo": null,
+      "weight": 0.79,
+      "length": 12,
+      "width": 7,
+      "height": 25,
+      "unit": "PC",
+      "sell_by_type": "0",
+      "images": [
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4902430000000.png",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4902430000000.png"
+        }
+      ],
+      "branch": [
+        {
+          "_id": "b92954894d75e42009b56acf",
+          "id": "12",
+          "name": "Otis",
+          "availability": "",
+          "in_stock_online": 1,
+          "in_stock": 1,
+          "stocks": 999
+        }
+      ],
+      "categories": [
+        {
+          "name": "Household & Laundry",
+          "cat_id": "fe4ca28d-8c6a-47fb-ae91-1af6c04dc784"
+        }
+      ],
+      "prices": [
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "Online",
+          "name": "online",
+          "original_price": 199.95,
+          "price": 199.95
+        },
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "In Store",
+          "name": "instore",
+          "original_price": 199.95,
+          "price": 199.95
+        }
+      ],
+      "barcode": ["4902430000000"],
+      "food_type": null,
+      "bundle": [],
+      "updatedAt": "2024-03-01T16:04:57.877Z"
+    },
+    {
+      "_id": "f8d7ac2dcd6a75b3da25609b",
+      "uuid": "187584d4-8ed5-4257-b88d-06177b981d2c",
+      "is_sku": "133498",
+      "sku": "133498",
+      "name": "Green Cross Ethyl Alcohol 70% Solution 1Gal.",
+      "description": "Green Cross Ethyl Alcohol 70% Solution\n It provides everyday, accessible disinfecting with its range of ethyl based rubbing alcohols.99.9% effective against bacteria and viruses.Green Cross Alcohol also has moisturizing variants to prevent skin dryness.\n \n For disinfection, sterilization, body massage, relief of prickly heat and insect bites, hygienic purposes or general antiseptic\n For use in hospital and sick room or everyday hygiene",
+      "short_description": "",
+      "tax_type": null,
+      "tags": "",
+      "status": "Active",
+      "visibility": 1,
+      "date_created": "2024-03-01",
+      "created_by": "0",
+      "ordinal": null,
+      "images_promo": null,
+      "weight": 3.785,
+      "length": 16,
+      "width": 16,
+      "height": 30,
+      "unit": "PC",
+      "sell_by_type": "0",
+      "images": [
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4800047820458_-_01.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4800047820458_-_01.jpg"
+        },
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4800047820458_-_02.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4800047820458_-_02.jpg"
+        }
+      ],
+      "branch": [
+        {
+          "_id": "7d44420f638c5cf268a0fdd3",
+          "id": "12",
+          "name": "Otis",
+          "availability": "",
+          "in_stock_online": 1,
+          "in_stock": 1,
+          "stocks": 999
+        }
+      ],
+      "categories": [
+        {
+          "name": "Health & Beauty",
+          "cat_id": "fe13bbd1-610e-4f9a-9c17-a912608a567a"
+        }
+      ],
+      "prices": [
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "Online",
+          "name": "online",
+          "original_price": 542,
+          "price": 542
+        },
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "In Store",
+          "name": "instore",
+          "original_price": 542,
+          "price": 542
+        }
+      ],
+      "barcode": ["4800047820458"],
+      "food_type": null,
+      "bundle": [],
+      "updatedAt": "2024-03-01T16:04:57.878Z"
+    },
+    {
+      "_id": "ffddb90f6865ec2358c476d0",
+      "uuid": "14abcd14-cf81-4b8a-afce-c9e7aa28a059",
+      "is_sku": "130070",
+      "sku": "130070",
+      "name": "Green Cross 70% Solution Ethyl Alcohol 1L",
+      "description": "Green Cross provides everyday, accessible disinfecting with its range of isopropyl- and ethyl-based rubbing alcohols. 99.9% effective against bacteria and viruses. Green Cross Alcohol also has moisturizing variants to prevent skin dryness.\n \n 99.9% effective against bacteria and viruses\n 70% solution antiseptic disinfectant\n \n Application: For disinfection, sterilization, body massage, relief of prickly heat, insect bites, hygienic purposes, after she and general antiseptic use in hospitals and homes.\n Directions: Apply on hands or use cotton and rub liberally on the skin.",
+      "short_description": "",
+      "tax_type": null,
+      "tags": "",
+      "status": "Active",
+      "visibility": 1,
+      "date_created": "2024-03-01",
+      "created_by": "0",
+      "ordinal": null,
+      "images_promo": null,
+      "weight": 0.965,
+      "length": 8,
+      "width": 9,
+      "height": 22,
+      "unit": "PC",
+      "sell_by_type": "0",
+      "images": [
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4800047820502-01.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4800047820502-01.jpg"
+        },
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4800047820502-02.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4800047820502-02.jpg"
+        }
+      ],
+      "branch": [
+        {
+          "_id": "15c8a27f7f3bf61df8a4d385",
+          "id": "12",
+          "name": "Otis",
+          "availability": "",
+          "in_stock_online": 1,
+          "in_stock": 1,
+          "stocks": 999
+        }
+      ],
+      "categories": [
+        {
+          "name": "Health & Beauty",
+          "cat_id": "fe13bbd1-610e-4f9a-9c17-a912608a567a"
+        }
+      ],
+      "prices": [
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "Online",
+          "name": "online",
+          "original_price": 194,
+          "price": 194
+        },
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "In Store",
+          "name": "instore",
+          "original_price": 194,
+          "price": 194
+        }
+      ],
+      "barcode": ["4800047820502"],
+      "food_type": null,
+      "bundle": [],
+      "updatedAt": "2024-03-01T16:04:57.878Z"
+    },
+    {
+      "_id": "a1422015ca1457a61f41f612",
+      "uuid": "c8dc8b2e-fa97-4fd1-9966-330c2026eeda",
+      "is_sku": "132017",
+      "sku": "132017",
+      "name": "Green Cross Isopropyl Alcohol 70% Solution 500mL",
+      "description": "Green Cross Isopropyl Alcohol 70% Solution\n For disinfection, sterilization, body massage, relief of prickly heat and insect bites, hygienic purposes, or general antiseptic. For use in hospital and sick room or everyday hygiene. With 70% Solution Antiseptic - Disinfectant.",
+      "short_description": "",
+      "tax_type": null,
+      "tags": "",
+      "status": "Active",
+      "visibility": 1,
+      "date_created": "2024-03-01",
+      "created_by": "0",
+      "ordinal": null,
+      "images_promo": null,
+      "weight": 0.5,
+      "length": 7,
+      "width": 7,
+      "height": 19,
+      "unit": "PC",
+      "sell_by_type": "0",
+      "images": [
+        {
+          "images": "https://qa-centralmain.s3.ap-southeast-1.amazonaws.com/market/131160_1.jpg",
+          "thumbnail": "https://qa-centralmain.s3.ap-southeast-1.amazonaws.com/market/131160_1.jpg"
+        }
+      ],
+      "branch": [
+        {
+          "_id": "9e7affcb64729c3143d3332d",
+          "id": "12",
+          "name": "Otis",
+          "availability": "",
+          "in_stock_online": 1,
+          "in_stock": 1,
+          "stocks": 999
+        }
+      ],
+      "categories": [
+        {
+          "name": "Health & Beauty",
+          "cat_id": "fe13bbd1-610e-4f9a-9c17-a912608a567a"
+        }
+      ],
+      "prices": [
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "Online",
+          "name": "online",
+          "original_price": 82,
+          "price": 82
+        },
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "In Store",
+          "name": "instore",
+          "original_price": 82,
+          "price": 82
+        }
+      ],
+      "barcode": ["4800047820182"],
+      "food_type": null,
+      "bundle": [],
+      "updatedAt": "2024-03-01T16:04:57.878Z"
+    },
+    {
+      "_id": "81811364e972a3f5522ab6ed",
+      "uuid": "02f14dfb-4f71-455f-9439-4513b7d4b391",
+      "is_sku": "136670",
+      "sku": "136670",
+      "name": "Meiji Yan Yan Hazelnut-Cocoa Dip Biscuit Snack 10 x 44g",
+      "description": "Creamy hazelnut-cocoa flavored dip biscuit snack. Each box comes with biscuit sticks and hazelnut-cocoa cream in two separate compartments. Just dip the biscuit in the cream and enjoy!",
+      "short_description": "",
+      "tax_type": null,
+      "tags": "",
+      "status": "Active",
+      "visibility": 1,
+      "date_created": "2024-03-01",
+      "created_by": "0",
+      "ordinal": null,
+      "images_promo": null,
+      "weight": 0.721,
+      "length": 33,
+      "width": 13,
+      "height": 12,
+      "unit": "PC",
+      "sell_by_type": "0",
+      "images": [
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/136670.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/136670.jpg"
+        },
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/136670-2.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/136670-2.jpg"
+        }
+      ],
+      "branch": [
+        {
+          "_id": "0ddeee6e50df7c2538c5b6bb",
+          "id": "12",
+          "name": "Otis",
+          "availability": "",
+          "in_stock_online": 1,
+          "in_stock": 1,
+          "stocks": 999
+        }
+      ],
+      "categories": [
+        {
+          "name": "Food Cupboard",
+          "cat_id": "f7e36051-cbd1-4f5e-8fb9-0ba88ae829a6"
+        }
+      ],
+      "prices": [
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "Online",
+          "name": "online",
+          "original_price": 479,
+          "price": 479
+        },
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "In Store",
+          "name": "instore",
+          "original_price": 479,
+          "price": 479
+        }
+      ],
+      "barcode": ["8888080000000"],
+      "food_type": null,
+      "bundle": [],
+      "updatedAt": "2024-03-01T16:04:57.878Z"
+    },
+    {
+      "_id": "05447c5775bcaa548ed0ecc7",
+      "uuid": "4aa410ff-1578-460b-8793-54637d7814fa",
+      "is_sku": "105281",
+      "sku": "105281",
+      "name": "Meiji Yan Yan Creamy Chocolate Dip Biscuit Snack 10 x 50g",
+      "description": "Meiji biscuit stick snack with chocolate-flavored cream\n  \n  Yan Yan is the same fun dipping snack but now with more sophisticated flavours appealing to young adults. Snack in style and savour the finely-powdered oats in our biscuit sticks in Mixed Berries and Cheese, as well as cocoa biscuit sticks in Matcha and Tiramisu.\n  \n  \n  \n  Paired with cocoa biscuit sticks to enrich the chocolate-y taste.\n  \n  This product is Halal-certified.\n  \n  \n  \n  Ingredients:\n  \n  Wheat flour, Vegetable oils (Palm, Soybean, Sunflower, Hydrogenated rapeseed), Sugar, Whole milk powder, Skim Milk Powder, Cocoa Mass, Cocoa powder, Salt, Raising Agents (Sodium Bicarbonate, Ammonium Bicarbonate), Emulsifier (Lecithin), Cheese Powder [Cheddar Cheese, Whey, Emulsifier (Disodium Phosphate), Acidity regulator (Lactic Acid)], Yeast, Artificial Flavors (Vanilla, Chocolate).\n  \n  \n  \n  \n  \n  \n  \n  Nutrition Facts\n  \n  \n  \n  \n  \n  Serving Size: 50g\n  \n  \n  \n  \n  \n  No. of Servings per container/pack: 10\n  \n  \n  \n  \n  \n  Amount Per Serving\n  \n  \n  \n  \n  \n  Calories (kcal) 271\n  \n  Calories from Fat 138\n  \n  \n  \n  \n  \n  Total Fat (g)\n  \n  15\n  \n  \n  \n  \n  \n   Saturated Fat (g)\n  \n  5\n  \n  \n  \n  \n  \n   Trans Fat (g)\n  \n  0\n  \n  \n  \n  \n  \n   Cholesterol (mg)\n  \n  0\n  \n  \n  \n  \n  \n  Sodium (mg)\n  \n  150\n  \n  \n  \n  \n  \n  Total Carbohydrates (g)\n  \n  30\n  \n  \n  \n  \n  \n   Dietary Fiber (g)\n  \n  0\n  \n  \n  \n  \n  \n   Sugars (g)\n  \n  13\n  \n  \n  \n  \n  \n  Total Protein (g)\n  \n  4",
+      "short_description": "",
+      "tax_type": null,
+      "tags": "",
+      "status": "Active",
+      "visibility": 1,
+      "date_created": "2024-03-01",
+      "created_by": "0",
+      "ordinal": null,
+      "images_promo": null,
+      "weight": 0.82,
+      "length": 32,
+      "width": 13,
+      "height": 13,
+      "unit": "PC",
+      "sell_by_type": "0",
+      "images": [
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/8888077101149_-_01.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/8888077101149_-_01.jpg"
+        },
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/8888077101149_-_02.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/8888077101149_-_02.jpg"
+        }
+      ],
+      "branch": [
+        {
+          "_id": "e704c0b6fefffe5418dd17cc",
+          "id": "12",
+          "name": "Otis",
+          "availability": "",
+          "in_stock_online": 1,
+          "in_stock": 1,
+          "stocks": 999
+        }
+      ],
+      "categories": [
+        {
+          "name": "Food Cupboard",
+          "cat_id": "f7e36051-cbd1-4f5e-8fb9-0ba88ae829a6"
+        }
+      ],
+      "prices": [
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "Online",
+          "name": "online",
+          "original_price": 479,
+          "price": 479
+        },
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "In Store",
+          "name": "instore",
+          "original_price": 479,
+          "price": 479
+        }
+      ],
+      "barcode": ["8888077101149"],
+      "food_type": null,
+      "bundle": [],
+      "updatedAt": "2024-03-01T16:04:57.878Z"
+    },
+    {
+      "_id": "10f136cebb9506155cf76099",
+      "uuid": "350e24b8-93c5-41f8-9d88-74cac4bc5fd4",
+      "is_sku": "128327",
+      "sku": "128327",
+      "name": "Nescafe Gold Medium Roast Coffee 200g",
+      "description": "Nescafe Gold Medium RoastCoffee\n The Arabica and Robusta coffee beans have been carefully selected, then roasted to bring out their natural flavor. The result is a delicious coffee that helps make everyday moments extraordinary.\n In the middle of a busy day, itâ‚¬â„¢s important to have some time for yourself and appreciate the moment, so take a break and focus on the now with Nescafe Gold Medium Roast.",
+      "short_description": "",
+      "tax_type": null,
+      "tags": "",
+      "status": "Active",
+      "visibility": 1,
+      "date_created": "2024-03-01",
+      "created_by": "0",
+      "ordinal": null,
+      "images_promo": null,
+      "weight": 0.2,
+      "length": 9,
+      "width": 9,
+      "height": 19,
+      "unit": "PC",
+      "sell_by_type": "0",
+      "images": [
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/8801055709083-01.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/8801055709083-01.jpg"
+        },
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/8801055709083-02.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/8801055709083-02.jpg"
+        }
+      ],
+      "branch": [
+        {
+          "_id": "aafc282ad24a1ea56eab436f",
+          "id": "12",
+          "name": "Otis",
+          "availability": "",
+          "in_stock_online": 1,
+          "in_stock": 1,
+          "stocks": 999
+        }
+      ],
+      "categories": [
+        {
+          "name": "Beverages",
+          "cat_id": "d5afd335-ea95-4994-8a15-593cdca4854a"
+        }
+      ],
+      "prices": [
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "Online",
+          "name": "online",
+          "original_price": 538,
+          "price": 538
+        },
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "In Store",
+          "name": "instore",
+          "original_price": 538,
+          "price": 538
+        }
+      ],
+      "barcode": ["8801055709083"],
+      "food_type": null,
+      "bundle": [],
+      "updatedAt": "2024-03-01T16:04:57.878Z"
+    },
+    {
+      "_id": "dd904b97bcbcdc5507b97947",
+      "uuid": "6614885c-043b-47a8-8176-8080e2a5e460",
+      "is_sku": "136121",
+      "sku": "136121",
+      "name": "Nescafe Tasters Choice House Blend Instant Coffee 397g",
+      "description": "Crafted with 100% pure, respectfully grown coffee beans, this signature medium-light roast instant coffee delivers smooth, inviting flavor in every cup.\n \n 100% Pure Coffee\n Smooth & Balanced",
+      "short_description": "",
+      "tax_type": null,
+      "tags": "",
+      "status": "Active",
+      "visibility": 1,
+      "date_created": "2024-03-01",
+      "created_by": "0",
+      "ordinal": null,
+      "images_promo": null,
+      "weight": 0.541,
+      "length": 10,
+      "width": 10,
+      "height": 22,
+      "unit": "PC",
+      "sell_by_type": "0",
+      "images": [
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/136121-1.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/136121-1.jpg"
+        },
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/136121-2.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/136121-2.jpg"
+        }
+      ],
+      "branch": [
+        {
+          "_id": "1c2c8a3fbbd874c2b9c3d076",
+          "id": "12",
+          "name": "Otis",
+          "availability": "",
+          "in_stock_online": 1,
+          "in_stock": 1,
+          "stocks": 999
+        }
+      ],
+      "categories": [
+        {
+          "name": "Beverages",
+          "cat_id": "d5afd335-ea95-4994-8a15-593cdca4854a"
+        }
+      ],
+      "prices": [
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "Online",
+          "name": "online",
+          "original_price": 1649.95,
+          "price": 1649.95
+        },
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "In Store",
+          "name": "instore",
+          "original_price": 1649.95,
+          "price": 1649.95
+        }
+      ],
+      "barcode": ["28000855697"],
+      "food_type": null,
+      "bundle": [],
+      "updatedAt": "2024-03-01T16:04:57.878Z"
+    },
+    {
+      "_id": "be428f89fc8f09af2b6d3d00",
+      "uuid": "09099a23-573c-4a5a-bd7c-8d07ef076b6e",
+      "is_sku": "102674",
+      "sku": "102674",
+      "name": "Nestle Coffee-Mate Hazelnut Powder Creamer 425.2 g",
+      "description": "Taste a Creamyier and richly satisfying taste and flavoured this popular a flavorful cup that's always a pleasure. Linger over a warm cup blended with the nutty sweetness of Hazelnut.",
+      "short_description": "",
+      "tax_type": null,
+      "tags": "",
+      "status": "Active",
+      "visibility": 1,
+      "date_created": "2024-03-01",
+      "created_by": "0",
+      "ordinal": null,
+      "images_promo": null,
+      "weight": 0.46,
+      "length": 7,
+      "width": 7,
+      "height": 18,
+      "unit": "PC",
+      "sell_by_type": "0",
+      "images": [
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/50000368907-01_16.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/50000368907-01_16.jpg"
+        },
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/50000368907-02_16.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/50000368907-02_16.jpg"
+        }
+      ],
+      "branch": [
+        {
+          "_id": "ba31cce391f481073124c978",
+          "id": "12",
+          "name": "Otis",
+          "availability": "",
+          "in_stock_online": 1,
+          "in_stock": 1,
+          "stocks": 999
+        }
+      ],
+      "categories": [
+        {
+          "name": "Beverages",
+          "cat_id": "d5afd335-ea95-4994-8a15-593cdca4854a"
+        }
+      ],
+      "prices": [
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "Online",
+          "name": "online",
+          "original_price": 399.95,
+          "price": 399.95
+        },
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "In Store",
+          "name": "instore",
+          "original_price": 399.95,
+          "price": 399.95
+        }
+      ],
+      "barcode": ["50000368907"],
+      "food_type": null,
+      "bundle": [],
+      "updatedAt": "2024-03-01T16:04:57.878Z"
+    },
+    {
+      "_id": "ec1842bb56a77c52e387502f",
+      "uuid": "c59168d7-4dcb-488c-ba02-40fe74cff68c",
+      "is_sku": "104602",
+      "sku": "104602",
+      "name": "Del Monte Sweet Blend Ketchup 567g",
+      "description": "Del Monte Sweet Blend Ketchup\n Tasty Nutrition in Every Bite. Thetomatoes are picked at the peak of ripeness to capture the delicious flavor and essential nutrients of tomatoes freshly cooked from scratch in your home. Meals that Shine. You can taste the rich, tangy flavor with theblend of white cheddar, Romano, Parmesan and provolone cheese in every delicious bite.\n Ingredients:Water, Sugar, Tomato Paste, Vinegar, Modified Starch, Iodized Salt, Selected Spices.\n Keep refrigerated once opened.\n \n \n \n Nutrition Facts\n Serving Size: 1 Tbsp (13g)\n Servings Per Container: 44\n Amount Per Serving\n % RENI\n \n \n Calories\n 15\n <2%\n \n \n Total Fat\n 0g\n Saturated Fat\n 0g\n Trans Fat\n 0g\n Cholesterol\n 0mg\n Sodium\n 95mg\n Total Carbohydrates\n 4g\n Dietary Fiber\n 0g\n Sugars\n 3g\n Protein\n 0g\n 0%",
+      "short_description": "",
+      "tax_type": null,
+      "tags": "",
+      "status": "Active",
+      "visibility": 1,
+      "date_created": "2024-03-01",
+      "created_by": "0",
+      "ordinal": null,
+      "images_promo": null,
+      "weight": 0.93,
+      "length": 8,
+      "width": 6,
+      "height": 26,
+      "unit": "PC",
+      "sell_by_type": "0",
+      "images": [
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4800024555069-01_8.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4800024555069-01_8.jpg"
+        },
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4800024555069-02_8.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4800024555069-02_8.jpg"
+        }
+      ],
+      "branch": [
+        {
+          "_id": "3d0a0542717039a828807b3e",
+          "id": "12",
+          "name": "Otis",
+          "availability": "",
+          "in_stock_online": 1,
+          "in_stock": 1,
+          "stocks": 999
+        }
+      ],
+      "categories": [
+        {
+          "name": "Food Cupboard",
+          "cat_id": "f7e36051-cbd1-4f5e-8fb9-0ba88ae829a6"
+        }
+      ],
+      "prices": [
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "Online",
+          "name": "online",
+          "original_price": 67.95,
+          "price": 67.95
+        },
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "In Store",
+          "name": "instore",
+          "original_price": 67.95,
+          "price": 67.95
+        }
+      ],
+      "barcode": ["4800024555069"],
+      "food_type": null,
+      "bundle": [],
+      "updatedAt": "2024-03-01T16:04:57.878Z"
+    },
+    {
+      "_id": "26d7fcc059db185cc774ba87",
+      "uuid": "a297dc52-d072-44f2-8bdf-939d38f04d0d",
+      "is_sku": "104601",
+      "sku": "104601",
+      "name": "Del Monte Ketchup Original Blend 567g",
+      "description": "Del Monte Ketchup Original Blend\n Bring delicious tomato flavor to hamburgers, hot dogs, fries and more. Just the right amount of tanginess, with no artificial flavors or preservatives.\n Ingredients:Water, Sugar, Tomato Paste, Vinegar, Modified Starch, Iodized Salt, Selected Spices.\n Keep refrigerated once opened.\n \n \n \n Nutrition Facts\n Serving Size: 1 Tbsp (13g)\n Servings Per Container: 44\n Amount Per Serving\n % RENI\n \n \n Calories\n 15\n <2%\n \n \n Total Fat\n 0g\n Saturated Fat\n 0g\n Trans Fat\n 0g\n Cholesterol\n 0mg\n Sodium\n 160mg\n Total Carbohydrates\n 4g\n Dietary Fiber\n 0g\n Sugars\n 2g\n Protein\n 0g\n 0%",
+      "short_description": "",
+      "tax_type": null,
+      "tags": "",
+      "status": "Active",
+      "visibility": 1,
+      "date_created": "2024-03-01",
+      "created_by": "0",
+      "ordinal": null,
+      "images_promo": null,
+      "weight": 0.92,
+      "length": 8,
+      "width": 6,
+      "height": 26,
+      "unit": "PC",
+      "sell_by_type": "0",
+      "images": [
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4800024013392-01_13.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4800024013392-01_13.jpg"
+        },
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4800024013392-02_13.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4800024013392-02_13.jpg"
+        }
+      ],
+      "branch": [
+        {
+          "_id": "7eadeaf41986b334ce033d55",
+          "id": "12",
+          "name": "Otis",
+          "availability": "",
+          "in_stock_online": 1,
+          "in_stock": 1,
+          "stocks": 999
+        }
+      ],
+      "categories": [
+        {
+          "name": "Food Cupboard",
+          "cat_id": "f7e36051-cbd1-4f5e-8fb9-0ba88ae829a6"
+        }
+      ],
+      "prices": [
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "Online",
+          "name": "online",
+          "original_price": 67.95,
+          "price": 67.95
+        },
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "In Store",
+          "name": "instore",
+          "original_price": 67.95,
+          "price": 67.95
+        }
+      ],
+      "barcode": ["4800024013392"],
+      "food_type": null,
+      "bundle": [],
+      "updatedAt": "2024-03-01T16:04:57.878Z"
+    },
+    {
+      "_id": "32ff88c91b7139cf89343fa6",
+      "uuid": "6a3c666e-1860-4a78-96ed-65eacfa34348",
+      "is_sku": "104134",
+      "sku": "104134",
+      "name": "Sanicare Upsize 2-Ply Bathroom Tissue 24 Rolls",
+      "description": "SanicareBathroom tissue is tough enough to wipe away dirt and stains, but soft enough for the most sensitive skin. Chlorine-free, laminated and features a gentle rosette-embossed design, it is hygienic for sensitive use.",
+      "short_description": "",
+      "tax_type": null,
+      "tags": "",
+      "status": "Active",
+      "visibility": 1,
+      "date_created": "2024-03-01",
+      "created_by": "0",
+      "ordinal": null,
+      "images_promo": null,
+      "weight": 2.16,
+      "length": 38.6,
+      "width": 20,
+      "height": 33,
+      "unit": "PC",
+      "sell_by_type": "0",
+      "images": [
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4806502359747-01.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4806502359747-01.jpg"
+        },
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4806502359747-02.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4806502359747-02.jpg"
+        }
+      ],
+      "branch": [
+        {
+          "_id": "cfefd30630c65344dbe33baf",
+          "id": "12",
+          "name": "Otis",
+          "availability": "",
+          "in_stock_online": 1,
+          "in_stock": 1,
+          "stocks": 999
+        }
+      ],
+      "categories": [
+        {
+          "name": "Household & Laundry",
+          "cat_id": "fe4ca28d-8c6a-47fb-ae91-1af6c04dc784"
+        }
+      ],
+      "prices": [
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "Online",
+          "name": "online",
+          "original_price": 358,
+          "price": 358
+        },
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "In Store",
+          "name": "instore",
+          "original_price": 358,
+          "price": 358
+        }
+      ],
+      "barcode": ["4806502359747"],
+      "food_type": null,
+      "bundle": [],
+      "updatedAt": "2024-03-01T16:04:57.878Z"
+    },
+    {
+      "_id": "3295cebc10a54cfd59cb9b9f",
+      "uuid": "f4942c1e-476d-46a8-8071-42ee35155a2f",
+      "is_sku": "110057",
+      "sku": "110057",
+      "name": "Sanicare 3-Ply Bathroom Tissue 600s 12 Rolls",
+      "description": "Sanicare has long been known as the countryâ‚¬â„¢s best-selling toilet paper brand. With innovations such as this jumbo toilet paper, Sanicare continues to make products that will server Filipino bathrooms for the years to come.\n Sanicare 3-Ply Bathroom Tissue is hygienic for sensitive use. It is made from 100% Virgin Pulp, with no artificial whiteners and elemental chlorine.\n \n Thick and strong\n Laminated for better strength\n Dermatologist tested",
+      "short_description": "",
+      "tax_type": null,
+      "tags": "",
+      "status": "Active",
+      "visibility": 1,
+      "date_created": "2024-03-01",
+      "created_by": "0",
+      "ordinal": null,
+      "images_promo": null,
+      "weight": 1.26,
+      "length": 43,
+      "width": 10,
+      "height": 30,
+      "unit": "PC",
+      "sell_by_type": "0",
+      "images": [
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4806502350546-1.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4806502350546-1.jpg"
+        },
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4806502350546.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4806502350546.jpg"
+        },
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4806502350546-2.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4806502350546-2.jpg"
+        }
+      ],
+      "branch": [
+        {
+          "_id": "c015fb38351161ac89e4768b",
+          "id": "12",
+          "name": "Otis",
+          "availability": "",
+          "in_stock_online": 1,
+          "in_stock": 1,
+          "stocks": 999
+        }
+      ],
+      "categories": [
+        {
+          "name": "Household & Laundry",
+          "cat_id": "fe4ca28d-8c6a-47fb-ae91-1af6c04dc784"
+        }
+      ],
+      "prices": [
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "Online",
+          "name": "online",
+          "original_price": 256,
+          "price": 256
+        },
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "In Store",
+          "name": "instore",
+          "original_price": 256,
+          "price": 256
+        }
+      ],
+      "barcode": ["4806502350546"],
+      "food_type": null,
+      "bundle": [],
+      "updatedAt": "2024-03-01T16:04:57.878Z"
+    },
+    {
+      "_id": "eb34fc13814718ca269af163",
+      "uuid": "5813059e-a569-4f28-91f9-018f2457559c",
+      "is_sku": "133936",
+      "sku": "133936",
+      "name": "Royal Tru-Orange in Can 6 x 325mL",
+      "description": "Royal Tru-Orange has bold and delicious fruity taste with B vitamins. Always bubbly, no caffeine!\n Serving Suggestion:\n Best served chilled.\n Ingredients:Carbonated Water, Sugar,Acidulant(CitricAcid), Stabilizer(AcaciaGum), Natural and ArtificialFlavors, Sweeteners(Acesulfame-K, Sucralose), Preservative(Potassium Sorbate), Sequestrant(SHMP), Artificial Color(Sunset Yellow),Vitamins(B3, B5, B6), Anti-FoamingAgent(PDMS)",
+      "short_description": "",
+      "tax_type": null,
+      "tags": "",
+      "status": "Active",
+      "visibility": 1,
+      "date_created": "2024-03-01",
+      "created_by": "0",
+      "ordinal": null,
+      "images_promo": null,
+      "weight": 1.95,
+      "length": 18,
+      "width": 12,
+      "height": 15,
+      "unit": "PC",
+      "sell_by_type": "0",
+      "images": [
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4801981090556-1.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4801981090556-1.jpg"
+        },
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4801981090556-2.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4801981090556-2.jpg"
+        }
+      ],
+      "branch": [
+        {
+          "_id": "eb99b7f6481b47ad291480ea",
+          "id": "12",
+          "name": "Otis",
+          "availability": "",
+          "in_stock_online": 1,
+          "in_stock": 1,
+          "stocks": 999
+        }
+      ],
+      "categories": [
+        {
+          "name": "Beverages",
+          "cat_id": "d5afd335-ea95-4994-8a15-593cdca4854a"
+        }
+      ],
+      "prices": [
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "Online",
+          "name": "online",
+          "original_price": 176.95,
+          "price": 176.95
+        },
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "In Store",
+          "name": "instore",
+          "original_price": 176.95,
+          "price": 176.95
+        }
+      ],
+      "barcode": ["4801981090556"],
+      "food_type": null,
+      "bundle": [],
+      "updatedAt": "2024-03-01T16:04:57.878Z"
+    },
+    {
+      "_id": "7d10a418600ba151877f4435",
+      "uuid": "ac8824d9-c461-40c0-8ed5-23de81174b40",
+      "is_sku": "117217",
+      "sku": "117217",
+      "name": "Mountain Dew 330mL 5+1 Pack",
+      "description": "Enjoy the refreshing,one of a kindtaste of Mountain Dew and shareit with your friends.This green magic will exhilarate andquench your thirst every day of the week!",
+      "short_description": "",
+      "tax_type": null,
+      "tags": "",
+      "status": "Active",
+      "visibility": 1,
+      "date_created": "2024-03-01",
+      "created_by": "0",
+      "ordinal": null,
+      "images_promo": null,
+      "weight": 2.205,
+      "length": 12,
+      "width": 13.5,
+      "height": 20.3,
+      "unit": "PC",
+      "sell_by_type": "0",
+      "images": [
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4803925043451-2.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4803925043451-2.jpg"
+        },
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4803925043451-1.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4803925043451-1.jpg"
+        }
+      ],
+      "branch": [
+        {
+          "_id": "5cd51353b0d5eb900d01bb27",
+          "id": "12",
+          "name": "Otis",
+          "availability": "",
+          "in_stock_online": 1,
+          "in_stock": 1,
+          "stocks": 999
+        }
+      ],
+      "categories": [
+        {
+          "name": "Beverages",
+          "cat_id": "d5afd335-ea95-4994-8a15-593cdca4854a"
+        }
+      ],
+      "prices": [
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "Online",
+          "name": "online",
+          "original_price": 175,
+          "price": 175
+        },
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "In Store",
+          "name": "instore",
+          "original_price": 175,
+          "price": 175
+        }
+      ],
+      "barcode": ["4803925043451"],
+      "food_type": null,
+      "bundle": [],
+      "updatedAt": "2024-03-01T16:04:57.878Z"
+    },
+    {
+      "_id": "c2468bcf55609d28465adc13",
+      "uuid": "44f28d16-5434-4867-a39a-330b74e86464",
+      "is_sku": "133937",
+      "sku": "133937",
+      "name": "Sprite in Can 6 x 325mL",
+      "description": "Sprite in Can\n Sprite is a lemon-lime flavored soft drink with a crisp, clean taste that gives you the ultimate cut-through refreshment.\n \n A lemon-lime soda with 100% natural flavors.",
+      "short_description": "",
+      "tax_type": null,
+      "tags": "",
+      "status": "Active",
+      "visibility": 1,
+      "date_created": "2024-03-01",
+      "created_by": "0",
+      "ordinal": null,
+      "images_promo": null,
+      "weight": 1.95,
+      "length": 18,
+      "width": 12,
+      "height": 15,
+      "unit": "PC",
+      "sell_by_type": "0",
+      "images": [
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4801981090549.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4801981090549.jpg"
+        }
+      ],
+      "branch": [
+        {
+          "_id": "f86adf488f98fe732a484914",
+          "id": "12",
+          "name": "Otis",
+          "availability": "",
+          "in_stock_online": 1,
+          "in_stock": 1,
+          "stocks": 999
+        }
+      ],
+      "categories": [
+        {
+          "name": "Beverages",
+          "cat_id": "d5afd335-ea95-4994-8a15-593cdca4854a"
+        }
+      ],
+      "prices": [
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "Online",
+          "name": "online",
+          "original_price": 176.95,
+          "price": 176.95
+        },
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "In Store",
+          "name": "instore",
+          "original_price": 176.95,
+          "price": 176.95
+        }
+      ],
+      "barcode": ["4801981090549"],
+      "food_type": null,
+      "bundle": [],
+      "updatedAt": "2024-03-01T16:04:57.878Z"
+    },
+    {
+      "_id": "ab2be40a2a5c4b3144aa112b",
+      "uuid": "cf7bff1a-6751-4eb7-bdf5-ac0ef5c2e937",
+      "is_sku": "133934",
+      "sku": "133934",
+      "name": "Coca-Cola Original Taste in Can 6 x 325mL",
+      "description": "Quench your thirst with the uplifting taste of Coca-Cola. It's the world'sfavorite soft drink withoriginal taste in a variety of sizes to suit every lifestyle and occasion.\n \n Great Coke taste\n Only natural flavors\n No added preservatives\n \n Ingredients:\n Carbonated Water, Sugar, Caramel Color, Acidity Regulator (Phosphoric Acid), Natural Flavors, Caffeine, Sweetener (Sucralose).",
+      "short_description": "",
+      "tax_type": null,
+      "tags": "",
+      "status": "Active",
+      "visibility": 1,
+      "date_created": "2024-03-01",
+      "created_by": "0",
+      "ordinal": null,
+      "images_promo": null,
+      "weight": 1.95,
+      "length": 18,
+      "width": 12,
+      "height": 15,
+      "unit": "PC",
+      "sell_by_type": "0",
+      "images": [
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4801981091171.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4801981091171.jpg"
+        }
+      ],
+      "branch": [
+        {
+          "_id": "41565516bef68836a3ff587a",
+          "id": "12",
+          "name": "Otis",
+          "availability": "",
+          "in_stock_online": 1,
+          "in_stock": 1,
+          "stocks": 999
+        }
+      ],
+      "categories": [
+        {
+          "name": "Beverages",
+          "cat_id": "d5afd335-ea95-4994-8a15-593cdca4854a"
+        }
+      ],
+      "prices": [
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "Online",
+          "name": "online",
+          "original_price": 180,
+          "price": 180
+        },
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "In Store",
+          "name": "instore",
+          "original_price": 180,
+          "price": 180
+        }
+      ],
+      "barcode": ["4801981091171"],
+      "food_type": null,
+      "bundle": [],
+      "updatedAt": "2024-03-01T16:04:57.878Z"
+    },
+    {
+      "_id": "f5426286b19f2bf08351ad5d",
+      "uuid": "2717e30a-988d-479c-bf3e-970aecee266e",
+      "is_sku": "119474",
+      "sku": "119474",
+      "name": "Edison Plastic White Spoon 50s",
+      "description": "Edison Plastic White Spoon 50s\n They come in pack of 50.Ideal for parties, catering, BBQ, or everyday use and make clean up super simple.",
+      "short_description": "",
+      "tax_type": null,
+      "tags": "",
+      "status": "Active",
+      "visibility": 1,
+      "date_created": "2024-03-01",
+      "created_by": "0",
+      "ordinal": null,
+      "images_promo": null,
+      "weight": 0.265,
+      "length": 21,
+      "width": 20,
+      "height": 3,
+      "unit": "PC",
+      "sell_by_type": "0",
+      "images": [
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4800375042218-01.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4800375042218-01.jpg"
+        }
+      ],
+      "branch": [
+        {
+          "_id": "336acc0c6f9217d3db067ff1",
+          "id": "12",
+          "name": "Otis",
+          "availability": "",
+          "in_stock_online": 1,
+          "in_stock": 1,
+          "stocks": 999
+        }
+      ],
+      "categories": [
+        {
+          "name": "Home & Outdoor",
+          "cat_id": "59a4cb34-dd75-4d09-bede-284558196c09"
+        }
+      ],
+      "prices": [
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "Online",
+          "name": "online",
+          "original_price": 89.95,
+          "price": 89.95
+        },
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "In Store",
+          "name": "instore",
+          "original_price": 89.95,
+          "price": 89.95
+        }
+      ],
+      "barcode": ["4800375042218"],
+      "food_type": null,
+      "bundle": [],
+      "updatedAt": "2024-03-01T16:04:57.878Z"
+    },
+    {
+      "_id": "f9b4885a8efa095b36541a68",
+      "uuid": "638f9f67-159d-4fc8-9323-ad13235d3439",
+      "is_sku": "119475",
+      "sku": "119475",
+      "name": "Edison Plastic White Fork 50s",
+      "description": "Edison Plastic White Fork\n Disposable plastic fork for use with many dense foods.Great for home, work, school,party, gathering, and commercial use.",
+      "short_description": "",
+      "tax_type": null,
+      "tags": "",
+      "status": "Active",
+      "visibility": 1,
+      "date_created": "2024-03-01",
+      "created_by": "0",
+      "ordinal": null,
+      "images_promo": null,
+      "weight": 0.245,
+      "length": 21,
+      "width": 20,
+      "height": 3,
+      "unit": "PC",
+      "sell_by_type": "0",
+      "images": [
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4800375042225-01.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4800375042225-01.jpg"
+        },
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4800529999962+-+02.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4800529999962+-+02.jpg"
+        }
+      ],
+      "branch": [
+        {
+          "_id": "57955e7a0294560d2478068c",
+          "id": "12",
+          "name": "Otis",
+          "availability": "",
+          "in_stock_online": 1,
+          "in_stock": 1,
+          "stocks": 999
+        }
+      ],
+      "categories": [
+        {
+          "name": "Home & Outdoor",
+          "cat_id": "59a4cb34-dd75-4d09-bede-284558196c09"
+        }
+      ],
+      "prices": [
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "Online",
+          "name": "online",
+          "original_price": 89.95,
+          "price": 89.95
+        },
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "In Store",
+          "name": "instore",
+          "original_price": 89.95,
+          "price": 89.95
+        }
+      ],
+      "barcode": ["4800375042225"],
+      "food_type": null,
+      "bundle": [],
+      "updatedAt": "2024-03-01T16:04:57.879Z"
+    },
+    {
+      "_id": "02976a09ea6a12d7559dbf21",
+      "uuid": "fb58b146-312d-4592-be9d-d99198f2b231",
+      "is_sku": "109620",
+      "sku": "109620",
+      "name": "Glade Lemon Fresh Air Freshener Spray 320mL",
+      "description": "Glade Lemon Fresh Air Freshenerfights tough odors and instantly freshens the air in your bathroom with the scent of sparkling tangerine, golden mandarin and fresh lemon. With 2.5x smaller droplets, there's no starchy residue left behind, just freshness that floats.\n \n Eliminates odors\n Freshens the air\n Acts in seconds\n Quality fragrance\n Long-lasting freshness\n \n Directions:\n Shake well before each use. Hold can upright. Press button and spray in side to side sweeping motion.\n Caution:\n Do not use near fire, flame, or pilot light. Do not set on stove or radiator, or keep where temperatures exceed 120 F, as container may burst. Do not puncture or incinerate. Store in a cool, dry place.\n Warning:\n Use only as directed. Intentional misuse by deliberately concentrating and inhaling the contents can be harmful or fatal.",
+      "short_description": "",
+      "tax_type": null,
+      "tags": "",
+      "status": "Active",
+      "visibility": 1,
+      "date_created": "2024-03-01",
+      "created_by": "0",
+      "ordinal": null,
+      "images_promo": null,
+      "weight": 0.32,
+      "length": 6,
+      "width": 6,
+      "height": 23,
+      "unit": "PC",
+      "sell_by_type": "0",
+      "images": [
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4801234061517-1.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4801234061517-1.jpg"
+        },
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4801234061517-2.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4801234061517-2.jpg"
+        }
+      ],
+      "branch": [
+        {
+          "_id": "e60c8ef4d0c5bb9f554dbe52",
+          "id": "12",
+          "name": "Otis",
+          "availability": "",
+          "in_stock_online": 1,
+          "in_stock": 1,
+          "stocks": 999
+        }
+      ],
+      "categories": [
+        {
+          "name": "Household & Laundry",
+          "cat_id": "fe4ca28d-8c6a-47fb-ae91-1af6c04dc784"
+        }
+      ],
+      "prices": [
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "Online",
+          "name": "online",
+          "original_price": 359.95,
+          "price": 359.95
+        },
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "In Store",
+          "name": "instore",
+          "original_price": 359.95,
+          "price": 359.95
+        }
+      ],
+      "barcode": ["4801234061517"],
+      "food_type": null,
+      "bundle": [],
+      "updatedAt": "2024-03-01T16:04:57.879Z"
+    },
+    {
+      "_id": "a6e264eb14b0ca891bf732f6",
+      "uuid": "6258e87a-1ec6-430c-9cd3-8552cd564e8a",
+      "is_sku": "121600",
+      "sku": "121600",
+      "name": "Glade Clean Linen Room Air Spray 227g",
+      "description": "Glade Clean Linen Room Air Spray 227 g\n Glade Clean Linen Room Spray fight tough odors and instantly freshen the air in your bathroom with the scent of watery melon and clean, crisp air with sparkling citrus blends. With 2.5x smaller droplets thereâ‚¬â„¢s no starchy residue left behind, just freshness that floats.\n \n Designed to fight tough odors and instantly freshen the air in your bathroom. With 2.5x smaller droplets* thereâ‚¬â„¢s no starchy residue left behind, just freshness that floats.\n Glade Room Spray as a final touch after your cleaning routine. Available in a wide variety of fragrances.\n \n Directions:Shake well before each use. Hold can upright. Press button and spray in side to side sweeping motion.\n Caution:Do not use near fire, flame, or pilot light. Do not set on stove or radiator, or keep where temperatures exceed 120 F, as container may burst. Do not puncture or incinerate. Store in a cool, dry place.\n \n Keep out of reach of children.\n \n Warning: Use only as directed. Intentional misuse by deliberately concentrating and inhaling the contents can be harmful or fatal. Help stop inhalation abuse.",
+      "short_description": "",
+      "tax_type": null,
+      "tags": "",
+      "status": "Active",
+      "visibility": 1,
+      "date_created": "2024-03-01",
+      "created_by": "0",
+      "ordinal": null,
+      "images_promo": null,
+      "weight": 0.339,
+      "length": 23,
+      "width": 5,
+      "height": 5,
+      "unit": "PC",
+      "sell_by_type": "0",
+      "images": [
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/121600-01.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/121600-01.jpg"
+        },
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/121600-1.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/121600-1.jpg"
+        }
+      ],
+      "branch": [
+        {
+          "_id": "9f5f732a3b6803cc1b07eecb",
+          "id": "12",
+          "name": "Otis",
+          "availability": "",
+          "in_stock_online": 1,
+          "in_stock": 1,
+          "stocks": 999
+        }
+      ],
+      "categories": [
+        {
+          "name": "Household & Laundry",
+          "cat_id": "fe4ca28d-8c6a-47fb-ae91-1af6c04dc784"
+        }
+      ],
+      "prices": [
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "Online",
+          "name": "online",
+          "original_price": 229,
+          "price": 229
+        },
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "In Store",
+          "name": "instore",
+          "original_price": 229,
+          "price": 229
+        }
+      ],
+      "barcode": ["5000200000000"],
+      "food_type": null,
+      "bundle": [],
+      "updatedAt": "2024-03-01T16:04:57.879Z"
+    },
+    {
+      "_id": "638503c53ac222614e4a5113",
+      "uuid": "4d6c2242-e340-49e6-859f-f97cbd6c9ba4",
+      "is_sku": "111603",
+      "sku": "111603",
+      "name": "Glade Lavender & Vanilla Room Spray 227g",
+      "description": "Let Glade Lavender & Vanilla Room Spray fight tough odors and instantly freshen the air in your bathroom with the scent of creamy vanilla and relaxing lavender flowers.\n Use GladeRoom Spray as a final touch after your cleaning routine. With 2.5x smaller droplets, thereâ‚¬â„¢s no starchy residueleft behind, just freshness that floats.\n Directions:\n Shake well before each use. Hold can upright. Press button and spray in side to side sweeping motion.",
+      "short_description": "",
+      "tax_type": null,
+      "tags": "",
+      "status": "Active",
+      "visibility": 1,
+      "date_created": "2024-03-01",
+      "created_by": "0",
+      "ordinal": null,
+      "images_promo": null,
+      "weight": 0.305,
+      "length": 6,
+      "width": 6,
+      "height": 21,
+      "unit": "PC",
+      "sell_by_type": "0",
+      "images": [
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/111603-1.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/111603-1.jpg"
+        },
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/111603-2.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/111603-2.jpg"
+        }
+      ],
+      "branch": [
+        {
+          "_id": "d8af830b9f4d31039284d98c",
+          "id": "12",
+          "name": "Otis",
+          "availability": "",
+          "in_stock_online": 1,
+          "in_stock": 1,
+          "stocks": 999
+        }
+      ],
+      "categories": [
+        {
+          "name": "Household & Laundry",
+          "cat_id": "fe4ca28d-8c6a-47fb-ae91-1af6c04dc784"
+        }
+      ],
+      "prices": [
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "Online",
+          "name": "online",
+          "original_price": 149.95,
+          "price": 149.95
+        },
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "In Store",
+          "name": "instore",
+          "original_price": 149.95,
+          "price": 149.95
+        }
+      ],
+      "barcode": ["46500733345"],
+      "food_type": null,
+      "bundle": [],
+      "updatedAt": "2024-03-01T16:04:57.879Z"
+    },
+    {
+      "_id": "ff9d6a0ab5dd022036171691",
+      "uuid": "7fea7d31-c925-450c-9f7c-fc164c5a6a68",
+      "is_sku": "129392",
+      "sku": "129392",
+      "name": "Hanns Double Coated Disposable Paper Plates 100s",
+      "description": "Hanns Double Coated Disposable Paper Plates 100s\n Disposable paper plates are a great choice for the environmentally conscious because they're biodegradable.Bulk paper plates are easy to store for when they're needed and are a perfect option for use at food courts, cafeterias, cookouts, company picnics and more.",
+      "short_description": "",
+      "tax_type": null,
+      "tags": "",
+      "status": "Active",
+      "visibility": 1,
+      "date_created": "2024-03-01",
+      "created_by": "0",
+      "ordinal": null,
+      "images_promo": null,
+      "weight": 0.921,
+      "length": 23,
+      "width": 23,
+      "height": 7,
+      "unit": "PC",
+      "sell_by_type": "0",
+      "images": [
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4800529999986-1.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4800529999986-1.jpg"
+        },
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4800529999986_-_02.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4800529999986_-_02.jpg"
+        }
+      ],
+      "branch": [
+        {
+          "_id": "b978e2273630ab4299a82d5e",
+          "id": "12",
+          "name": "Otis",
+          "availability": "",
+          "in_stock_online": 1,
+          "in_stock": 1,
+          "stocks": 999
+        }
+      ],
+      "categories": [
+        {
+          "name": "Home & Outdoor",
+          "cat_id": "59a4cb34-dd75-4d09-bede-284558196c09"
+        }
+      ],
+      "prices": [
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "Online",
+          "name": "online",
+          "original_price": 359.95,
+          "price": 359.95
+        },
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "In Store",
+          "name": "instore",
+          "original_price": 359.95,
+          "price": 359.95
+        }
+      ],
+      "barcode": ["4800529999986"],
+      "food_type": null,
+      "bundle": [],
+      "updatedAt": "2024-03-01T16:04:57.879Z"
+    },
+    {
+      "_id": "f01dba918cd760cffd189137",
+      "uuid": "8be139b9-7862-430d-9bd1-d132469328b5",
+      "is_sku": "129391",
+      "sku": "129391",
+      "name": "Hanns Disposable Spoon & Fork 50s",
+      "description": "Hanns Disposable Spoon & Fork 50s\n Hanns Party Packages Biodegradable Disposable Spoon & Fork 50 pairs\n \n ECO FRIENDLY - Have peace of mind knowing that your plastic dinnerware is biodegradable and recyclable",
+      "short_description": "",
+      "tax_type": null,
+      "tags": "",
+      "status": "Active",
+      "visibility": 1,
+      "date_created": "2024-03-01",
+      "created_by": "0",
+      "ordinal": null,
+      "images_promo": null,
+      "weight": 0.587,
+      "length": 18,
+      "width": 22,
+      "height": 6,
+      "unit": "PC",
+      "sell_by_type": "0",
+      "images": [
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4800529999962-1.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4800529999962-1.jpg"
+        },
+        {
+          "images": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4800529999962+-+02.jpg",
+          "thumbnail": "https://qa-sapp.s3.ap-southeast-1.amazonaws.com/thumbnails/4800529999962+-+02.jpg"
+        }
+      ],
+      "branch": [
+        {
+          "_id": "ffe9c4badc85b58afa6e439d",
+          "id": "12",
+          "name": "Otis",
+          "availability": "",
+          "in_stock_online": 1,
+          "in_stock": 1,
+          "stocks": 999
+        }
+      ],
+      "categories": [
+        {
+          "name": "Home & Outdoor",
+          "cat_id": "59a4cb34-dd75-4d09-bede-284558196c09"
+        }
+      ],
+      "prices": [
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "Online",
+          "name": "online",
+          "original_price": 274.95,
+          "price": 274.95
+        },
+        {
+          "branch_id": "",
+          "compare_price": 0,
+          "discount_type": "none",
+          "discount_value": 0,
+          "display_name": "In Store",
+          "name": "instore",
+          "original_price": 274.95,
+          "price": 274.95
+        }
+      ],
+      "barcode": ["4800529999962"],
+      "food_type": null,
+      "bundle": [],
+      "updatedAt": "2024-03-01T16:04:57.879Z"
+    }
+  ],
+  "categories": [
+    {
+      "name": "Beverages",
+      "cat_id": "d5afd335-ea95-4994-8a15-593cdca4854a"
+    },
+    {
+      "name": "Beer, Wine & Spirits",
+      "cat_id": "54c2e971-a90f-48ac-8c15-6701650a918e"
+    },
+    {
+      "name": "Health & Beauty",
+      "cat_id": "fe13bbd1-610e-4f9a-9c17-a912608a567a"
+    },
+    {
+      "name": "Household & Laundry",
+      "cat_id": "fe4ca28d-8c6a-47fb-ae91-1af6c04dc784"
+    },
+    {
+      "name": "Food Cupboard",
+      "cat_id": "f7e36051-cbd1-4f5e-8fb9-0ba88ae829a6"
+    },
+    {
+      "name": "Home & Outdoor",
+      "cat_id": "59a4cb34-dd75-4d09-bede-284558196c09"
+    }
+  ]
+}

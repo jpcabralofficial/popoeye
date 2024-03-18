@@ -8,6 +8,7 @@ import {
   Image,
   StyleSheet,
   TouchableOpacity,
+  ImageBackground,
 } from 'react-native';
 import { useTheme } from 'react-native-paper';
 
@@ -55,60 +56,66 @@ const ProductScreen = () => {
       {/* header */}
       <View style={styles.headerContainer}>
         <Image
-          source={IMAGES.LANDERS_CENTRAL_LOGO}
+          source={IMAGES.POPEYES_LOGO_TEXT}
           style={styles.headerLogo}
           resizeMode="stretch"
         />
 
-        {/* header content */}
-        <View style={styles.headerContentContainer}>
-          {/* header title  */}
-          <Text style={[styles.headerTitleText, { color: theme.colors.white }]}>
-            What are you craving for?
-          </Text>
-
-          {/* my bag */}
-          <TouchableOpacity onPress={handleNavigatePress} activeOpacity={0.8}>
+         {/* my bag */}
+          <TouchableOpacity style={[styles.cartCont, { borderColor: theme.colors.buttoncolor }]} onPress={handleNavigatePress} activeOpacity={0.8}>
+           <ImageBackground source={IMAGES.CART_CONTAINER} 
+            style={{ height: 125, width: 125,
+              justifyContent: 'center',
+               alignItems: 'center',
+               alignSelf: 'center',
+           }}>
             {cartCount > 0 && (
-              <View
-                style={[
-                  styles.myBagCountContainer,
-                  { backgroundColor: theme.colors.accent },
-                ]}>
-                <Text
+                <View
                   style={[
-                    styles.myBagCountText,
-                    { color: theme.colors.white },
+                    styles.myBagCountContainer,
+                    { backgroundColor: theme.colors.accent, borderColor: theme.colors.white},
                   ]}>
-                  {cartCount}
-                </Text>
-              </View>
-            )}
+                  <Text
+                    style={[
+                      styles.myBagCountText,
+                      { color: theme.colors.white },
+                    ]}>
+                    {cartCount}
+                  </Text>
+                </View>
+              )}
 
-            <Image
-              source={IMAGES.SHOPPING_BAG_ICON}
-              style={styles.myBagIcon}
-              resizeMode="stretch"
-            />
-
-            <Text style={[styles.myBagLabel, { color: theme.colors.white }]}>
+              <Image
+                source={IMAGES.SHOPPING_BAG_ICON}
+                style={styles.myBagIcon}
+                resizeMode="stretch"
+              />
+               <Text style={[styles.myBagLabel, { color: theme.colors.white }]}>
               My Bag
             </Text>
+           </ImageBackground>
           </TouchableOpacity>
+          
+      
+        
         </View>
-      </View>
 
       {/* separator */}
       <View
         style={[
           styles.separator,
-          { backgroundColor: theme.colors.accent, width: width },
+          { backgroundColor: theme.colors.white, width: width },
         ]}
       />
 
       {/* content */}
-      <View style={styles.contentContainer}>
+      <View style={[styles.contentContainer, { backgroundColor: theme.colors.buttoncolor}]}>
         {/* scrollable categories */}
+        <Image
+          source={IMAGES.BACKGROUND_IMAGE}
+          style={{ height: "100%", width: width, zIndex: -1, position: "absolute"}}
+          resizeMode="stretch"
+        />
         <View>
           <FlatList
             data={activeCategories}
@@ -137,8 +144,9 @@ const ProductScreen = () => {
             { backgroundColor: theme.colors.white },
           ]}>
           <Image
-            source={IMAGES.LANDERS_CENTRAL_BANNER}
+            source={IMAGES.POPEYES_BANNER}
             style={styles.headerBannerImage}
+            resizeMode='stretch'
           />
 
           <FlatList
@@ -177,7 +185,7 @@ const ProductScreen = () => {
       <View
         style={[
           styles.separator,
-          { backgroundColor: theme.colors.accent, width: width },
+          { backgroundColor: theme.colors.primary, width: width },
         ]}
       />
 
@@ -198,8 +206,9 @@ const ProductScreen = () => {
 
         <View style={styles.footerButtonContainer}>
           <CommonButton
+            labelColor={theme.colors.primary}
             label="Cancel Order"
-            backgroundColor={theme.colors.black}
+            backgroundColor={theme.colors.buttoncolor}
             size="half"
             onPress={() => handleButtonPress('cancel')}
           />
@@ -220,6 +229,16 @@ const ProductScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  cartCont:{
+    borderRadius: 100,
+    borderWidth: 4,
+    height: 150,
+    justifyContent: 'center',
+    position: 'absolute',
+    right: 30,
+    top: 20,
+    width: 150,
+  },
   container: {
     flex: 1,
   },
@@ -251,35 +270,26 @@ const styles = StyleSheet.create({
     paddingHorizontal: 40,
   },
   headerBannerImage: {
-    width: '100%',
+    width: '101%',
   },
   headerContainer: {
     gap: 20,
-    paddingVertical: 20,
-  },
-  headerContentContainer: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingHorizontal: 40,
+    paddingVertical: 30,
   },
   headerLogo: {
     alignSelf: 'center',
-    height: 100,
-    width: 130,
-  },
-  headerTitleText: {
-    fontSize: 50,
-    fontWeight: 'bold',
+    height: 115,
+    width: 345,
   },
   myBagCountContainer: {
     alignItems: 'center',
     borderRadius: 100,
+    borderWidth: 3,
     height: 50,
     justifyContent: 'center',
     position: 'absolute',
-    right: -5,
-    top: -20,
+    right: -2,
+    top: -5,
     width: 50,
     zIndex: 100,
   },
@@ -289,11 +299,11 @@ const styles = StyleSheet.create({
   },
   myBagIcon: {
     alignSelf: 'center',
-    height: 70,
-    width: 70,
+    height: 47,
+    width: 59,
   },
   myBagLabel: {
-    fontSize: 25,
+    fontSize: 24,
     fontWeight: 'bold',
   },
   productContent: {
