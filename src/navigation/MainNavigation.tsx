@@ -8,7 +8,10 @@ import { FLOW_EVENT_INIT } from '../context/flow';
 
 import { clearMembershipBarcode } from '../common/redux/slices/membership/membership';
 import { clearCart } from '../common/redux/slices/cart/cart';
-import { clearPaymentStatus } from '../common/redux/slices/checkout/checkout';
+import {
+  clearModeOfPayment,
+  clearPaymentStatus,
+} from '../common/redux/slices/checkout/checkout';
 
 /* SCREENS*/
 import OnboardingScreen from '../screens/onboarding/OnboardingScreen';
@@ -62,6 +65,7 @@ const MainNavigation = () => {
     dispatch(clearMembershipBarcode());
     dispatch(clearCart());
     dispatch(clearPaymentStatus());
+    dispatch(clearModeOfPayment());
     emitFlowEvent(FLOW_EVENT_INIT, null);
   }, [dispatch, emitFlowEvent]);
 

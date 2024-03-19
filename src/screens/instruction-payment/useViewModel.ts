@@ -35,7 +35,7 @@ const useViewModel = () => {
     //   uuid: 'zxczxcxz',
     //   approvalCode: '',
     // });
-  }, [emitFlowEvent, cartTotal]);
+  }, [emitFlowEvent]);
 
   useEffect(() => {
     console.log(checkoutRedux.paymentStatus, 'nice');

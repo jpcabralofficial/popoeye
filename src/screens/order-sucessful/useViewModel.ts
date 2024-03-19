@@ -4,7 +4,13 @@ import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { cartSelector, checkoutSelector } from '../../common/redux/selector';
-import { incrementQueueTicket } from '../../common/redux/slices/checkout/checkout';
+import { clearMembershipBarcode } from '../../common/redux/slices/membership/membership';
+import { clearCart } from '../../common/redux/slices/cart/cart';
+import {
+  clearModeOfPayment,
+  clearPaymentStatus,
+  incrementQueueTicket,
+} from '../../common/redux/slices/checkout/checkout';
 import {
   FLOW_EVENT_PRINT,
   FLOW_EVENT_PRINT_CASHLESS,
@@ -52,6 +58,10 @@ const useViewModel = () => {
   // increment redux ticket
   useEffect(() => {
     dispatch(incrementQueueTicket());
+    dispatch(clearMembershipBarcode());
+    dispatch(clearCart());
+    dispatch(clearPaymentStatus());
+    dispatch(clearModeOfPayment());
   }, [dispatch]);
 
   // CASH
