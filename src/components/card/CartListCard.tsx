@@ -12,11 +12,26 @@ import { useTheme } from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-import { thousandSeparatorWithCurrencySign } from '../../common/helpers/common';
+import {
+  mappedVariants,
+  thousandSeparatorWithCurrencySign,
+} from '../../common/helpers/common';
 import { ProductType } from '../../utils/types';
+import _ from 'lodash';
 
 type CartListCardType = {
-  item: ProductType & { quantity: number; amount: number };
+  item: ProductType & {
+    quantity: number;
+    amount: number;
+    selectedVariants?: {
+      additional_price: number;
+      image: string;
+      name: string;
+      status: boolean;
+      optionSetName?: string;
+      title: string;
+    }[];
+  };
   handleAddQuantity: (id: string) => void;
   handleRemoveQuantity: (id: string) => void;
   handleRemoveItemPress: (id: string) => void;
@@ -30,6 +45,11 @@ const CartListCard = ({
 }: CartListCardType) => {
   const theme = useTheme();
   const { width } = useWindowDimensions();
+
+  let variants;
+  if (item?.selectedVariants) {
+    variants = mappedVariants(item.selectedVariants);
+  }
 
   return (
     <>
@@ -55,9 +75,29 @@ const CartListCard = ({
             />
           </View>
 
-          <Text style={[styles.itemName, { color: theme.colors.black }]}>
-            {item.name}
-          </Text>
+          <View style={{ alignItems: 'flex-start', gap: 15 }}>
+            <Text style={[styles.itemName, { color: theme.colors.black }]}>
+              {item.name}
+            </Text>
+
+            {variants && (
+              <View style={{ paddingLeft: 10, width: 120, gap: 3 }}>
+                {_.map(variants, item => {
+                  return (
+                    <View key={item.name}>
+                      <Text
+                        style={{
+                          color: theme.colors.gray70,
+                          fontWeight: 'bold',
+                        }}>
+                        {item.quantity} {item.name}
+                      </Text>
+                    </View>
+                  );
+                })}
+              </View>
+            )}
+          </View>
         </View>
 
         {/* amount */}

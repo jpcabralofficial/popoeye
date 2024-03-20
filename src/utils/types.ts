@@ -10,6 +10,7 @@ export type ProductType = {
   visibility: string;
   images: string;
   image_thumbnail: string;
+  variants?: [];
 };
 
 export type ActiveCategoriesType = {
@@ -21,4 +22,11 @@ export type ActiveCategoriesType = {
 export type CategoryPressType = {
   item: ActiveCategoriesType;
   index: number;
+};
+
+export type VariantType = {
+  additional_price: number;
+  image: string;
+  name: string;
+  status: boolean;
 };

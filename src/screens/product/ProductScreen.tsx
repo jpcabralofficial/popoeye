@@ -12,10 +12,13 @@ import {
 } from 'react-native';
 import { useTheme } from 'react-native-paper';
 
+import _ from 'lodash';
+
 import ProductContentTitle from '../../components/custom/ProductContentTitle';
 import ProductCard from '../../components/card/ProductCard';
 import CategoryCard from '../../components/card/CategoryCard';
 import CommonButton from '../../components/button/CommonButton';
+import VariantsModal from '../../components/modal/VariantsModal';
 
 import { thousandSeparatorWithCurrencySign } from '../../common/helpers/common';
 import { IMAGES } from '../../utils/images';
@@ -34,10 +37,15 @@ const ProductScreen = () => {
 
     selectedCategory,
     selectedCategoryIndex,
+    selectedItem,
+
+    showVariantsModal,
+
 
     fulfillmentType,
     cartCount,
     cartTotal,
+    cartIds,
 
     getProductId,
 
@@ -48,6 +56,8 @@ const ProductScreen = () => {
 
     handleButtonPress,
     handleNavigatePress,
+
+    handleCloseVariantModal,
   } = useViewModel();
 
   return (
@@ -158,12 +168,21 @@ const ProductScreen = () => {
               <ProductContentTitle selectedCategory={selectedCategory} />
             }
             renderItem={({ item }) => {
-              const product = getProductId(item.id);
+              const product = getProductId(item.sku);
 
               let quantity;
 
               if (product) {
-                quantity = product.quantity;
+                const count = _.filter(
+                  cartIds,
+                  sku => sku.toString() === product.sku.toString(),
+                ).length;
+
+                if (count > 1) {
+                  quantity = count;
+                } else {
+                  quantity = product.quantity;
+                }
               } else {
                 quantity = 0;
               }
@@ -224,6 +243,13 @@ const ProductScreen = () => {
           />
         </View>
       </View>
+
+
+      <VariantsModal
+        isVisible={showVariantsModal}
+        onModalHide={handleCloseVariantModal}
+        item={selectedItem}
+      />
     </KeyboardAvoidingView>
   );
 };

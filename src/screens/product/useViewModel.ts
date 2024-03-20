@@ -32,6 +32,10 @@ const useViewModel = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [selectedCategoryIndex, setSelectedCategoryIndex] = useState<number>(0);
 
+  const [showVariantsModal, setShowVariantsModal] = useState<boolean>(false);
+
+  const [selectedItem, setSelectedItem] = useState<ProductType | undefined>();
+
   const groupByCategories = _.groupBy(productRedux.products, 'categories');
   const categories = _.map(groupByCategories, products => {
     return {
@@ -62,8 +66,8 @@ const useViewModel = () => {
     product => product.status === 'Active',
   );
 
-  const getProductId = (id: string) =>
-    cartRedux.cartItems.find(item => item.id === id);
+  const getProductId = (sku: string) =>
+    cartRedux.cartItems.find(item => item.sku === sku);
 
   const cartCount = cartRedux.cartItems.reduce(
     (total, item) => total + item.quantity,
@@ -75,6 +79,8 @@ const useViewModel = () => {
     0,
   );
 
+  const cartIds = _.map(cartRedux.cartItems, item => item.sku);
+
   const fulfillmentType =
     checkoutRedux.fulfillmentType === 'dine-in' ? 'Dine In' : 'Take Out';
 
@@ -85,13 +91,27 @@ const useViewModel = () => {
   };
 
   const handleAddToCart = (item: ProductType) => {
-    dispatch(
-      setAddToCart({ ...item, quantity: 1, amount: parseInt(item.price, 10) }),
-    );
+    if (item.variants?.length !== 0) {
+      setShowVariantsModal(true);
+      setSelectedItem(item);
+    } else {
+      dispatch(
+        setAddToCart({
+          ...item,
+          quantity: 1,
+          amount: parseInt(item.price, 10),
+        }),
+      );
+    }
   };
 
-  const handleAddQuantity = (id: string) => {
-    dispatch(setAddQuantity(id));
+  const handleAddQuantity = (item: ProductType) => {
+    if (item.variants?.length !== 0) {
+      setShowVariantsModal(true);
+      setSelectedItem(item);
+    } else {
+      dispatch(setAddQuantity(item.id));
+    }
   };
 
   const handleButtonPress = (buttonPress: 'cancel' | 'pay') => {
@@ -106,16 +126,38 @@ const useViewModel = () => {
     navigate(MY_BAG);
   };
 
+  const handleCloseVariantModal = () => {
+    setShowVariantsModal(false);
+    setSelectedItem({
+      id: '',
+      sku: '',
+      name: '',
+      description: '',
+      price: '',
+      categories: '',
+      tags: '',
+      status: '',
+      visibility: '',
+      images: '',
+      image_thumbnail: '',
+      variants: [],
+    });
+  };
+
   return {
     activeCategories,
     activeProducts,
 
     selectedCategory,
     selectedCategoryIndex,
+    selectedItem,
+
+    showVariantsModal,
 
     fulfillmentType,
     cartCount,
     cartTotal,
+    cartIds,
 
     getProductId,
 
@@ -126,6 +168,8 @@ const useViewModel = () => {
 
     handleButtonPress,
     handleNavigatePress,
+
+    handleCloseVariantModal,
   };
 };
 

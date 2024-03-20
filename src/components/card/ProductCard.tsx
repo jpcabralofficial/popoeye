@@ -2,8 +2,6 @@ import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useTheme } from 'react-native-paper';
 
-// import AntDesign from 'react-native-vector-icons/AntDesign';
-
 import { thousandSeparatorWithCurrencySign } from '../../common/helpers/common';
 import { ProductType } from '../../utils/types';
 
@@ -11,7 +9,7 @@ type ProductCardType = {
   item: ProductType;
   quantity: number;
   handleAddToCart: (item: ProductType) => void;
-  handleAddQuantity: (id: string) => void;
+  handleAddQuantity: (item: ProductType) => void;
 };
 
 const ProductCard = ({
@@ -24,49 +22,17 @@ const ProductCard = ({
 
   return (
     <TouchableOpacity
-    onPress={() => quantity <= 0 ? handleAddToCart(item) : handleAddQuantity(item.id)}
-    style={[
-      styles.productCardContainer,
-      { backgroundColor: theme.colors.white },
-    ]}
-    activeOpacity={0.8}>
+      onPress={() =>
+        quantity <= 0 ? handleAddToCart(item) : handleAddQuantity(item)
+      }
+      activeOpacity={1}
+      style={[
+        styles.productCardContainer,
+        { backgroundColor: theme.colors.white },
+      ]}>
       <View>
         {quantity > 0 && (
-        <View
-          style={[
-            styles.myBagCountContainer,
-            { backgroundColor: theme.colors.accent, borderColor: theme.colors.white},
-          ]}>
-          <Text
-            style={[
-              styles.myBagCountText,
-              { color: theme.colors.white },
-            ]}>
-            {quantity}
-          </Text>
-        </View>
-      )}
-      <Image
-        source={{ uri: item?.images }}
-        style={styles.productCardImage}
-        resizeMode="contain"
-      />
-      <Text style={[styles.productCardName, { color: theme.colors.black }]}>
-        {item.name}
-      </Text>
-
-      <Text style={[styles.productCardPrice, { color: theme.colors.black }]}>
-        {thousandSeparatorWithCurrencySign(parseInt(item.price, 10))}
-      </Text>
-
-      {/* {!isAlreadyInCart ? (
-        <TouchableOpacity
-          onPress={() => handleAddToCart(item)}
-          style={[
-            styles.productCardButton,
-            { backgroundColor: theme.colors.accent },
-          ]}>
-          <Text
+          <View
             style={[
               styles.myBagCountContainer,
               {
@@ -80,42 +46,27 @@ const ProductCard = ({
             </Text>
           </View>
         )}
-        <Image
-          source={{ uri: item?.images }}
-          style={styles.productCardImage}
-          resizeMode="contain"
-        />
+        {item?.images && (
+          <Image
+            source={{ uri: item.images }}
+            style={styles.productCardImage}
+            resizeMode="contain"
+          />
+        )}
+
         <Text style={[styles.productCardName, { color: theme.colors.black }]}>
           {item.name}
         </Text>
 
-          <TouchableOpacity
-            onPress={() => handleAddQuantity(item.id)}
-            style={[
-              styles.quantityButton,
-              { backgroundColor: theme.colors.accent },
-            ]}>
-            <AntDesign name="plus" size={20} color={theme.colors.white} />
-          </TouchableOpacity>
-        </View>
-      )} */}
-    </View>
+        <Text style={[styles.productCardPrice, { color: theme.colors.black }]}>
+          {thousandSeparatorWithCurrencySign(parseInt(item.price, 10))}
+        </Text>
+      </View>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  // productCardButton: {
-  //   borderRadius: 10,
-  //   paddingVertical: 8.5,
-  //   width: '170%',
-  // },
-  // productCardButtonLabel: {
-  //   fontSize: 18,
-  //   fontWeight: 'bold',
-  //   textAlign: 'center',
-  // },
-
   myBagCountContainer: {
     alignItems: 'center',
     borderRadius: 100,
@@ -158,27 +109,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
-  
-  // quantityButton: {
-  //   alignItems: 'center',
-  //   borderRadius: 10,
-  //   justifyContent: 'center',
-  //   paddingVertical: 10,
-  //   width: '50%',
-  // },
-  // quantityButtonContainer: {
-  //   alignItems: 'center',
-  //   flexDirection: 'row',
-  //   gap: 5,
-  //   justifyContent: 'space-between',
-  // },
-  // quantityText: {
-  //   borderRadius: 8,
-  //   borderWidth: 1,
-  //   fontSize: 22,
-  //   paddingHorizontal: 20,
-  //   paddingVertical: 5,
-  // },
-  
 });
 export default ProductCard;
