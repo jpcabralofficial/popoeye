@@ -10,6 +10,7 @@ const silentClassNames = [
   RunClassName.EmployeeLogin,
   RunClassName.GetMemberById,
   RunClassName.GetProductsFromParrot,
+  RunClassName.GetAllProducts,
   RunClassName.InitializeScannerService,
 ];
 

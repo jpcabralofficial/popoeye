@@ -9,6 +9,7 @@ import Selection from '../../components/layout/Selection';
 import { IMAGES } from '../../utils/images';
 
 import useViewModel from './useViewModel';
+import BackButtonWhiteBackground from '../../components/button/BackButtonWhiteBackground';
 
 const CashlessPaymentScreen = () => {
   const theme = useTheme();
@@ -19,19 +20,24 @@ const CashlessPaymentScreen = () => {
   return (
     <View
       style={[styles.container, { backgroundColor: theme.colors.background }]}>
-      <CommonHeader separatorColor={theme.colors.white} />
+      <CommonHeader />
       <Image
-          source={IMAGES.BACKGROUND_IMAGE}
-          style={{ height: "100%", width: width, zIndex: -1, position: "absolute"}}
-          resizeMode="stretch"
-        />
-      <BackButton />
+        source={IMAGES.BACKGROUND_IMAGE}
+        style={{
+          height: '100%',
+          width: width,
+          zIndex: -1,
+          position: 'absolute',
+        }}
+        resizeMode="stretch"
+      />
+      <BackButtonWhiteBackground />
 
       <Selection
         title="Select mode of payment"
-        firstSelectionImage={IMAGES.GCASH_LOGO}
+        firstSelectionImage={IMAGES.MODE_OF_PAYMENT_GCASH}
         firstSelectionButtonPress={() => handleCardPress('gcash')}
-        secondSelectionImage={IMAGES.MAYA_LOGO}
+        secondSelectionImage={IMAGES.MODE_OF_PAYMENT_MAYA}
         secondSelectionButtonPress={() => handleCardPress('maya')}
       />
     </View>

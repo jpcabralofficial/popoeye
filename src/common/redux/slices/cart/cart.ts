@@ -1,4 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 import CartState from './cart.types';
 
@@ -29,7 +29,10 @@ const cartSlice = createSlice({
     },
     setAddQuantity(state, action) {
       const updatedCartItems = state.cartItems.map(item => {
+        console.log(item.id, 'itemId');
+        console.log(action.payload, 'action payload');
         if (item.id === action.payload) {
+          console.log('nice');
           return {
             ...item,
             amount: (item.quantity + 1) * parseInt(item.price, 10),
@@ -47,7 +50,7 @@ const cartSlice = createSlice({
       );
     },
     clearCart(state) {
-      return {...state, cartItems: initialState.cartItems};
+      return { ...state, cartItems: initialState.cartItems };
     },
   },
 });

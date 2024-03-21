@@ -20,8 +20,12 @@ import { ProductType, VariantType } from '../../utils/types';
 import { thousandSeparatorWithCurrencySign } from '../../common/helpers/common';
 import _ from 'lodash';
 import VariantCard from '../card/VariantCard';
-import { useDispatch } from 'react-redux';
-import { setAddToCart } from '../../common/redux/slices/cart/cart';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  setAddQuantity,
+  setAddToCart,
+} from '../../common/redux/slices/cart/cart';
+import { cartSelector } from '../../common/redux/selector';
 
 type Props = {
   isVisible: boolean;
@@ -34,6 +38,8 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
   const { width, height } = useWindowDimensions();
 
   const dispatch = useDispatch();
+
+  const cartRedux = useSelector(cartSelector);
 
   const [selectedVariants, setSelectedVariants] =
     useState<Array<VariantType & { title: string }>>();
@@ -122,29 +128,45 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
   };
 
   const handleAddToBag = () => {
-    const checkIfDrinksExist = _.find(
-      selectedVariants,
-      item => item.title === 'Drinks',
+    const isItemAlreadyInCart = _.find(
+      cartRedux.cartItems,
+      cart => cart.sku === item?.sku,
     );
 
-    let variants;
-    if (checkIfDrinksExist) {
-      variants = [...(selectedVariants || []), selectedSizes];
+    if (!isItemAlreadyInCart && item?.variants?.length === 0) {
+      dispatch(
+        setAddToCart({
+          ...item,
+          quantity: 1,
+          amount: parseInt(item.price, 10),
+        }),
+      );
+      onCloseModal();
+    } else if (isItemAlreadyInCart && item?.variants?.length === 0) {
+      dispatch(setAddQuantity(item.id));
+      onCloseModal();
     } else {
-      variants = selectedVariants;
+      const checkIfDrinksExist = _.find(
+        selectedVariants,
+        item => item.title === 'Drinks',
+      );
+      let variants;
+      if (checkIfDrinksExist) {
+        variants = [...(selectedVariants || []), selectedSizes];
+      } else {
+        variants = selectedVariants;
+      }
+      const itemWithVariants = {
+        ...item,
+        id: item?.id + uuidv4(),
+        selectedVariants: variants,
+        quantity: 1,
+        amount: totalAmount,
+      };
+      console.log(itemWithVariants, 'items');
+      dispatch(setAddToCart(itemWithVariants));
+      onCloseModal();
     }
-
-    const itemWithVariants = {
-      ...item,
-      id: item?.id + uuidv4(),
-      selectedVariants: variants,
-      quantity: 1,
-      amount: totalAmount,
-    };
-
-    console.log(itemWithVariants, 'items');
-    dispatch(setAddToCart(itemWithVariants));
-    onCloseModal();
   };
 
   const handleCancel = () => {
@@ -241,7 +263,7 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
           {
             backgroundColor: theme.colors?.white,
             width: width - 200,
-            height: height / 2 + 200,
+            height: item?.variants?.length === 0 ? 400 : height / 2 + 250,
           },
         ]}>
         {/* close button */}
@@ -267,7 +289,7 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
             gap: 10,
             marginBottom: 20,
           }}>
-          <View style={{ width: 170, height: 100 }}>
+          <View style={{ width: 250, height: 120 }}>
             {item?.image_thumbnail && (
               <Image
                 source={{ uri: item?.image_thumbnail }}
@@ -299,26 +321,23 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
         </View>
 
         {/* content */}
-        <View style={{ backgroundColor: '#f5f5f5', borderRadius: 50 }}>
+        <View style={{ backgroundColor: '#f5f5f5', flex: 1, borderRadius: 50 }}>
           <ScrollView
-            style={{
-              borderRadius: 50,
-            }}
             contentContainerStyle={{
-              backgroundColor: '#f5f5f5',
-              borderRadius: 50,
               padding: 20,
               paddingHorizontal: 40,
             }}>
-            <Text
-              style={{
-                fontSize: 30,
-                fontWeight: 'bold',
-                color: theme.colors.black,
-                width: '70%',
-              }}>
-              Variants
-            </Text>
+            {item?.variants?.length !== 0 && (
+              <Text
+                style={{
+                  fontSize: 30,
+                  fontWeight: 'bold',
+                  color: theme.colors.black,
+                  width: '70%',
+                }}>
+                Variants
+              </Text>
+            )}
 
             <View style={{ paddingVertical: 20 }}>
               {_.map(anotherMappedVariants, variants => {
@@ -384,7 +403,7 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
 
                                   handleAddToVariants(item, variants.title);
                                 }}
-                                activeOpacity={0.9}>
+                                activeOpacity={1}>
                                 <VariantCard
                                   key={`variant-${item.name}-${index}`} // Provide a unique key prop here
                                   item={item}
@@ -427,7 +446,7 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
                                       title: 'Sizes',
                                     });
                                   }}
-                                  activeOpacity={0.9}>
+                                  activeOpacity={1}>
                                   <VariantCard
                                     isSelected={isSelected}
                                     key={`option-${item.name}-${index}`} // Provide a unique key prop here
@@ -443,57 +462,58 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
                 );
               })}
             </View>
+          </ScrollView>
 
-            {/* action button */}
-            <View
+          {/* action button */}
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'flex-end',
+              marginBottom: 30,
+              gap: 10,
+              paddingTop: 20,
+            }}>
+            <TouchableOpacity
+              onPress={() => handleCancel()}
               style={{
-                flexDirection: 'row',
-                flex: 1,
+                backgroundColor: theme.colors.background,
+                width: (width - 300) / 2,
                 justifyContent: 'center',
                 alignItems: 'center',
-                gap: 10,
+                padding: 25,
+                borderRadius: 15,
               }}>
-              <TouchableOpacity
-                onPress={() => handleCancel()}
+              <Text
                 style={{
-                  backgroundColor: theme.colors.background,
-                  width: (width - 300) / 2,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  padding: 25,
-                  borderRadius: 15,
+                  color: theme.colors.white,
+                  fontSize: 32,
+                  fontWeight: 'bold',
                 }}>
-                <Text
-                  style={{
-                    color: theme.colors.white,
-                    fontSize: 32,
-                    fontWeight: 'bold',
-                  }}>
-                  Cancel
-                </Text>
-              </TouchableOpacity>
+                Cancel
+              </Text>
+            </TouchableOpacity>
 
-              <TouchableOpacity
-                onPress={() => handleAddToBag()}
+            <TouchableOpacity
+              onPress={() => handleAddToBag()}
+              style={{
+                backgroundColor: theme.colors.accent,
+                width: (width - 300) / 2,
+                justifyContent: 'center',
+                alignItems: 'center',
+                padding: 25,
+                borderRadius: 15,
+              }}>
+              <Text
                 style={{
-                  backgroundColor: theme.colors.accent,
-                  width: (width - 300) / 2,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  padding: 25,
-                  borderRadius: 15,
+                  color: theme.colors.white,
+                  fontSize: 32,
+                  fontWeight: 'bold',
                 }}>
-                <Text
-                  style={{
-                    color: theme.colors.white,
-                    fontSize: 32,
-                    fontWeight: 'bold',
-                  }}>
-                  Add to Bag
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </ScrollView>
+                Add to Bag
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </Modal>

@@ -19,12 +19,17 @@ const ModeOfPaymentScreen = () => {
   return (
     <View
       style={[styles.container, { backgroundColor: theme.colors.background }]}>
-      <CommonHeader separatorColor={theme.colors.white} />
+      <CommonHeader />
       <Image
-          source={IMAGES.BACKGROUND_IMAGE}
-          style={{ height: "100%", width: width, zIndex: -1, position: "absolute"}}
-          resizeMode="stretch"
-        />
+        source={IMAGES.BACKGROUND_IMAGE}
+        style={{
+          height: '100%',
+          width: width,
+          zIndex: -1,
+          position: 'absolute',
+        }}
+        resizeMode="stretch"
+      />
       <BackButtonWhiteBackground />
 
       <Selection

@@ -20,7 +20,7 @@ const VariantCard = ({ item, isSelected }: VariantCardType) => {
         {
           backgroundColor: theme.colors.white,
           borderWidth: 3,
-          borderColor: isSelected ? '#B51B27' : theme.colors?.white,
+          borderColor: isSelected ? theme.colors.primary : theme.colors?.white,
         },
       ]}>
       <View

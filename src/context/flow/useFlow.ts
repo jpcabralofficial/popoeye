@@ -54,7 +54,6 @@ import {
   srnKotlinSetEventHandlers,
 } from '../../shared/srnKotlinSetEventHandlers';
 import { srnKotlinRequestPermissions } from '../../shared/srnKotlinRequestPermissions';
-import { products as ProductsJson } from '../../utils/products.json';
 
 type EventHandlersType = {
   [Property in FlowEvents]?: {
@@ -79,7 +78,7 @@ export const useFlow = () => {
   const { getState } = flowContext;
   const { status, setStatus } = flowContext;
 
-  const uuid = uuidv4();
+  const { getOrderParams, setOrderParams } = flowContext;
 
   const connectSocket = async () => {
     await srnKotlinRun(RunClassName.TerminateSocket, undefined);
@@ -123,6 +122,19 @@ export const useFlow = () => {
           resStatus.response.approvalCode,
         )}`;
 
+        if (paymentStatus === 'SUCCESSFUL') {
+          const resUpdateOrderPayment = await srnKotlinRun(
+            RunClassName.UpdateOrderPayment,
+            {
+              uuid: getOrderParams().selectedUuid,
+              approvalCode: resStatus.response.approvalCode,
+              modeOfPayment: 'Online Credit Card',
+            },
+          );
+
+          console.log(resUpdateOrderPayment);
+        }
+
         const url = `srspos://main/reviewOrder?${params}`;
         Linking.openURL(url);
       } else {
@@ -136,7 +148,7 @@ export const useFlow = () => {
             paymentInfo.id = response.transactionId;
             paymentInfo.pendingCounter = 0;
           }
-          setTimeout(() => checkPaymentStatus(paymentInfo), 10000);
+          setTimeout(() => checkPaymentStatus(paymentInfo), 5000);
         } else if (paymentStatus === 'STARTED') {
           paymentInfo.startedCounter++;
           if (paymentInfo.startedCounter >= 30) {
@@ -147,7 +159,7 @@ export const useFlow = () => {
             const url = `srspos://main/reviewOrder?${params}`;
             Linking.openURL(url);
           } else {
-            setTimeout(() => checkPaymentStatus(paymentInfo), 10000);
+            setTimeout(() => checkPaymentStatus(paymentInfo), 5000);
           }
         }
       }
@@ -193,9 +205,9 @@ export const useFlow = () => {
               );
             }
 
-            await srnKotlinRun(RunClassName.UpdateSettings, {
-              settings: [{ key: 'DeviceName', newValue: 'CentralKiosk' }],
-            });
+            // await srnKotlinRun(RunClassName.UpdateSettings, {
+            //   settings: [{ key: 'DeviceName', newValue: 'CentralKiosk' }],
+            // });
 
             await srnKotlinRun(RunClassName.MerchantLogin, {
               username: 'dev-kuyaj_store-owner@yopmail.com',
@@ -204,60 +216,55 @@ export const useFlow = () => {
 
             await srnKotlinRun(RunClassName.EmployeeLogin, {
               accessCode: '689460',
+              shouldUpdateDeviceConfig: true,
             });
 
             await connectSocket();
 
-            const resInitScannerService = await srnKotlinRun(
-              RunClassName.InitializeScannerService,
-              undefined,
-            );
-
-            if (
-              resInitScannerService.response.resultCode !== ResultCodes.Success
-            ) {
-              throw new Error(
-                `Invalid initialize scanner result: ${JSON.stringify(
-                  resInitScannerService,
-                )}`,
-              );
-            }
-
-            const resGetAllProducts = await srnKotlinRun(
+            const resGetProductsFromParrot = await srnKotlinRun(
               RunClassName.GetProductsFromParrot,
               undefined,
             );
-            const responseProducts = resGetAllProducts.response.products;
-            const productsMapped = _.map(ProductsJson, product => {
-              return {
-                id: product._id,
-                sku: product.sku,
-                name: product.name,
-                description: product.description,
-                price: product.prices
-                  .find((price: any) => price.name === 'instore')
-                  ?.price.toString(),
-                categories: product.categories[0].name,
-                tags: product.tags,
-                status: product.status,
-                visibility: product.visibility.toString(),
-                images: product.images[0].images,
-                image_thumbnail: product.images[0].thumbnail,
-              };
-            });
 
-            dispatch(setProducts(productsMapped));
+            if (resGetProductsFromParrot.isSuccess) {
+              const resGetAllProducts = await srnKotlinRun(
+                RunClassName.GetAllProducts,
+                undefined,
+              );
 
-            const prefetchTasks: Promise<boolean>[] = [];
-            productsMapped.forEach(p => {
-              if (p.images != null) {
-                prefetchTasks.push(Image.prefetch(p.images));
-              }
-            });
+              const responseProducts = resGetAllProducts.response.products;
+              const productsMapped = _.map(responseProducts, product => {
+                return {
+                  id: product._id,
+                  sku: product.sku,
+                  name: product.name,
+                  description: product.description,
+                  price: product.prices
+                    .find((price: any) => price.name === 'instore')
+                    ?.price.toString(),
+                  categories: product.categories[0].name,
+                  tags: product.tags,
+                  status: product.status,
+                  visibility: product.visibility.toString(),
+                  images: product.images[0].images,
+                  image_thumbnail: product.images[0].thumbnail,
+                  variants: product.variants,
+                };
+              });
 
-            Promise.all(prefetchTasks).then(value => {
-              console.log('prefetched images:', value.length);
-            });
+              dispatch(setProducts(productsMapped));
+
+              const prefetchTasks: Promise<boolean>[] = [];
+              productsMapped.forEach(p => {
+                if (p.images.uri != null) {
+                  prefetchTasks.push(Image.prefetch(p.images.uri));
+                }
+              });
+
+              Promise.all(prefetchTasks).then(value => {
+                console.log('prefetched images:', value.length);
+              });
+            }
 
             srnKotlinSetEventHandlers({
               [EventName.OnConnect]: ({ data }) => {
@@ -318,8 +325,7 @@ export const useFlow = () => {
             await srnKotlinRun(RunClassName.UpdateOrderPayment, {
               uuid: payment.uuid,
               approvalCode: payment.approvalCode,
-              modeOfPayment: 'Debit/Credit Card',
-              paymentNetwork: 'MC',
+              modeOfPayment: 'Online Credit Card',
             });
 
             return 'FLOW_STATUS_SUCCESS';
@@ -328,9 +334,29 @@ export const useFlow = () => {
         [FLOW_EVENT_PAY_VIA_TPAI]: {
           validStates: null,
           handlerFunc: async payment => {
+            await srnKotlinRun(RunClassName.EmployeeLogin, {
+              accessCode: '689460',
+              shouldUpdateDeviceConfig: true,
+            });
+
+            const resGetAllOrders = await srnKotlinRun(
+              RunClassName.CreateOrder,
+              {
+                diningOption: 'Take-out',
+                skuList: payment.skuList,
+                numberOfPax: 3,
+                customer: {},
+              },
+            );
+
+            setOrderParams({
+              ...getOrderParams(),
+              selectedUuid: resGetAllOrders.response.uuid,
+            });
+
             const startParams = {
               transactionType: 'SALE',
-              industryType: 'RESTAURANT',
+              industryType: 'RETAIL',
               csNumber: 0,
               amount: payment.amount.toFixed(2),
               tax: payment.tax,
@@ -344,7 +370,7 @@ export const useFlow = () => {
             let params = '';
             params += `id=${encodeURIComponent(response.transactionId)}`;
             params += `&transaction_type=${encodeURIComponent('SALE')}`;
-            params += `&industry_type=${encodeURIComponent('RESTAURANT')}`;
+            params += `&industry_type=${encodeURIComponent('RETAIL')}`;
             params += `&cs_number=${encodeURIComponent(0)}`;
             params += `&amount=${encodeURIComponent(payment.amount)}`;
             params += `&tax=${encodeURIComponent(payment.tax)}`;
@@ -399,11 +425,6 @@ export const useFlow = () => {
         [FLOW_EVENT_PRINT]: {
           validStates: null,
           handlerFunc: async payload => {
-            const numericUuid = uuid.replace(/-/g, '');
-            const formattedUuid = numericUuid
-              .replace(/(.{4})/g, '$1-')
-              .slice(0, -1);
-
             const currentDate = new Date();
             const formattedDate = `${(currentDate.getMonth() + 1)
               .toString()
@@ -412,15 +433,25 @@ export const useFlow = () => {
               .toString()
               .padStart(2, '0')}/${currentDate.getFullYear()}`;
 
+            const resGetAllOrders = await srnKotlinRun(
+              RunClassName.CreateOrder,
+              {
+                diningOption: 'Take-out',
+                skuList: payload.skuList,
+                numberOfPax: 3,
+                customer: {},
+              },
+            );
+
             const dataResponse = await srnKotlinRun(RunClassName.Print, {
-              action: 'PRINT_CENTRAL_KIOSK_QUEUE_TICKET',
+              action: 'PRINT_POPEYES_KIOSK_QUEUE_TICKET',
               transaction_type: 'SALE',
-              uuid: formattedUuid,
+              uuid: resGetAllOrders.response.uuid,
               queueParams: {
                 number: payload.queueNumber.toString(),
                 where: payload.fulfillmentType,
                 date: formattedDate,
-                items: payload.items,
+                items: payload.skuList,
               },
             });
 
@@ -440,39 +471,26 @@ export const useFlow = () => {
         [FLOW_EVENT_PRINT_CASHLESS]: {
           validStates: null,
           handlerFunc: async payload => {
-            function generateSchedule() {
-              const currentDate = new Date();
-              const futureDate = new Date(
-                currentDate.getTime() +
-                  Math.floor(Math.random() * 30 * 60 * 1000),
-              ); // Adding random milliseconds within 30 minutes
-              const formattedFutureDate = futureDate
-                .toISOString()
-                .slice(0, 19)
-                .replace('T', ' '); // Format to yyyy-MM-dd HH:mm:ss
-              return formattedFutureDate;
-            }
+            // const resGetAllOrders = await srnKotlinRun(
+            //   RunClassName.CreateOrder,
+            //   {
+            //     diningOption: 'Take-out',
+            //     skuList: payload.skuList,
+            //     numberOfPax: 3,
+            //     customer: {},
+            //   },
+            // );
+            // console.log(resGetAllOrders);
 
-            const schedule = generateSchedule();
-            const resGetAllOrders = await srnKotlinRun(
-              RunClassName.CreateOrder,
-              {
-                diningOption: 'Take-out',
-                numberOfPax: 3,
-                tableIds: [],
-                schedule: schedule,
-                skuList: payload.skuList,
-              },
-            );
+            // setOrderParams({
+            //   ...getOrderParams(),
+            //   selectedUuid: resGetAllOrders.response.uuid,
+            // });
 
             const resPrintCashless = await srnKotlinRun(RunClassName.Print, {
-              action: 'PRINT_CENTRAL_KIOSK_CASHLESS_RECEIPT',
+              action: 'PRINT_POPEYES_ORDER_RECEIPT',
               transaction_type: 'SALE',
-              copy_of: 'CUSTOMER',
-              where: payload.fulfillmentType,
-              tableNumber: '456',
-              numberOfCustomers: '3',
-              uuid: resGetAllOrders.response.uuid,
+              uuid: getOrderParams().selectedUuid,
               queueNumber: payload.queueNumber.toString(),
             });
 
@@ -541,10 +559,11 @@ export const useFlow = () => {
       getState,
       setStatus,
       navigateMain,
-      // status,
+      status,
       dispatch,
-      uuid,
       checkPaymentStatus,
+      setOrderParams,
+      getOrderParams,
     ],
   );
 

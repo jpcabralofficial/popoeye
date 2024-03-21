@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 
 import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,6 +16,7 @@ import {
   FLOW_EVENT_PRINT_CASHLESS,
   useFlow,
 } from '../../context/flow';
+import { mappedVariants } from '../../common/helpers/common';
 
 const useViewModel = () => {
   const dispatch = useDispatch();
@@ -29,31 +30,8 @@ const useViewModel = () => {
 
   const footerText =
     typeOfPayment === 'cash'
-      ? 'Please take your order number below and pay at the cashier'
-      : 'Please take your order number below';
-
-  const cashMappedItems = useMemo(() => {
-    const items = _.map(cartRedux.cartItems, item => {
-      return {
-        quantity: item.quantity,
-        name: item.name,
-      };
-    });
-
-    return items;
-  }, [cartRedux.cartItems]);
-
-  const cashlessMappedItems = useMemo(() => {
-    const items = _.map(cartRedux.cartItems, item => {
-      return {
-        sku: item.sku,
-        quantity: item.quantity,
-        instructions: '',
-      };
-    });
-
-    return items;
-  }, [cartRedux.cartItems]);
+      ? 'Please take your order number and pay at the counter'
+      : 'Please take your order number and receipt below';
 
   // increment redux ticket
   useEffect(() => {
@@ -67,46 +45,50 @@ const useViewModel = () => {
   // CASH
   useEffect(() => {
     if (checkoutRedux.typeOfPayment === 'cash') {
-      const timeout = setTimeout(() => {
-        emitFlowEvent(FLOW_EVENT_PRINT, {
-          queueNumber: checkoutRedux.counterQueueTicket,
-          items: cashMappedItems,
-          fulfillmentType:
-            checkoutRedux.fulfillmentType === 'dine-in'
-              ? 'Dine In'
-              : 'Take Out',
-        });
-      }, 3000);
+      const items = _.map(cartRedux.cartItems, item => {
+        const variants = mappedVariants(item?.selectedVariants as any);
 
-      return () => {
-        clearTimeout(timeout);
-      };
+        return {
+          sku: item.sku,
+          quantity: item.quantity,
+          instructions: '',
+          name: item.name,
+          variants: variants,
+        };
+      });
+
+      emitFlowEvent(FLOW_EVENT_PRINT, {
+        skuList: items,
+        queueNumber: checkoutRedux.counterQueueTicket + 1,
+        fulfillmentType:
+          checkoutRedux.fulfillmentType === 'dine-in' ? 'Dine In' : 'Take Out',
+      });
     }
-  }, [
-    emitFlowEvent,
-    cashMappedItems,
-    checkoutRedux.counterQueueTicket,
-    checkoutRedux.fulfillmentType,
-    checkoutRedux.typeOfPayment,
-  ]);
+  }, [emitFlowEvent]);
 
   // CASHLESS
   useEffect(() => {
     if (checkoutRedux.typeOfPayment === 'cashless') {
+      const items = _.map(cartRedux.cartItems, item => {
+        const variants = mappedVariants(item?.selectedVariants as any);
+
+        return {
+          sku: item.sku,
+          quantity: item.quantity,
+          instructions: '',
+          name: item.name,
+          variants: variants,
+        };
+      });
+
       emitFlowEvent(FLOW_EVENT_PRINT_CASHLESS, {
-        skuList: cashlessMappedItems,
+        queueNumber: checkoutRedux.counterQueueTicket + 1,
+        skuList: items,
         fulfillmentType:
-          checkoutRedux.fulfillmentType === 'dine-in' ? 'DINE IN' : 'TAKE OUT',
-        queueNumber: checkoutRedux.counterQueueTicket,
+          checkoutRedux.fulfillmentType === 'dine-in' ? 'Dine In' : 'Take Out',
       });
     }
-  }, [
-    emitFlowEvent,
-    cashlessMappedItems,
-    checkoutRedux.counterQueueTicket,
-    checkoutRedux.fulfillmentType,
-    checkoutRedux.typeOfPayment,
-  ]);
+  }, [emitFlowEvent]);
 
   return {
     footerText,

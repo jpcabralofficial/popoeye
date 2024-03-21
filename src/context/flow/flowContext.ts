@@ -7,6 +7,9 @@ export const FlowContext = createContext<FlowContextType>({
   getState: () => FLOW_STATE_INIT,
   setState: () => null,
 
+  getOrderParams: () => ({ selectedUuid: '' }),
+  setOrderParams: () => null,
+
   status: FLOW_STATUS_SUCCESS,
   setStatus: () => null,
 });

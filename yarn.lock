@@ -9337,10 +9337,10 @@ serino-mobile-pos-components-lib@^1.0.0:
   resolved "http://miniapp.serino.com:4873/serino-mobile-pos-components-lib/-/serino-mobile-pos-components-lib-1.4.3.tgz#4e3299017b1c49a9d21f36476f74ee3b2eda726c"
   integrity sha512-HNdT4uO09eY/8Z5rtytZRnbH3N+kMbt5rvX41qSBWBROUnYKhURAqMBS4jNuAtBbrlWYrkveLPnidyc/aU1QfA==
 
-serino-pos-kotlin-bridge@0.1.0-pw-kuyaj2v0.0.11:
-  version "0.1.0-pw-kuyaj2v0.0.11"
-  resolved "http://miniapp.serino.com:4873/serino-pos-kotlin-bridge/-/serino-pos-kotlin-bridge-0.1.0-pw-kuyaj2v0.0.11.tgz#cc2ef57fa6103dab150cb62817eb61584031705f"
-  integrity sha512-fUGRju1crZjgdOAvJOsAWAmxAwD/UsWQDi8f9N5XwuiNzJ92pEaOPvdo86KRxIDo3zWpTTkKg4/np6YEFQLBSA==
+serino-pos-kotlin-bridge@0.1.0-pw-kuyaj2v0.0.16:
+  version "0.1.0-pw-kuyaj2v0.0.16"
+  resolved "http://miniapp.serino.com:4873/serino-pos-kotlin-bridge/-/serino-pos-kotlin-bridge-0.1.0-pw-kuyaj2v0.0.16.tgz#20015b39959414243864b7c9e978203cba022f91"
+  integrity sha512-8af8T4n03Z+z8h6ROP+59PpQnWAqO0XFVWtRbi2hOj9h7Y9yj1KSEg8HjVSA/v/DrPbD89zG+LsNiOvIGMRO7w==
 
 serve-static@^1.13.1:
   version "1.15.0"

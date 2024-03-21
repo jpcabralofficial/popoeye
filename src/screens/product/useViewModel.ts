@@ -91,27 +91,31 @@ const useViewModel = () => {
   };
 
   const handleAddToCart = (item: ProductType) => {
-    if (item.variants?.length !== 0) {
-      setShowVariantsModal(true);
-      setSelectedItem(item);
-    } else {
-      dispatch(
-        setAddToCart({
-          ...item,
-          quantity: 1,
-          amount: parseInt(item.price, 10),
-        }),
-      );
-    }
+    setShowVariantsModal(true);
+    setSelectedItem(item);
+    // if (item.variants?.length !== 0) {
+    //   setShowVariantsModal(true);
+    //   setSelectedItem(item);
+    // } else {
+    //   dispatch(
+    //     setAddToCart({
+    //       ...item,
+    //       quantity: 1,
+    //       amount: parseInt(item.price, 10),
+    //     }),
+    //   );
+    // }
   };
 
   const handleAddQuantity = (item: ProductType) => {
-    if (item.variants?.length !== 0) {
-      setShowVariantsModal(true);
-      setSelectedItem(item);
-    } else {
-      dispatch(setAddQuantity(item.id));
-    }
+    setShowVariantsModal(true);
+    setSelectedItem(item);
+    // if (item.variants?.length !== 0) {
+    //   setShowVariantsModal(true);
+    //   setSelectedItem(item);
+    // } else {
+    //   dispatch(setAddQuantity(item.id));
+    // }
   };
 
   const handleButtonPress = (buttonPress: 'cancel' | 'pay') => {

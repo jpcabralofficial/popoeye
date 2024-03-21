@@ -22,11 +22,11 @@ const InstructionPaymentScreen = () => {
 
   const title =
     modeOfPayment === 'card'
-      ? 'Please pay by tapping or inserting your credit/ debit card in the payment device'
+      ? 'Please pay by tapping or inserting your credit / debit card in the payment device'
       : modeOfPayment === 'gcash'
-      ? 'Please open your GCash app and scan the QR Code in the device to pay'
+      ? 'Please open your GCash App and scan the QR Code in the device to pay'
       : modeOfPayment === 'maya'
-      ? 'Please open your Maya app and scan the QR Code in the device to pay'
+      ? 'Please open your Maya App and scan the QR Code in the device to pay'
       : '';
 
   const icon =
@@ -41,12 +41,17 @@ const InstructionPaymentScreen = () => {
   return (
     <View
       style={[styles.container, { backgroundColor: theme.colors.background }]}>
-      <CommonHeader separatorColor={theme.colors.white} />
+      <CommonHeader />
       <Image
-          source={IMAGES.BACKGROUND_IMAGE}
-          style={{ height: "100%", width: width, zIndex: -1, position: "absolute"}}
-          resizeMode="stretch"
-        />
+        source={IMAGES.BACKGROUND_IMAGE}
+        style={{
+          height: '100%',
+          width: width,
+          zIndex: -1,
+          position: 'absolute',
+        }}
+        resizeMode="stretch"
+      />
       <View style={styles.contentContainer}>
         <View style={styles.content}>
           <Text
@@ -62,7 +67,7 @@ const InstructionPaymentScreen = () => {
 
           <Image
             source={icon}
-            style={{ width: width / 2 - 200, height: width / 2 }}
+            style={{ width: width / 2 - 200, height: width / 1.1 }}
             resizeMode="stretch"
           />
         </View>

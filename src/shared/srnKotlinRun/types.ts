@@ -98,9 +98,11 @@ type ClassTypes = {
   [RunClassName.Print]: {
     params:
       | {
-          action: 'PRINT_CENTRAL_KIOSK_QUEUE_TICKET';
-          transaction_type?: 'SALE';
+          action:
+            | 'PRINT_POPEYES_KIOSK_QUEUE_TICKET'
+            | 'PRINT_CENTRAL_KIOSK_QUEUE_TICKET';
           uuid: string;
+          transaction_type?: 'SALE';
           queueParams: {
             number: string;
             where: string;
@@ -112,15 +114,12 @@ type ClassTypes = {
           };
         }
       | {
-          action: 'PRINT_CENTRAL_KIOSK_CASHLESS_RECEIPT';
+          action: 'PRINT_POPEYES_ORDER_RECEIPT';
+          transaction_type: 'SALE';
           uuid: string;
-          transaction_type?: 'SALE';
-          copy_of: 'CUSTOMER';
-          where: 'TAKE OUT' | 'DINE IN';
-          tableNumber: string;
-          numberOfCustomers: string;
           queueNumber: string;
         };
+
     result: ResultBase<ResponseBase>;
   };
 
@@ -162,28 +161,28 @@ type ClassTypes = {
   };
 
   [RunClassName.UpdateOrderPayment]: {
-    params:
-      | {
-          uuid: string;
-          changeFor: number;
-          modeOfPayment: string;
-        }
-      | {
-          uuid: string;
-          modeOfPayment: string;
-          paymentNetwork: string;
-          approvalCode: string;
-        };
+    params: {
+      uuid: string;
+      changeFor?: number;
+      approvalCode: string;
+      modeOfPayment: 'Online Credit Card';
+      paymentNetwork?: string;
+    };
     result: ResultBase<ResponseBase>;
   };
 
   [RunClassName.CreateOrder]: {
     params: {
       diningOption: 'Take-out';
-      skuList: { sku: string; quantity: number; instructions: string }[];
-      schedule: string;
+      skuList: {
+        sku: string;
+        quantity: number;
+        instructions: string;
+        variants?: [];
+      }[];
       numberOfPax: number;
-      tableIds: [];
+      customer?: any; //optional
+      tableIds?: []; // optional
     };
     result: ResultBase<ResponseBase & { uuid: string }>;
   };

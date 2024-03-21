@@ -1,17 +1,28 @@
-import React, {ReactNode, useRef, useState} from 'react';
+import React, { ReactNode, useRef, useState } from 'react';
 
-import type {FlowStates, FlowContextType, FlowStatus} from './types';
-import {FLOW_STATE_INIT, FLOW_STATUS_SUCCESS} from './constants';
-import {FlowContext} from './flowContext';
+import type {
+  FlowStates,
+  FlowContextType,
+  FlowStatus,
+  OrderParams,
+} from './types';
+import { FLOW_STATE_INIT, FLOW_STATUS_SUCCESS } from './constants';
+import { FlowContext } from './flowContext';
 
 type Props = {
   children: ReactNode;
 };
 
-export const FlowProvider = ({children}: Props) => {
+export const FlowProvider = ({ children }: Props) => {
   const state = useRef<FlowStates>(FLOW_STATE_INIT);
   const getState = () => state.current;
   const setState = (value: FlowStates) => (state.current = value);
+
+  const orderParams = useRef<OrderParams>({
+    selectedUuid: '',
+  });
+  const getOrderParams = () => orderParams.current;
+  const setOrderParams = (p: OrderParams) => (orderParams.current = p);
 
   const [status, setStatus] = useState<FlowStatus>(FLOW_STATUS_SUCCESS);
 
@@ -19,8 +30,12 @@ export const FlowProvider = ({children}: Props) => {
     getState,
     setState,
 
+    getOrderParams,
+    setOrderParams,
+
     status,
     setStatus,
   };
+
   return <FlowContext.Provider value={value}>{children}</FlowContext.Provider>;
 };

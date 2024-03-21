@@ -121,12 +121,8 @@ export const validateResult = <ClassName extends RunClassName>(
     case RunClassName.GetProductsFromParrot:
       return true;
     case RunClassName.GetProductCategories:
-      if (response.resultCode !== ResultCodes.Success) return true;
-      /* TODO: Implement product categories validation */
       return true;
     case RunClassName.GetAllProducts:
-      if (response.resultCode !== ResultCodes.Success) return true;
-      /* TODO: Implement product list validation */
       return true;
     case RunClassName.Print:
       return true;

@@ -18,12 +18,17 @@ const TypeOfPaymentScreen = () => {
   return (
     <View
       style={[styles.container, { backgroundColor: theme.colors.background }]}>
-      <CommonHeader separatorColor={theme.colors.white} />
+      <CommonHeader />
       <Image
-          source={IMAGES.BACKGROUND_IMAGE}
-          style={{ height: "100%", width: width, zIndex: -1, position: "absolute"}}
-          resizeMode="stretch"
-        />
+        source={IMAGES.BACKGROUND_IMAGE}
+        style={{
+          height: '100%',
+          width: width,
+          zIndex: -1,
+          position: 'absolute',
+        }}
+        resizeMode="stretch"
+      />
       <BackButtonWhiteBackground />
 
       <Selection
@@ -31,7 +36,7 @@ const TypeOfPaymentScreen = () => {
         firstSelectionLabel="Cash"
         firstSelectionImage={IMAGES.PAYMENT_CASH_ICON}
         firstSelectionButtonPress={() => handleCardPress('cash')}
-        secondSelectionLabel={'Cashless \n (Card, E-wallet)'}
+        secondSelectionLabel={'       Cashless \n (Card, E-wallet)'}
         secondSelectionImage={IMAGES.PAYMENT_CASHLESS_ICON}
         secondSelectionButtonPress={() => handleCardPress('cashless')}
       />
