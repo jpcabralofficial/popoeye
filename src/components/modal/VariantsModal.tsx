@@ -477,7 +477,7 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
             <TouchableOpacity
               onPress={() => handleCancel()}
               style={{
-                backgroundColor: theme.colors.background,
+                backgroundColor: theme.colors.buttoncolor,
                 width: (width - 300) / 2,
                 justifyContent: 'center',
                 alignItems: 'center',
@@ -486,7 +486,7 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
               }}>
               <Text
                 style={{
-                  color: theme.colors.white,
+                  color: theme.colors.primary,
                   fontSize: 32,
                   fontWeight: 'bold',
                 }}>
@@ -497,7 +497,7 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
             <TouchableOpacity
               onPress={() => handleAddToBag()}
               style={{
-                backgroundColor: theme.colors.accent,
+                backgroundColor: theme.colors.primary,
                 width: (width - 300) / 2,
                 justifyContent: 'center',
                 alignItems: 'center',
