@@ -425,7 +425,7 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
                                       width: 55,
                                       left: -20,
                                       position: 'absolute',
-                                      top: 100,
+                                      top: 80,
                                     }}
                                     resizeMode="contain"
                                   />
@@ -445,9 +445,9 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
                                     style={{
                                       height: 55,
                                       width: 55,
-                                      right: -5,
+                                      right: -10,
                                       position: 'absolute',
-                                      top: 100,
+                                      top: 80,
                                     }}
                                     resizeMode="contain"
                                   />
