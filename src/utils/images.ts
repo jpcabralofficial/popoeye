@@ -6,7 +6,6 @@ export const IMAGES = {
   BACKGROUND_IMAGE: require('../assets/images/background_image.png'),
   POPEYES_LOGO_TEXT: require('../assets/logo/popeyes_logo_with_text.png'),
   CART_CONTAINER: require('../assets/images/cart_container.png'),
-
   // logos
   POPEYES_LOGO: require('../assets/logo/popeyes_logo.png'),
   MAYA_LOGO: require('../assets/logo/maya_logo.png'),
@@ -32,4 +31,6 @@ export const IMAGES = {
   POPEYES_ICON: require('../assets/icons/popeyes_icon.png'),
   MODE_OF_PAYMENT_MAYA: require('../assets/icons/mode_of_payment_maya.png'),
   MODE_OF_PAYMENT_GCASH: require('../assets/icons/mode_of_payment_gcash.png'),
+  ARROW_LEFT: require('../assets/icons/arrowleft.png'),
+  ARROW_RIGHT: require('../assets/icons/arrowright.png'),
 };

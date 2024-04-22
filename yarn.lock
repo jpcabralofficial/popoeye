@@ -8770,6 +8770,11 @@ react-native-screens@^3.20.0:
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
 
+react-native-scroll-indicator@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-scroll-indicator/-/react-native-scroll-indicator-0.1.0.tgz#1b8281d88f15932338ccb8a4b9792142c796408c"
+  integrity sha512-fErMTBZe/aNZgKW1QYKXvQnsnODqBkQ7j/2K89DkimUqUgJAv+mltsj05JUXTu8sJBJznoFXwmW+3h2/Dcfbog==
+
 react-native-svg@^13.9.0:
   version "13.14.0"
   resolved "http://miniapp.serino.com:4873/react-native-svg/-/react-native-svg-13.14.0.tgz#879930cfe10e877e51ebb77dfcc2cd65fc6b0d21"

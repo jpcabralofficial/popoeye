@@ -12,7 +12,6 @@ type VariantCardType = {
 
 const VariantCard = ({ item, isSelected }: VariantCardType) => {
   const theme = useTheme();
-
   return (
     <View
       style={[
@@ -55,18 +54,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 20,
     elevation: 4,
-    height: 300,
+    height: 212,
     justifyContent: 'space-between',
     marginRight: 20,
     marginVertical: 10,
     paddingHorizontal: 50,
     paddingVertical: 20,
-    width: 190,
+    width: 155,
   },
   productCardImage: {
     borderRadius: 20,
-    height: 150,
-    width: 155,
+    height: 125,
+    width: 130,
   },
   productCardName: {
     fontSize: 15,

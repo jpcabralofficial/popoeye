@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
     paddingHorizontal: 50,
     paddingVertical: 20,
-    width: 190,
+    width: 180,
   },
   productCardImage: {
     borderRadius: 20,

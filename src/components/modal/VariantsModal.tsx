@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useMemo, useState } from 'react';
+import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
 import {
   StyleSheet,
   View,
@@ -26,6 +26,7 @@ import {
   setAddToCart,
 } from '../../common/redux/slices/cart/cart';
 import { cartSelector } from '../../common/redux/selector';
+import { IMAGES } from '../../utils/images';
 
 type Props = {
   isVisible: boolean;
@@ -38,8 +39,10 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
   const { width, height } = useWindowDimensions();
 
   const dispatch = useDispatch();
+  const flatlistRef = useRef([]);
 
   const cartRedux = useSelector(cartSelector);
+  const [curentIndex, setCurentIndex] = useState([0, 0, 0, 0]);
 
   const [selectedVariants, setSelectedVariants] =
     useState<Array<VariantType & { title: string }>>();
@@ -79,7 +82,7 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
     });
   }, [item?.variants]);
 
-  const transformData = data => {
+  const transformData = (data: { title?: any; options: any }) => {
     const optionsNewData = _.map(data?.options, item => {
       if (typeof item === 'object' && item !== null && !Array.isArray(item)) {
         const { optionName, options, optionSet } = item;
@@ -167,10 +170,13 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
       dispatch(setAddToCart(itemWithVariants));
       onCloseModal();
     }
+
+    setCurentIndex([0, 0, 0, 0]);
   };
 
   const handleCancel = () => {
     onCloseModal();
+    setCurentIndex([0, 0, 0, 0]);
   };
 
   const handleAddToVariants = (item: VariantType, title: string) => {
@@ -189,6 +195,7 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
     setSelectedVariants([]);
     setSelectedSizes(undefined);
     onModalHide?.();
+    setCurentIndex([0, 0, 0, 0]);
   };
 
   const isObjectInArray = (obj: VariantType) => {
@@ -250,8 +257,42 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
     });
   }, [anotherMappedVariants, item]);
 
-  // console.log(selectedVariants, 'variants');
+  const onScrollRight = (index: number, length: number) => {
+    console.log(curentIndex[index], length);
 
+    if (curentIndex[index] < length - 1) {
+      const newArray = [...curentIndex];
+      newArray[index] = newArray[index] + 1;
+      flatlistRef.current[index]?.scrollToIndex({
+        index: newArray[index],
+      });
+      setCurentIndex(newArray);
+    } else {
+      const newArray = [...curentIndex];
+      newArray[index] = length - 1;
+
+      setCurentIndex(newArray);
+    }
+  };
+
+  const onScrollLeft = (index: number, length: number) => {
+    console.log(index, length, curentIndex[index] !== 0);
+    if (curentIndex[index] > 0) {
+      const newArray = [...curentIndex];
+      newArray[index] = newArray[index] - 1;
+      flatlistRef.current[index]?.scrollToIndex({
+        index: newArray[index],
+      });
+      setCurentIndex(newArray);
+    } else if (curentIndex[index] === 0) {
+      const newArray = [...curentIndex];
+      newArray[index] = 0;
+      flatlistRef.current[index]?.scrollToIndex({
+        index: newArray[index],
+      });
+      setCurentIndex(newArray);
+    }
+  };
   return (
     <Modal
       isVisible={isVisible}
@@ -262,8 +303,8 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
           styles.contentContainer,
           {
             backgroundColor: theme.colors?.white,
-            width: width - 200,
-            height: item?.variants?.length === 0 ? 400 : height / 2 + 250,
+            width: width - 120,
+            height: item?.variants?.length === 0 ? 400 : height / 2 + 350,
           },
         ]}>
         {/* close button */}
@@ -340,7 +381,7 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
             )}
 
             <View style={{ paddingVertical: 20 }}>
-              {_.map(anotherMappedVariants, variants => {
+              {_.map(anotherMappedVariants, (variants, index) => {
                 let data;
 
                 if (variants.title === 'Drinks') {
@@ -362,57 +403,127 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
 
                     {_.map(data?.options, option => {
                       return (
-                        <FlatList
-                          data={option?.options}
-                          keyExtractor={(item, itemIndex) =>
-                            `${item.name}-${itemIndex}`
-                          }
-                          horizontal
-                          bounces={false}
-                          showsHorizontalScrollIndicator={false}
-                          renderItem={({ item, index }) => {
-                            const isSelected = isObjectInArray(item);
+                        <>
+                          {option?.options.length > 4 ? (
+                            <>
+                              {console.log(
+                                `current ${index}`,
+                                curentIndex[index],
+                              )}
 
-                            if (variants.title === 'Drinks' && isSelected) {
-                              const optionsSet = _.find(
-                                option?.optionSet,
-                                option => item?.optionSetName === option?.name,
-                              );
+                              {curentIndex[index] === 0 ? null : (
+                                <TouchableOpacity
+                                  delayPressIn={0}
+                                  style={{ zIndex: 1 }}
+                                  onPress={() =>
+                                    onScrollLeft(index, option?.options.length)
+                                  }>
+                                  <Image
+                                    source={IMAGES.ARROW_LEFT}
+                                    style={{
+                                      height: 55,
+                                      width: 55,
+                                      left: -20,
+                                      position: 'absolute',
+                                      top: 100,
+                                    }}
+                                    resizeMode="contain"
+                                  />
+                                </TouchableOpacity>
+                              )}
 
-                              setOptionSets(optionsSet);
+                              {curentIndex[index] ===
+                              option?.options.length - 4 ? null : (
+                                <TouchableOpacity
+                                  delayPressIn={0}
+                                  style={{ zIndex: 999 }}
+                                  onPress={() =>
+                                    onScrollRight(index, option?.options.length)
+                                  }>
+                                  <Image
+                                    source={IMAGES.ARROW_RIGHT}
+                                    style={{
+                                      height: 55,
+                                      width: 55,
+                                      right: -5,
+                                      position: 'absolute',
+                                      top: 100,
+                                    }}
+                                    resizeMode="contain"
+                                  />
+                                </TouchableOpacity>
+                              )}
+                            </>
+                          ) : null}
+                          <FlatList
+                            ref={
+                              option?.options.length > 4
+                                ? ref => (flatlistRef.current[index] = ref) // Assign ref to the corresponding index
+                                : null
                             }
+                            data={option?.options}
+                            keyExtractor={(item, itemIndex) =>
+                              `${item.name}-${itemIndex}`
+                            }
+                            horizontal
+                            bounces={false}
+                            onMomentumScrollEnd={event => {
+                              const indexCur = Math.floor(
+                                event.nativeEvent.contentOffset.x / 160,
+                              );
+                              console.log(index);
+                              // work with: index
 
-                            return (
-                              <TouchableOpacity
-                                onPress={() => {
-                                  // console.log(item, index);
-                                  if (variants.title === 'Drinks') {
-                                    const optionsSet = _.find(
-                                      option?.optionSet,
-                                      option =>
-                                        item?.optionSetName === option?.name,
-                                    );
+                              const newArray = [...curentIndex];
+                              newArray[index] = indexCur;
+                              setCurentIndex(newArray);
+                            }}
+                            showsHorizontalScrollIndicator={false}
+                            renderItem={({ item, index }) => {
+                              const isSelected = isObjectInArray(item);
 
-                                    handleAddToVariantsSizes(
-                                      optionsSet?.options[0],
-                                      'Sizes',
-                                    );
+                              if (variants.title === 'Drinks' && isSelected) {
+                                const optionsSet = _.find(
+                                  option?.optionSet,
+                                  option =>
+                                    item?.optionSetName === option?.name,
+                                );
 
-                                    setOptionSets(optionsSet);
-                                  }
+                                setOptionSets(optionsSet);
+                              }
 
-                                  handleAddToVariants(item, variants.title);
-                                }}
-                                activeOpacity={1}>
-                                <VariantCard
-                                  key={`variant-${item.name}-${index}`} // Provide a unique key prop here
-                                  item={item}
-                                  isSelected={isSelected}
-                                />
-                              </TouchableOpacity>
-                            );
-                          }}
-                        />
+                              return (
+                                <TouchableOpacity
+                                  onPress={() => {
+                                    // console.log(item, index);
+                                    if (variants.title === 'Drinks') {
+                                      const optionsSet = _.find(
+                                        option?.optionSet,
+                                        option =>
+                                          item?.optionSetName === option?.name,
+                                      );
+
+                                      handleAddToVariantsSizes(
+                                        optionsSet?.options[0],
+                                        'Sizes',
+                                      );
+
+                                      setOptionSets(optionsSet);
+                                    }
+
+                                    handleAddToVariants(item, variants.title);
+                                  }}
+                                  activeOpacity={1}>
+                                  <VariantCard
+                                    key={`variant-${item.name}-${index}`} // Provide a unique key prop here
+                                    item={item}
+                                    isSelected={isSelected}
+                                  />
+                                </TouchableOpacity>
+                              );
+                            }}
+                          />
+                        </>
                       );
                     })}
 

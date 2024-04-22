@@ -29,7 +29,6 @@ const useViewModel = () => {
   const cartRedux = useSelector(cartSelector);
   const productRedux = useSelector(productSelector);
 
-  const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [selectedCategoryIndex, setSelectedCategoryIndex] = useState<number>(0);
 
   const [showVariantsModal, setShowVariantsModal] = useState<boolean>(false);
@@ -57,8 +56,32 @@ const useViewModel = () => {
     },
   );
 
+  const reorderedCategories = activeCategories
+    .map(item => {
+      if (item.name === 'Popeyes Chicken') {
+        return { ...item, order: 1 };
+      } else if (item.name === 'Burgers And Sandwiches') {
+        return { ...item, order: 2 };
+      } else if (item.name === 'Ala Carte') {
+        return { ...item, order: 3 };
+      } else if (item.name === 'Snack Box') {
+        return { ...item, order: 4 };
+      } else if (item.name === 'Buckets And Bundles') {
+        return { ...item, order: 5 };
+      } else if (item.name === 'Extras') {
+        return { ...item, order: 7 };
+      } else {
+        return { ...item, order: 6 };
+      }
+    })
+    .sort((a, b) => a.order - b.order);
+
   const [selectedProducts, setSelectedProducts] = useState<ProductType[]>(
-    activeCategories[0]?.products,
+    reorderedCategories[0]?.products,
+  );
+
+  const [selectedCategory, setSelectedCategory] = useState<string>(
+    reorderedCategories[0]?.name,
   );
 
   const activeProducts = _.filter(
@@ -107,6 +130,8 @@ const useViewModel = () => {
     // }
   };
 
+  console.log(reorderedCategories);
+
   const handleAddQuantity = (item: ProductType) => {
     setShowVariantsModal(true);
     setSelectedItem(item);
@@ -149,7 +174,7 @@ const useViewModel = () => {
   };
 
   return {
-    activeCategories,
+    reorderedCategories,
     activeProducts,
 
     selectedCategory,

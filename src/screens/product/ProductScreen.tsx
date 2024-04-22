@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from 'react-native';
+import ScrollViewIndicator from 'react-native-scroll-indicator';
 import { useTheme } from 'react-native-paper';
 
 import _ from 'lodash';
@@ -32,7 +33,7 @@ const ProductScreen = () => {
   const numberOfProductColumns = 3;
 
   const {
-    activeCategories,
+    reorderedCategories,
     activeProducts,
 
     selectedCategory,
@@ -40,7 +41,6 @@ const ProductScreen = () => {
     selectedItem,
 
     showVariantsModal,
-
 
     fulfillmentType,
     cartCount,
@@ -71,44 +71,50 @@ const ProductScreen = () => {
           resizeMode="stretch"
         />
 
-         {/* my bag */}
-          <TouchableOpacity style={[styles.cartCont, { borderColor: theme.colors.buttoncolor }]} onPress={handleNavigatePress} activeOpacity={0.8}>
-           <ImageBackground source={IMAGES.CART_CONTAINER} 
-            style={{ height: 125, width: 125,
+        {/* my bag */}
+        <TouchableOpacity
+          style={[styles.cartCont, { borderColor: theme.colors.buttoncolor }]}
+          onPress={handleNavigatePress}
+          activeOpacity={0.8}>
+          <ImageBackground
+            source={IMAGES.CART_CONTAINER}
+            style={{
+              height: 125,
+              width: 125,
               justifyContent: 'center',
-               alignItems: 'center',
-               alignSelf: 'center',
-           }}>
+              alignItems: 'center',
+              alignSelf: 'center',
+            }}>
             {cartCount > 0 && (
-                <View
+              <View
+                style={[
+                  styles.myBagCountContainer,
+                  {
+                    backgroundColor: theme.colors.accent,
+                    borderColor: theme.colors.white,
+                  },
+                ]}>
+                <Text
                   style={[
-                    styles.myBagCountContainer,
-                    { backgroundColor: theme.colors.accent, borderColor: theme.colors.white},
+                    styles.myBagCountText,
+                    { color: theme.colors.white },
                   ]}>
-                  <Text
-                    style={[
-                      styles.myBagCountText,
-                      { color: theme.colors.white },
-                    ]}>
-                    {cartCount}
-                  </Text>
-                </View>
-              )}
+                  {cartCount}
+                </Text>
+              </View>
+            )}
 
-              <Image
-                source={IMAGES.SHOPPING_BAG_ICON}
-                style={styles.myBagIcon}
-                resizeMode="stretch"
-              />
-               <Text style={[styles.myBagLabel, { color: theme.colors.white }]}>
+            <Image
+              source={IMAGES.SHOPPING_BAG_ICON}
+              style={styles.myBagIcon}
+              resizeMode="stretch"
+            />
+            <Text style={[styles.myBagLabel, { color: theme.colors.white }]}>
               My Bag
             </Text>
-           </ImageBackground>
-          </TouchableOpacity>
-          
-      
-        
-        </View>
+          </ImageBackground>
+        </TouchableOpacity>
+      </View>
 
       {/* separator */}
       <View
@@ -119,16 +125,25 @@ const ProductScreen = () => {
       />
 
       {/* content */}
-      <View style={[styles.contentContainer, { backgroundColor: theme.colors.buttoncolor}]}>
+      <View
+        style={[
+          styles.contentContainer,
+          { backgroundColor: theme.colors.buttoncolor },
+        ]}>
         {/* scrollable categories */}
         <Image
           source={IMAGES.BACKGROUND_IMAGE}
-          style={{ height: "100%", width: width, zIndex: -1, position: "absolute"}}
+          style={{
+            height: '100%',
+            width: width,
+            zIndex: -1,
+            position: 'absolute',
+          }}
           resizeMode="stretch"
         />
         <View>
           <FlatList
-            data={activeCategories}
+            data={reorderedCategories}
             keyExtractor={category => category.name}
             contentContainerStyle={styles.scrollableCategoriesContainer}
             showsVerticalScrollIndicator={false}
@@ -156,47 +171,54 @@ const ProductScreen = () => {
           <Image
             source={IMAGES.POPEYES_BANNER}
             style={styles.headerBannerImage}
-            resizeMode='stretch'
+            resizeMode="stretch"
           />
-
-          <FlatList
-            data={activeProducts}
-            keyExtractor={item => item?.id}
-            numColumns={numberOfProductColumns}
-            contentContainerStyle={styles.productContent}
-            ListHeaderComponent={
-              <ProductContentTitle selectedCategory={selectedCategory} />
-            }
-            renderItem={({ item }) => {
-              const product = getProductId(item.sku);
-
-              let quantity;
-
-              if (product) {
-                const count = _.filter(
-                  cartIds,
-                  sku => sku.toString() === product.sku.toString(),
-                ).length;
-
-                if (count > 1) {
-                  quantity = count;
-                } else {
-                  quantity = product.quantity;
-                }
-              } else {
-                quantity = 0;
+          <ScrollViewIndicator
+            style={{ marginVertical: 10 }}
+            indicatorHeight={250}
+            shouldIndicatorHide={false}
+            flexibleIndicator={false}
+            scrollIndicatorStyle={styles.scrollIndicator}
+            scrollIndicatorContainerStyle={styles.scrollCont}>
+            <FlatList
+              data={activeProducts}
+              keyExtractor={item => item?.id}
+              numColumns={numberOfProductColumns}
+              contentContainerStyle={styles.productContent}
+              ListHeaderComponent={
+                <ProductContentTitle selectedCategory={selectedCategory} />
               }
+              renderItem={({ item }) => {
+                const product = getProductId(item.sku);
 
-              return (
-                <ProductCard
-                  item={item}
-                  quantity={quantity}
-                  handleAddToCart={handleAddToCart}
-                  handleAddQuantity={handleAddQuantity}
-                />
-              );
-            }}
-          />
+                let quantity;
+
+                if (product) {
+                  const count = _.filter(
+                    cartIds,
+                    sku => sku.toString() === product.sku.toString(),
+                  ).length;
+
+                  if (count > 1) {
+                    quantity = count;
+                  } else {
+                    quantity = product.quantity;
+                  }
+                } else {
+                  quantity = 0;
+                }
+
+                return (
+                  <ProductCard
+                    item={item}
+                    quantity={quantity}
+                    handleAddToCart={handleAddToCart}
+                    handleAddQuantity={handleAddQuantity}
+                  />
+                );
+              }}
+            />
+          </ScrollViewIndicator>
         </View>
       </View>
 
@@ -244,7 +266,6 @@ const ProductScreen = () => {
         </View>
       </View>
 
-
       <VariantsModal
         isVisible={showVariantsModal}
         onModalHide={handleCloseVariantModal}
@@ -255,7 +276,7 @@ const ProductScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  cartCont:{
+  cartCont: {
     borderRadius: 100,
     borderWidth: 4,
     height: 150,
@@ -343,6 +364,25 @@ const styles = StyleSheet.create({
     flex: 1,
     height: '100%',
     overflow: 'hidden',
+  },
+  scrollCont: {
+    backgroundColor: '#FFDB77',
+    borderRadius: 10,
+    bottom: 0,
+    marginVertical: 3,
+    overflow: 'visible',
+    position: 'absolute',
+    right: 10,
+    top: 0,
+    width: 4,
+  },
+  scrollIndicator: {
+    backgroundColor: '#FFDB77',
+    borderRadius: 6,
+    opacity: 1,
+    position: 'absolute',
+    right: -5,
+    width: 14,
   },
   scrollableCategoriesContainer: {
     alignItems: 'center',
