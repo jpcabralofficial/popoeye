@@ -256,8 +256,8 @@ export const useFlow = () => {
 
               const prefetchTasks: Promise<boolean>[] = [];
               productsMapped.forEach(p => {
-                if (p.images.uri != null) {
-                  prefetchTasks.push(Image.prefetch(p.images.uri));
+                if (p.images != null) {
+                  prefetchTasks.push(Image.prefetch(p.images));
                 }
               });
 
