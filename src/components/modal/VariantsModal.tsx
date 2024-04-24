@@ -35,6 +35,7 @@ type Props = {
 };
 
 const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
+  console.log(item?.sku);
   const theme = useTheme();
   const { width, height } = useWindowDimensions();
 
@@ -258,8 +259,6 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
   }, [anotherMappedVariants, item]);
 
   const onScrollRight = (index: number, length: number) => {
-    console.log(curentIndex[index], length);
-
     if (curentIndex[index] < length - 1) {
       const newArray = [...curentIndex];
       newArray[index] = newArray[index] + 1;
@@ -276,7 +275,6 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
   };
 
   const onScrollLeft = (index: number, length: number) => {
-    console.log(index, length, curentIndex[index] !== 0);
     if (curentIndex[index] > 0) {
       const newArray = [...curentIndex];
       newArray[index] = newArray[index] - 1;
@@ -406,11 +404,6 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
                         <>
                           {option?.options.length > 4 ? (
                             <>
-                              {console.log(
-                                `current ${index}`,
-                                curentIndex[index],
-                              )}
-
                               {curentIndex[index] === 0 ? null : (
                                 <TouchableOpacity
                                   delayPressIn={0}
@@ -471,8 +464,6 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
                               const indexCur = Math.floor(
                                 event.nativeEvent.contentOffset.x / 160,
                               );
-                              console.log(index);
-                              // work with: index
 
                               const newArray = [...curentIndex];
                               newArray[index] = indexCur;
@@ -495,7 +486,6 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
                               return (
                                 <TouchableOpacity
                                   onPress={() => {
-                                    // console.log(item, index);
                                     if (variants.title === 'Drinks') {
                                       const optionsSet = _.find(
                                         option?.optionSet,

@@ -130,8 +130,6 @@ const useViewModel = () => {
     // }
   };
 
-  console.log(reorderedCategories);
-
   const handleAddQuantity = (item: ProductType) => {
     setShowVariantsModal(true);
     setSelectedItem(item);
