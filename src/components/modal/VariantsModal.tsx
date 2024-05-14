@@ -35,7 +35,7 @@ type Props = {
 };
 
 const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
-  console.log(item?.sku);
+  // console.log(item?.sku);
   const theme = useTheme();
   const { width, height } = useWindowDimensions();
 

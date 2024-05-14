@@ -1,9 +1,10 @@
 import React from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useTheme } from 'react-native-paper';
 
 import { thousandSeparatorWithCurrencySign } from '../../common/helpers/common';
 import { ProductType } from '../../utils/types';
+import FastImage from 'react-native-fast-image';
 
 type ProductCardType = {
   item: ProductType;
@@ -19,6 +20,9 @@ const ProductCard = ({
   handleAddQuantity,
 }: ProductCardType) => {
   const theme = useTheme();
+
+  //console.log('draw', item.image_thumbnail);
+  // Image.queryCache([item.image_thumbnail]).then(data => console.log(data));
 
   return (
     <TouchableOpacity
@@ -46,9 +50,12 @@ const ProductCard = ({
             </Text>
           </View>
         )}
-        {item?.images && (
-          <Image
-            source={{ uri: item.images }}
+        {item?.image_thumbnail && (
+          <FastImage
+            source={{
+              uri: item.image_thumbnail,
+              priority: FastImage.priority.high,
+            }}
             style={styles.productCardImage}
             resizeMode="contain"
           />

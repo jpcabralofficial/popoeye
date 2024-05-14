@@ -1,9 +1,10 @@
 import React from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { useTheme } from 'react-native-paper';
 
 import { thousandSeparatorWithCurrencySign } from '../../common/helpers/common';
 import { VariantType } from '../../utils/types';
+import FastImage from 'react-native-fast-image';
 
 type VariantCardType = {
   item: VariantType;
@@ -27,8 +28,11 @@ const VariantCard = ({ item, isSelected }: VariantCardType) => {
           justifyContent: 'space-between',
         }}>
         {item?.image && (
-          <Image
-            source={{ uri: item.image }}
+          <FastImage
+            source={{
+              uri: item.image,
+              priority: FastImage.priority.high,
+            }}
             style={styles.productCardImage}
             resizeMode="contain"
           />

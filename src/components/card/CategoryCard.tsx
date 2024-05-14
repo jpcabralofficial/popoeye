@@ -4,6 +4,7 @@ import { useTheme } from 'react-native-paper';
 
 import { ActiveCategoriesType, CategoryPressType } from '../../utils/types';
 import { IMAGES } from '../../utils/images';
+import FastImage from 'react-native-fast-image';
 
 type CategoryCardType = {
   item: ActiveCategoriesType;
@@ -46,7 +47,7 @@ const CategoryCard = ({
             borderColor: selected ? theme.colors.primary : theme.colors.white,
           },
         ]}>
-        <Image
+        <FastImage
           source={{ uri: item.image_thumbnail }}
           style={styles.categoryCardImage}
           resizeMode="contain"

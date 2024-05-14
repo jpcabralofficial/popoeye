@@ -1,8 +1,7 @@
 import { useCallback, useContext, useRef } from 'react';
-import { Alert, InteractionManager, Image, Linking } from 'react-native';
+import { Alert, InteractionManager, Linking } from 'react-native';
 
 import 'react-native-get-random-values';
-import { v4 as uuidv4 } from 'uuid';
 import _ from 'lodash';
 
 import { useDispatch } from 'react-redux';
@@ -54,6 +53,7 @@ import {
   srnKotlinSetEventHandlers,
 } from '../../shared/srnKotlinSetEventHandlers';
 import { srnKotlinRequestPermissions } from '../../shared/srnKotlinRequestPermissions';
+import FastImage from 'react-native-fast-image';
 
 type EventHandlersType = {
   [Property in FlowEvents]?: {
@@ -254,6 +254,11 @@ export const useFlow = () => {
 
               dispatch(setProducts(productsMapped));
 
+              const preloadUris = productsMapped.map(item => ({
+                uri: item.image_thumbnail,
+              }));
+              FastImage.preload(preloadUris);
+              /*
               const prefetchTasks: Promise<boolean>[] = [];
               productsMapped.forEach(p => {
                 if (p.images != null) {
@@ -264,6 +269,7 @@ export const useFlow = () => {
               Promise.all(prefetchTasks).then(value => {
                 console.log('prefetched images:', value.length);
               });
+              */
             }
 
             srnKotlinSetEventHandlers({
