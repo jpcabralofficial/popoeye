@@ -56,25 +56,29 @@ const useViewModel = () => {
     },
   );
 
-  const reorderedCategories = activeCategories
-    .map(item => {
-      if (item.name === 'Popeyes Chicken') {
-        return { ...item, order: 1 };
-      } else if (item.name === 'Burgers And Sandwiches') {
-        return { ...item, order: 2 };
-      } else if (item.name === 'Ala Carte') {
-        return { ...item, order: 3 };
-      } else if (item.name === 'Snack Box') {
-        return { ...item, order: 4 };
-      } else if (item.name === 'Buckets And Bundles') {
-        return { ...item, order: 5 };
-      } else if (item.name === 'Extras') {
-        return { ...item, order: 7 };
-      } else {
-        return { ...item, order: 6 };
-      }
-    })
-    .sort((a, b) => a.order - b.order);
+  // put the category title on the list in order you want here
+  const desiredOrder = [
+    'Popeyes Chicken',
+    'Burgers And Sandwiches',
+    'Snack Box',
+    'Buckets And Bundles',
+    'Extras',
+  ];
+
+  const reorderedCategories = categories.sort((a, b) => {
+    const indexA = desiredOrder.indexOf(a.name);
+    const indexB = desiredOrder.indexOf(b.name);
+
+    if (indexA === -1 && indexB === -1) {
+      return 0;
+    } else if (indexA === -1) {
+      return 1;
+    } else if (indexB === -1) {
+      return -1;
+    } else {
+      return indexA - indexB;
+    }
+  });
 
   const [selectedProducts, setSelectedProducts] = useState<ProductType[]>(
     reorderedCategories[0]?.products,
@@ -173,6 +177,7 @@ const useViewModel = () => {
 
   return {
     reorderedCategories,
+    activeCategories,
     activeProducts,
 
     selectedCategory,
