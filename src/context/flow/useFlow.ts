@@ -210,8 +210,8 @@ export const useFlow = () => {
             // });
 
             await srnKotlinRun(RunClassName.MerchantLogin, {
-              username: 'dev-kuyaj_store-owner@yopmail.com',
-              password: 'iFqhiDy?',
+              username: 'qa-kuyaj_admin@yopmail.com',
+              password: '5&JeqXPn',
             });
 
             await srnKotlinRun(RunClassName.EmployeeLogin, {
