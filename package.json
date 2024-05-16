@@ -45,7 +45,7 @@
     "react-redux": "^9.1.0",
     "redux-persist": "^6.0.0",
     "serino-mobile-pos-components-lib": "^1.0.0",
-    "serino-pos-kotlin-bridge": "0.1.0-pw-kuyaj2v0.0.18",
+    "serino-pos-kotlin-bridge": "0.1.0-pw-kuyaj2v0.0.25",
     "uuid": "^9.0.1",
     "validate.js": "^0.13.1"
   },
