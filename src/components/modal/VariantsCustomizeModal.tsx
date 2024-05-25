@@ -11,12 +11,13 @@ import {
 } from 'react-native';
 import { useTheme } from 'react-native-paper';
 
+import { useFocusEffect } from '@react-navigation/native';
 import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
 import Modal from 'react-native-modal';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import { ProductType, VariantType } from '../../utils/types';
+import { CartProductType, VariantType } from '../../utils/types';
 import { thousandSeparatorWithCurrencySign } from '../../common/helpers/common';
 import _ from 'lodash';
 import VariantCard from '../card/VariantCard';
@@ -24,16 +25,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   setAddQuantity,
   setAddToCart,
+  setUpdateCart,
 } from '../../common/redux/slices/cart/cart';
 import { cartSelector } from '../../common/redux/selector';
 
 type Props = {
   isVisible: boolean;
   onModalHide?: () => void;
-  item?: ProductType;
+  item?: CartProductType;
 };
 
-const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
+const VariantsCustomizeModal = ({ isVisible, onModalHide, item }: Props) => {
   const theme = useTheme();
   const { width, height } = useWindowDimensions();
 
@@ -41,8 +43,9 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
 
   const cartRedux = useSelector(cartSelector);
 
-  const [selectedVariants, setSelectedVariants] =
-    useState<Array<VariantType & { title: string }>>();
+  const [selectedVariants, setSelectedVariants] = useState<
+    Array<VariantType & { title: string }> | undefined
+  >(item?.selectedVariants);
 
   const [selectedSizes, setSelectedSizes] = useState<
     (VariantType & { title: string }) | undefined
@@ -50,7 +53,10 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
 
   const [optionSets, setOptionSets] = useState<[]>([]);
 
-  const [totalAmount, setTotalAmount] = useState<number>(parseInt(item?.price));
+  const [totalAmount, setTotalAmount] = useState<number>(
+    parseInt(item?.price + item?.variantsAdditionalAmount),
+  );
+
   const [variantsAdditionalAmount, setVariantsAdditionalAmount] =
     useState<number>(0);
 
@@ -130,46 +136,41 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
   };
 
   const handleAddToBag = () => {
-    const isItemAlreadyInCart = _.find(
-      cartRedux.cartItems,
-      cart => cart.sku === item?.sku,
+    console.log(item, 'ITEMS ADD TO BAG');
+    const checkIfDrinksExist = _.find(
+      selectedVariants,
+      item => item.title === 'Drinks',
     );
 
-    if (!isItemAlreadyInCart && item?.variants?.length === 0) {
-      dispatch(
-        setAddToCart({
-          ...item,
-          quantity: 1,
-          amount: parseInt(item.price, 10),
-        }),
+    let variants;
+    if (checkIfDrinksExist) {
+      const filteredVariants = selectedVariants?.filter(
+        variant => variant.title !== 'Sizes',
       );
-      onCloseModal();
-    } else if (isItemAlreadyInCart && item?.variants?.length === 0) {
-      dispatch(setAddQuantity(item.id));
-      onCloseModal();
+      variants = [...(filteredVariants || []), selectedSizes];
     } else {
-      const checkIfDrinksExist = _.find(
-        selectedVariants,
-        item => item.title === 'Drinks',
-      );
-      let variants;
-      if (checkIfDrinksExist) {
-        variants = [...(selectedVariants || []), selectedSizes];
-      } else {
-        variants = selectedVariants;
-      }
-      const itemWithVariants = {
-        ...item,
-        id: item?.id + uuidv4(),
-        selectedVariants: variants,
-        quantity: 1,
-        amount: totalAmount,
-        variantsAdditionalAmount: variantsAdditionalAmount,
-      };
-      console.log(itemWithVariants, 'items');
-      dispatch(setAddToCart(itemWithVariants));
-      onCloseModal();
+      variants = selectedVariants;
     }
+
+    let additionalAmount = 0;
+    if (parseInt(item?.price ?? '0') !== totalAmount * item?.quantity) {
+      additionalAmount = variantsAdditionalAmount;
+    }
+
+    console.log(item?.price, 'TOTAL PRICE');
+    console.log(totalAmount, 'TOTAL AMOUNT"');
+    console.log(additionalAmount, 'TOTAL VARIANTS AMOUNT"');
+
+    const itemWithVariants = {
+      ...item,
+      id: item?.id,
+      selectedVariants: variants,
+      amount: totalAmount * item?.quantity,
+      variantsAdditionalAmount: additionalAmount,
+    };
+    console.log(itemWithVariants, 'items');
+    dispatch(setUpdateCart(itemWithVariants));
+    onCloseModal();
   };
 
   const handleCancel = () => {
@@ -184,6 +185,7 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
   };
 
   const handleAddToVariantsSizes = (item: VariantType, title: string) => {
+    console.log(item);
     setSelectedSizes({ ...item, title });
   };
 
@@ -215,52 +217,73 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
         0,
       ) ?? 0;
 
+    console.log(selectedVariants);
+
     let totalAmount;
-    let totalVariantsAdditionalAmount;
 
     if (selectedSizes && selectedSizes?.additional_price) {
+      const checkDefaultSelectedDrinkSize = _.find(
+        item?.selectedVariants,
+        variants => variants.title === 'Sizes',
+      );
+
+      if (checkDefaultSelectedDrinkSize) {
+        totalAmount =
+          parseInt(item?.price, 10) +
+          totalPrice +
+          selectedSizes?.additional_price -
+          checkDefaultSelectedDrinkSize?.additional_price;
+
+        console.log(totalAmount, 'totalAmountsss');
+        console.log(
+          selectedSizes?.additional_price -
+            checkDefaultSelectedDrinkSize?.additional_price,
+          'minus amoiunt',
+        );
+      } else {
+        totalAmount =
+          parseInt(item?.price, 10) +
+          totalPrice +
+          selectedSizes?.additional_price;
+      }
+    } else {
+      const checkDefaultSelectedDrinkSize = _.find(
+        item?.selectedVariants,
+        variants => variants.title === 'Sizes',
+      );
+
       totalAmount =
         parseInt(item?.price, 10) +
-        totalPrice +
-        selectedSizes?.additional_price;
-
-      totalVariantsAdditionalAmount =
-        totalPrice + selectedSizes?.additional_price;
-    } else {
-      totalAmount = parseInt(item?.price, 10) + totalPrice;
-      totalVariantsAdditionalAmount = totalPrice;
+        totalPrice -
+        checkDefaultSelectedDrinkSize?.additional_price;
     }
 
-    console.log(variantsAdditionalAmount);
+    const totalVariantsAdditionalAmount = totalPrice;
+
+    console.log(totalVariantsAdditionalAmount, 'totalVariantsAdditionalAmount');
+
     setTotalAmount(totalAmount);
     setVariantsAdditionalAmount(totalVariantsAdditionalAmount);
-  }, [selectedSizes, selectedVariants, item]);
+  }, [selectedSizes, selectedVariants]);
 
+  // load selected variants
   useEffect(() => {
-    const result = _.flatMap(anotherMappedVariants, item => {
-      return {
-        ...item?.options?.[0],
-        title: item?.title,
-      };
-    });
-    const result2 = _.flatMap(result, item => {
-      return {
-        ...item?.options?.[0],
-        title: item?.title,
-      };
-    });
+    const selectedDrinkSize = _.find(
+      item?.selectedVariants,
+      variants => variants.title === 'Sizes',
+    );
 
-    setSelectedVariants(result2);
-    setSelectedSizes({
-      name: 'Regular',
-      title: 'Sizes',
-      additional_price: 0,
-      status: true,
-      image: '',
-    });
-  }, [anotherMappedVariants, item]);
+    console.log(selectedDrinkSize, 'niceee');
 
-  // console.log(selectedVariants, 'variants');
+    setSelectedVariants(item?.selectedVariants);
+    setSelectedSizes(selectedDrinkSize);
+  }, [item?.selectedVariants]);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      setSelectedVariants(item?.selectedVariants);
+    }, [item?.selectedVariants]),
+  );
 
   return (
     <Modal
@@ -271,7 +294,7 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
         style={[
           styles.contentContainer,
           {
-            backgroundColor: theme.colors.white,
+            backgroundColor: theme.colors?.white,
             width: width - 200,
             height: item?.variants?.length === 0 ? 400 : height / 2 + 250,
           },
@@ -280,17 +303,13 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
         <TouchableOpacity
           onPress={onModalHide}
           style={{
-            justifyContent: 'flex-end',
-            alignItems: 'flex-end',
-            width: '100%',
+            alignSelf: 'flex-end',
             paddingHorizontal: 40,
             paddingTop: 20,
-            position: 'absolute',
-            zIndex: 100,
           }}>
           <MaterialCommunityIcons
             name="close"
-            size={70}
+            size={50}
             color={theme.colors.gray70}
           />
         </TouchableOpacity>
@@ -300,37 +319,32 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
           style={{
             flexDirection: 'row',
             paddingHorizontal: 50,
-            paddingTop: 40,
-            gap: 30,
-            marginBottom: 40,
+            gap: 10,
+            marginBottom: 20,
           }}>
-          <View style={{ width: 230, height: 170 }}>
+          <View style={{ width: 250, height: 120 }}>
             {item?.image_thumbnail && (
               <Image
                 source={{ uri: item?.image_thumbnail }}
                 style={{ width: '100%', height: '100%' }}
-                resizeMode="stretch"
+                resizeMode="contain"
               />
             )}
           </View>
 
-          <View
-            style={{
-              justifyContent: 'space-between',
-              width: '45%',
-              gap: 20,
-            }}>
+          <View style={{ justifyContent: 'space-between' }}>
             <Text
               style={{
-                fontSize: 30,
+                fontSize: 20,
                 fontWeight: 'bold',
                 color: theme.colors.black,
+                width: '70%',
               }}>
               {item?.name}
             </Text>
             <Text
               style={{
-                fontSize: 24,
+                fontSize: 20,
                 fontWeight: 'bold',
                 color: theme.colors.black,
               }}>
@@ -340,12 +354,7 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
         </View>
 
         {/* content */}
-        <View
-          style={{
-            backgroundColor: theme.colors.white,
-            flex: 1,
-            borderRadius: 50,
-          }}>
+        <View style={{ backgroundColor: '#f5f5f5', flex: 1, borderRadius: 50 }}>
           <ScrollView
             contentContainerStyle={{
               padding: 20,
@@ -359,7 +368,7 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
                   color: theme.colors.black,
                   width: '70%',
                 }}>
-                Variants and Upgrades
+                Variants
               </Text>
             )}
 
@@ -386,57 +395,60 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
 
                     {_.map(data?.options, option => {
                       return (
-                        <FlatList
-                          data={option?.options}
-                          keyExtractor={(item, itemIndex) =>
-                            `${item.name}-${itemIndex}`
-                          }
-                          horizontal
-                          bounces={false}
-                          showsHorizontalScrollIndicator={false}
-                          renderItem={({ item, index }) => {
-                            const isSelected = isObjectInArray(item);
-
-                            if (variants.title === 'Drinks' && isSelected) {
-                              const optionsSet = _.find(
-                                option?.optionSet,
-                                option => item?.optionSetName === option?.name,
-                              );
-
-                              setOptionSets(optionsSet);
+                        <View key={option?.optionName}>
+                          <FlatList
+                            data={option?.options}
+                            keyExtractor={(item, itemIndex) =>
+                              `${item.name}-${itemIndex}`
                             }
+                            horizontal
+                            bounces={false}
+                            showsHorizontalScrollIndicator={false}
+                            renderItem={({ item, index }) => {
+                              const isSelected = isObjectInArray(item);
 
-                            return (
-                              <TouchableOpacity
-                                onPress={() => {
-                                  // console.log(item, index);
-                                  if (variants.title === 'Drinks') {
-                                    const optionsSet = _.find(
-                                      option?.optionSet,
-                                      option =>
-                                        item?.optionSetName === option?.name,
-                                    );
+                              if (variants.title === 'Drinks' && isSelected) {
+                                const optionsSet = _.find(
+                                  option?.optionSet,
+                                  option =>
+                                    item?.optionSetName === option?.name,
+                                );
 
-                                    handleAddToVariantsSizes(
-                                      optionsSet?.options[0],
-                                      'Sizes',
-                                    );
+                                setOptionSets(optionsSet);
+                              }
 
-                                    setOptionSets(optionsSet);
-                                  }
+                              return (
+                                <TouchableOpacity
+                                  onPress={() => {
+                                    // console.log(item, index);
+                                    if (variants.title === 'Drinks') {
+                                      const optionsSet = _.find(
+                                        option?.optionSet,
+                                        option =>
+                                          item?.optionSetName === option?.name,
+                                      );
 
-                                  handleAddToVariants(item, variants.title);
-                                }}
-                                activeOpacity={1}>
-                                <VariantCard
-                                  key={`variant-${item.name}-${index}`} // Provide a unique key prop here
-                                  item={item}
-                                  isSelected={isSelected}
-                                />
-                              </TouchableOpacity>
-                            );
-                          }}
-                        />
+                                      handleAddToVariantsSizes(
+                                        optionsSet?.options[0],
+                                        'Sizes',
+                                      );
+
+                                      setOptionSets(optionsSet);
+                                    }
+
+                                    handleAddToVariants(item, variants.title);
+                                  }}
+                                  activeOpacity={1}>
+                                  <VariantCard
+                                    key={`variant-${item.name}-${index}`} // Provide a unique key prop here
+                                    item={item}
+                                    isSelected={isSelected}
+                                  />
+                                </TouchableOpacity>
+                              );
+                            }}
+                          />
+                        </View>
                       );
                     })}
 
@@ -534,7 +546,7 @@ const VariantsModal = ({ isVisible, onModalHide, item }: Props) => {
                   fontSize: 32,
                   fontWeight: 'bold',
                 }}>
-                Add to Bag
+                Update Bag
               </Text>
             </TouchableOpacity>
           </View>
@@ -553,4 +565,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(VariantsModal);
+export default memo(VariantsCustomizeModal);

@@ -20,6 +20,7 @@ import { thousandSeparatorWithCurrencySign } from '../../common/helpers/common';
 import { IMAGES } from '../../utils/images';
 
 import useViewModel from './useViewModel';
+import VariantsCustomizeModal from '../../components/modal/VariantsCustomizeModal';
 
 const MyBagScreen = () => {
   const theme = useTheme();
@@ -34,19 +35,27 @@ const MyBagScreen = () => {
     isDineIn,
     isTakeOut,
 
+    selectedItem,
+    showCustomizeModal,
+    handleCloseCustomizeModal,
+
     handleAddQuantity,
     handleRemoveQuantity,
     handleRemoveItemPress,
+    handleCustomizePress,
 
     handleChangeFulfillmentPress,
     handleNavigatePress,
   } = useViewModel();
 
   return (
-    <View
-      style={[styles.container, { backgroundColor: theme.colors.white }]}>
+    <View style={[styles.container, { backgroundColor: theme.colors.white }]}>
       {/* header */}
-      <View style={[styles.headerContainer, { backgroundColor: theme.colors.primary }]}>
+      <View
+        style={[
+          styles.headerContainer,
+          { backgroundColor: theme.colors.primary },
+        ]}>
         <Image
           source={IMAGES.POPEYES_LOGO_TEXT}
           style={styles.landersCentralLogo}
@@ -55,10 +64,10 @@ const MyBagScreen = () => {
 
         <View style={styles.headerTitleContainer}>
           <Image
-              source={IMAGES.SHOPPING_BAG_ICON}
-              style={styles.myBagIcon}
-              resizeMode="stretch"
-            />
+            source={IMAGES.SHOPPING_BAG_ICON}
+            style={styles.myBagIcon}
+            resizeMode="stretch"
+          />
           <Text style={[styles.headerTitle, { color: theme.colors.white }]}>
             My Bag
           </Text>
@@ -74,10 +83,19 @@ const MyBagScreen = () => {
       />
 
       {/* content */}
-      <View style={[styles.contentContainer, { backgroundColor: theme.colors.buttoncolor }]}>
-      <Image
+      <View
+        style={[
+          styles.contentContainer,
+          { backgroundColor: theme.colors.buttoncolor },
+        ]}>
+        <Image
           source={IMAGES.BACKGROUND_IMAGE}
-          style={{ height: "100%", width: width, zIndex: -1, position: "absolute"}}
+          style={{
+            height: '100%',
+            width: width,
+            zIndex: -1,
+            position: 'absolute',
+          }}
           resizeMode="stretch"
         />
         <View style={[styles.content, { backgroundColor: theme.colors.white }]}>
@@ -175,6 +193,7 @@ const MyBagScreen = () => {
                   handleAddQuantity={handleAddQuantity}
                   handleRemoveQuantity={handleRemoveQuantity}
                   handleRemoveItemPress={handleRemoveItemPress}
+                  handleCustomizePress={handleCustomizePress}
                 />
               );
             }}
@@ -216,6 +235,12 @@ const MyBagScreen = () => {
           />
         </View>
       </View>
+
+      <VariantsCustomizeModal
+        isVisible={showCustomizeModal}
+        onModalHide={handleCloseCustomizeModal}
+        item={selectedItem}
+      />
     </View>
   );
 };

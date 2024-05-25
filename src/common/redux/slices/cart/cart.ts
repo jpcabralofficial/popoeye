@@ -19,7 +19,9 @@ const cartSlice = createSlice({
           if (item.id === action.payload) {
             return {
               ...item,
-              amount: (item.quantity - 1) * parseInt(item.price, 10),
+              amount:
+                (item.quantity - 1) *
+                (parseInt(item.price, 10) + item.variantsAdditionalAmount),
               quantity: item.quantity - 1,
             };
           }
@@ -29,16 +31,27 @@ const cartSlice = createSlice({
     },
     setAddQuantity(state, action) {
       const updatedCartItems = state.cartItems.map(item => {
-        console.log(item.id, 'itemId');
-        console.log(action.payload, 'action payload');
         if (item.id === action.payload) {
-          console.log('nice');
+          console.log(item);
           return {
             ...item,
-            amount: (item.quantity + 1) * parseInt(item.price, 10),
+            amount:
+              (item.quantity + 1) *
+              (parseInt(item.price, 10) + item.variantsAdditionalAmount),
             quantity: item.quantity + 1,
           };
         }
+        return item;
+      });
+
+      state.cartItems = updatedCartItems;
+    },
+    setUpdateCart(state, action) {
+      const updatedCartItems = state.cartItems.map(item => {
+        if (item.id === action.payload.id) {
+          return action.payload;
+        }
+
         return item;
       });
 
@@ -59,6 +72,7 @@ export const {
   setAddToCart,
   setAddQuantity,
   setRemoveQuantity,
+  setUpdateCart,
   removeItem,
   clearCart,
 } = cartSlice.actions;

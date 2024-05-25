@@ -3,8 +3,9 @@ import { Alert, InteractionManager, Linking } from 'react-native';
 
 import 'react-native-get-random-values';
 import _ from 'lodash';
+import productJSON from '../../static/popeyes-products.json';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import type {
   FlowEvents,
@@ -54,6 +55,7 @@ import {
 } from '../../shared/srnKotlinSetEventHandlers';
 import { srnKotlinRequestPermissions } from '../../shared/srnKotlinRequestPermissions';
 import FastImage from 'react-native-fast-image';
+import { productSelector } from '../../common/redux/selector';
 
 type EventHandlersType = {
   [Property in FlowEvents]?: {
@@ -77,6 +79,8 @@ export const useFlow = () => {
   const flowContext = useContext(FlowContext);
   const { getState } = flowContext;
   const { status, setStatus } = flowContext;
+
+  const productsRedux = useSelector(productSelector);
 
   const { getOrderParams, setOrderParams } = flowContext;
 
@@ -226,16 +230,19 @@ export const useFlow = () => {
               undefined,
             );
 
-            if (resGetProductsFromParrot.isSuccess) {
+            if (
+              resGetProductsFromParrot.isSuccess &&
+              productsRedux.products.length <= 0
+            ) {
               const resGetAllProducts = await srnKotlinRun(
                 RunClassName.GetAllProducts,
                 undefined,
               );
 
-              const responseProducts = resGetAllProducts.response.products;
+              const responseProducts = productJSON;
               const productsMapped = _.map(responseProducts, product => {
                 return {
-                  id: product._id,
+                  id: product.uuid,
                   sku: product.sku,
                   name: product.name,
                   description: product.description,
@@ -245,7 +252,7 @@ export const useFlow = () => {
                   categories: product.categories[0].name,
                   tags: product.tags,
                   status: product.status,
-                  visibility: product.visibility.toString(),
+                  visibility: '1',
                   images: product.images[0].images,
                   image_thumbnail: product.images[0].thumbnail,
                   variants: product.variants,
@@ -258,18 +265,6 @@ export const useFlow = () => {
                 uri: item.image_thumbnail,
               }));
               FastImage.preload(preloadUris);
-              /*
-              const prefetchTasks: Promise<boolean>[] = [];
-              productsMapped.forEach(p => {
-                if (p.images != null) {
-                  prefetchTasks.push(Image.prefetch(p.images));
-                }
-              });
-
-              Promise.all(prefetchTasks).then(value => {
-                console.log('prefetched images:', value.length);
-              });
-              */
             }
 
             srnKotlinSetEventHandlers({

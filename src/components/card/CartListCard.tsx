@@ -16,25 +16,15 @@ import {
   mappedVariants,
   thousandSeparatorWithCurrencySign,
 } from '../../common/helpers/common';
-import { ProductType } from '../../utils/types';
+import { CartProductType } from '../../utils/types';
 import _ from 'lodash';
 
 type CartListCardType = {
-  item: ProductType & {
-    quantity: number;
-    amount: number;
-    selectedVariants?: {
-      additional_price: number;
-      image: string;
-      name: string;
-      status: boolean;
-      optionSetName?: string;
-      title: string;
-    }[];
-  };
+  item: CartProductType;
   handleAddQuantity: (id: string) => void;
   handleRemoveQuantity: (id: string) => void;
   handleRemoveItemPress: (id: string) => void;
+  handleCustomizePress: (item: CartProductType) => void;
 };
 
 const CartListCard = ({
@@ -42,6 +32,7 @@ const CartListCard = ({
   handleAddQuantity,
   handleRemoveQuantity,
   handleRemoveItemPress,
+  handleCustomizePress,
 }: CartListCardType) => {
   const theme = useTheme();
   const { width } = useWindowDimensions();
@@ -81,21 +72,36 @@ const CartListCard = ({
             </Text>
 
             {variants && (
-              <View style={{ paddingLeft: 10, width: 120, gap: 3 }}>
-                {_.map(variants, item => {
-                  return (
-                    <View key={item.name}>
-                      <Text
-                        style={{
-                          color: theme.colors.gray70,
-                          fontWeight: 'bold',
-                        }}>
-                        {item.quantity} {item.name}
-                      </Text>
-                    </View>
-                  );
-                })}
-              </View>
+              <>
+                <View style={{ paddingLeft: 10, width: 120, gap: 3, flex: 1 }}>
+                  {_.map(variants, item => {
+                    return (
+                      <View key={item.name}>
+                        <Text
+                          style={{
+                            color: theme.colors.gray70,
+                            fontWeight: 'bold',
+                          }}>
+                          {item.quantity} {item.name}
+                        </Text>
+                      </View>
+                    );
+                  })}
+                </View>
+
+                <TouchableOpacity
+                  onPress={() => handleCustomizePress(item)}
+                  style={{ paddingHorizontal: 10 }}>
+                  <Text
+                    style={{
+                      color: theme.colors.accent,
+                      fontWeight: 'bold',
+                      fontSize: 18,
+                    }}>
+                    Customize
+                  </Text>
+                </TouchableOpacity>
+              </>
             )}
           </View>
         </View>
@@ -106,52 +112,61 @@ const CartListCard = ({
         </Text>
 
         {/* action */}
-        <View style={styles.quantityButtonContainer}>
-          <TouchableOpacity
-            onPress={() => handleRemoveQuantity(item.id)}
-            style={[
-              styles.quantityButton,
-              { backgroundColor: theme.colors.white, borderWidth: 1, borderColor: theme.colors.primary },
-            ]}>
-            <AntDesign name="minus" size={20} color={theme.colors.primary} />
-          </TouchableOpacity>
+        <View style={{}}>
+          <View style={styles.quantityButtonContainer}>
+            <TouchableOpacity
+              onPress={() => handleRemoveQuantity(item.id)}
+              style={[
+                styles.quantityButton,
+                {
+                  backgroundColor: theme.colors.white,
+                  borderWidth: 1,
+                  borderColor: theme.colors.primary,
+                },
+              ]}>
+              <AntDesign name="minus" size={20} color={theme.colors.primary} />
+            </TouchableOpacity>
 
-          <Text
-            style={[
-              styles.quantityText,
-              {
-                color: theme.colors.black,
-                borderColor: theme.colors.black,
-              },
-            ]}>
-            {item.quantity}
-          </Text>
+            <Text
+              style={[
+                styles.quantityText,
+                {
+                  color: theme.colors.black,
+                  borderColor: theme.colors.black,
+                },
+              ]}>
+              {item.quantity}
+            </Text>
 
+            <TouchableOpacity
+              onPress={() => handleAddQuantity(item.id)}
+              style={[
+                styles.quantityButton,
+                { backgroundColor: theme.colors.primary },
+              ]}>
+              <AntDesign name="plus" size={20} color={theme.colors.white} />
+            </TouchableOpacity>
+          </View>
+
+          {/* remove button */}
           <TouchableOpacity
-            onPress={() => handleAddQuantity(item.id)}
-            style={[
-              styles.quantityButton,
-              { backgroundColor: theme.colors.primary },
-            ]}>
-            <AntDesign name="plus" size={20} color={theme.colors.white} />
+            onPress={() => handleRemoveItemPress(item.id)}
+            style={styles.removeButton}>
+            <MaterialCommunityIcons
+              name="trash-can-outline"
+              size={24}
+              color={theme.colors.gray80}
+            />
+            <Text
+              style={[
+                styles.removeButtonLabel,
+                { color: theme.colors.gray80 },
+              ]}>
+              Remove
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
-
-      {/* remove button */}
-      <TouchableOpacity
-        onPress={() => handleRemoveItemPress(item.id)}
-        style={styles.removeButton}>
-        <MaterialCommunityIcons
-          name="trash-can-outline"
-          size={24}
-          color={theme.colors.gray80}
-        />
-        <Text
-          style={[styles.removeButtonLabel, { color: theme.colors.gray80 }]}>
-          Remove
-        </Text>
-      </TouchableOpacity>
     </>
   );
 };
@@ -195,6 +210,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 5,
     justifyContent: 'space-between',
+    paddingTop: 20,
   },
   quantityText: {
     borderRadius: 8,
@@ -204,10 +220,11 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   removeButton: {
-    alignItems: 'center',
+    alignItems: 'flex-start',
     alignSelf: 'flex-end',
     flexDirection: 'row',
     gap: 10,
+    paddingTop: 50,
   },
   removeButtonLabel: {
     fontSize: 20,

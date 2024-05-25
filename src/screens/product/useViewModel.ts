@@ -65,7 +65,7 @@ const useViewModel = () => {
     'Extras',
   ];
 
-  const reorderedCategories = categories.sort((a, b) => {
+  const reorderedCategories = activeCategories.sort((a, b) => {
     const indexA = desiredOrder.indexOf(a.name);
     const indexB = desiredOrder.indexOf(b.name);
 

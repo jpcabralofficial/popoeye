@@ -9,6 +9,8 @@ import {
 import { setFulfillmentType } from '../../common/redux/slices/checkout/checkout';
 import { cartSelector, checkoutSelector } from '../../common/redux/selector';
 import { TYPE_OF_PAYMENT } from '../../utils/navigation';
+import { useState } from 'react';
+import { CartProductType } from '../../utils/types';
 
 const useViewModel = () => {
   const { navigate, goBack } = useNavigation<any>();
@@ -16,6 +18,11 @@ const useViewModel = () => {
 
   const checkoutRedux = useSelector(checkoutSelector);
   const cartRedux = useSelector(cartSelector);
+
+  const [showCustomizeModal, setShowCustomizeModal] = useState<boolean>(false);
+  const [selectedItem, setSelectedItem] = useState<
+    CartProductType | undefined
+  >();
 
   const cartItems = cartRedux.cartItems;
   const cartCount = cartRedux.cartItems.reduce(
@@ -42,6 +49,21 @@ const useViewModel = () => {
     dispatch(removeItem(id));
   };
 
+  const handleCustomizePress = (item: CartProductType) => {
+    console.log('customize');
+    setShowCustomizeModal(true);
+    setSelectedItem(item);
+  };
+
+  const handleCloseCustomizeModal = () => {
+    setShowCustomizeModal(false);
+    setSelectedItem({
+      quantity: 0,
+      amount: 0,
+      selectedVariants: [{}],
+    });
+  };
+
   const handleChangeFulfillmentPress = (
     fulfillmentType: 'dine-in' | 'take-out',
   ) => {
@@ -65,9 +87,14 @@ const useViewModel = () => {
     isDineIn: fulfillmentType === 'Dine In',
     isTakeOut: fulfillmentType === 'Take Out',
 
+    selectedItem,
+    showCustomizeModal,
+    handleCloseCustomizeModal,
+
     handleAddQuantity,
     handleRemoveQuantity,
     handleRemoveItemPress,
+    handleCustomizePress,
 
     handleChangeFulfillmentPress,
     handleNavigatePress,

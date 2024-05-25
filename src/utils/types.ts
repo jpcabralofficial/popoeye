@@ -30,3 +30,16 @@ export type VariantType = {
   name: string;
   status: boolean;
 };
+
+export type CartProductType = ProductType & {
+  quantity: number;
+  amount: number;
+  selectedVariants?: {
+    additional_price: number;
+    image: string;
+    name: string;
+    status: boolean;
+    optionSetName?: string;
+    title: string;
+  }[];
+};
