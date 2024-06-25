@@ -2,3 +2,42 @@ rootProject.name = 'PopeyesKiosk'
 apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
 include ':app'
 includeBuild('../node_modules/react-native-gradle-plugin')
+
+include ':appcontroller'
+project (':appcontroller').projectDir = new File('../node_modules/serino-pos-kotlin-bridge/android/appcontroller')
+
+include ':commands'
+project (':commands').projectDir = new File('../node_modules/serino-pos-kotlin-bridge/android/commands')
+
+include ':dal-receipt'
+project (':dal-receipt').projectDir = new File('../node_modules/serino-pos-kotlin-bridge/android/dal-receipt')
+
+include ':dal-report'
+project (':dal-report').projectDir = new File('../node_modules/serino-pos-kotlin-bridge/android/dal-report')
+
+include ':dal-statemanagementagent'
+project (':dal-statemanagementagent').projectDir = new File('../node_modules/serino-pos-kotlin-bridge/android/dal-statemanagementagent')
+
+include ':dal-storage'
+project (':dal-storage').projectDir = new File('../node_modules/serino-pos-kotlin-bridge/android/dal-storage')
+
+include ':dal-utility'
+project (':dal-utility').projectDir = new File('../node_modules/serino-pos-kotlin-bridge/android/dal-utility')
+
+include ':hal-printer'
+project (':hal-printer').projectDir = new File('../node_modules/serino-pos-kotlin-bridge/android/hal-printer')
+
+include ':hal-system'
+project (':hal-system').projectDir = new File('../node_modules/serino-pos-kotlin-bridge/android/hal-system')
+
+include ':hsl-printer'
+project (':hsl-printer').projectDir = new File('../node_modules/serino-pos-kotlin-bridge/android/hsl-printer')
+
+include ':hsl-system'
+project (':hsl-system').projectDir = new File('../node_modules/serino-pos-kotlin-bridge/android/hsl-system')
+
+include ':rsl-host'
+project (':rsl-host').projectDir = new File('../node_modules/serino-pos-kotlin-bridge/android/rsl-host')
+
+include ':sharedfunctions'
+project (':sharedfunctions').projectDir = new File('../node_modules/serino-pos-kotlin-bridge/android/sharedfunctions')
