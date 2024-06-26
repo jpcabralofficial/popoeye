@@ -54,7 +54,7 @@ const VariantsCustomizeModal = ({ isVisible, onModalHide, item }: Props) => {
   const [optionSets, setOptionSets] = useState<[]>([]);
 
   const [totalAmount, setTotalAmount] = useState<number>(
-    parseInt(item?.price + item?.variantsAdditionalAmount),
+    parseInt(item?.price + (item?.variantsAdditionalAmount ?? 0)),
   );
 
   const [variantsAdditionalAmount, setVariantsAdditionalAmount] =
@@ -219,7 +219,7 @@ const VariantsCustomizeModal = ({ isVisible, onModalHide, item }: Props) => {
 
     console.log(selectedVariants);
 
-    let totalAmount;
+    let totalAmountP;
 
     if (selectedSizes && selectedSizes?.additional_price) {
       const checkDefaultSelectedDrinkSize = _.find(
@@ -228,20 +228,20 @@ const VariantsCustomizeModal = ({ isVisible, onModalHide, item }: Props) => {
       );
 
       if (checkDefaultSelectedDrinkSize) {
-        totalAmount =
+        totalAmountP =
           parseInt(item?.price, 10) +
           totalPrice +
           selectedSizes?.additional_price -
           checkDefaultSelectedDrinkSize?.additional_price;
 
-        console.log(totalAmount, 'totalAmountsss');
+        console.log(totalAmountP, 'totalAmountsss');
         console.log(
           selectedSizes?.additional_price -
             checkDefaultSelectedDrinkSize?.additional_price,
           'minus amoiunt',
         );
       } else {
-        totalAmount =
+        totalAmountP =
           parseInt(item?.price, 10) +
           totalPrice +
           selectedSizes?.additional_price;
@@ -252,19 +252,19 @@ const VariantsCustomizeModal = ({ isVisible, onModalHide, item }: Props) => {
         variants => variants.title === 'Sizes',
       );
 
-      totalAmount =
+      totalAmountP =
         parseInt(item?.price, 10) +
         totalPrice -
-        checkDefaultSelectedDrinkSize?.additional_price;
+        (checkDefaultSelectedDrinkSize?.additional_price ?? 0);
     }
 
     const totalVariantsAdditionalAmount = totalPrice;
 
     console.log(totalVariantsAdditionalAmount, 'totalVariantsAdditionalAmount');
 
-    setTotalAmount(totalAmount);
+    setTotalAmount(totalAmountP);
     setVariantsAdditionalAmount(totalVariantsAdditionalAmount);
-  }, [selectedSizes, selectedVariants]);
+  }, [item?.price, item?.selectedVariants, selectedSizes, selectedVariants]);
 
   // load selected variants
   useEffect(() => {
