@@ -21,7 +21,8 @@ const cartSlice = createSlice({
               ...item,
               amount:
                 (item.quantity - 1) *
-                (parseInt(item.price, 10) + item.variantsAdditionalAmount),
+                (parseInt(item.price, 10) +
+                  (item?.variantsAdditionalAmount ?? 0)),
               quantity: item.quantity - 1,
             };
           }
