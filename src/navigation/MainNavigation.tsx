@@ -39,7 +39,9 @@ import {
   INSTRUCTION_PAYMENT,
   ORDER_SUCCESSFUL,
   MY_BAG,
+  UPSELL_PRODUCT,
 } from '../utils/navigation';
+import UpsellProducts from '../screens/UpsellProducts';
 
 export type MainNavigationParamList = {
   [ONBOARDING_NAV]: undefined;
@@ -53,8 +55,8 @@ export type MainNavigationParamList = {
   [CASHLESS_PAYMENT]: undefined;
   [INSTRUCTION_PAYMENT]: undefined;
   [ORDER_SUCCESSFUL]: undefined;
+  [UPSELL_PRODUCT]: undefined;
 };
-
 const Stack = createStackNavigator<MainNavigationParamList>();
 
 const MainNavigation = () => {
@@ -135,6 +137,12 @@ const MainNavigation = () => {
         name={ORDER_SUCCESSFUL}
         component={OrderSuccessfulScreen}
         options={{ headerShown: false, presentation: 'modal' }}
+      />
+
+      <Stack.Screen
+        name={UPSELL_PRODUCT}
+        component={UpsellProducts}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );

@@ -1,4 +1,5 @@
 import 'react-native-gesture-handler';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import './src/common/helpers/multiLanguageSetting';
 
 import React from 'react';
@@ -30,7 +31,7 @@ import { FlowProvider } from './src/context/flow';
 import { store, persistor } from './src/common/redux/store';
 
 import MainNavigation from './src/navigation/MainNavigation';
-
+import { NativeBaseProvider } from 'native-base';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -47,7 +48,7 @@ const App = () => {
   SystemNavigationBar.navigationHide();
 
   return (
-    <>
+    <GestureHandlerRootView style={{ flex: 1 }}>
       <StatusBar backgroundColor={theme.colors.background} hidden />
       <Provider store={store}>
         <PersistGate persistor={persistor}>
@@ -55,21 +56,23 @@ const App = () => {
             client={queryClient}
             persistOptions={{ persister: asyncStoragePersister }}>
             <NavigationContainer>
-              <PaperProvider theme={theme}>
-                <SafeAreaView style={styles.container}>
-                  <KeyboardAvoidingView
-                    style={styles.keyboardAvoidingContainer}>
-                    <FlowProvider>
-                      <MainNavigation />
-                    </FlowProvider>
-                  </KeyboardAvoidingView>
-                </SafeAreaView>
-              </PaperProvider>
+              <NativeBaseProvider>
+                <PaperProvider theme={theme}>
+                  <SafeAreaView style={styles.container}>
+                    <KeyboardAvoidingView
+                      style={styles.keyboardAvoidingContainer}>
+                      <FlowProvider>
+                        <MainNavigation />
+                      </FlowProvider>
+                    </KeyboardAvoidingView>
+                  </SafeAreaView>
+                </PaperProvider>
+              </NativeBaseProvider>
             </NavigationContainer>
           </PersistQueryClientProvider>
         </PersistGate>
       </Provider>
-    </>
+    </GestureHandlerRootView>
   );
 };
 

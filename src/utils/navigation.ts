@@ -30,3 +30,7 @@ export const INSTRUCTION_PAYMENT = 'InstructionPayment';
 
 // order successful
 export const ORDER_SUCCESSFUL = 'OrderSuccessful';
+
+// UPSELL PRODUCT
+
+export const UPSELL_PRODUCT = 'UPSELLPRODUCT';
